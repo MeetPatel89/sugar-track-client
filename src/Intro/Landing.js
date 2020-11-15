@@ -19,7 +19,7 @@ export default class Landing extends Component {
                 <button type="submit"><Link to='/register'>Sign Up</Link></button>
                 <br/>
                 <br/>
-                <button type="submit">Sign In</button>
+                <button type="submit"><Link to='/login'>Sign In</Link></button>
                 </section>
                 </main>
                 <footer role="content-info">&#169;Meet 2020</footer>
