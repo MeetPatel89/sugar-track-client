@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Route } from 'react-router-dom';
 import Header from './Header/Header';
 import Landing from './Intro/Landing';
 import SignUp from './SignUp/SignUp';
@@ -8,7 +9,8 @@ export default class App extends Component {
     return (
       <body>
         <Header/>
-        <Landing/>
+        <Route exact path='/register' component={SignUp}/>
+        <Route exact path='/' component={Landing}/>
       </body>
     )
   }
