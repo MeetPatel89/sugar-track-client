@@ -1,19 +1,85 @@
 import React, { Component } from 'react';
 import { Route } from 'react-router-dom';
 import Header from './Header/Header';
-import Landing from './Intro/Landing';
+import Landing from './Landing/Landing';
 import SignUp from './SignUp/SignUp';
 import SignIn from './SignIn/SignIn';
+import HomePage from './HomePage/HomePage';
+import LogDisplay from './Logdisplay/Logdisplay';
+import LogBook from './LogBook/LogBook';
+import UserManual from './UserManual/UserManual';
+import SugarLog from './SugarLog/SugarLog';
+import MedicationsLog from './MedicationsLog/MedicationsLog';
+import MealsLog from './MealsLog/MealsLog';
+import Nav from './Nav/Nav';
 
 export default class App extends Component {
   render() {
     return (
-      <body>
+      <>
         <Header/>
         <Route exact path='/register' component={SignUp}/>
         <Route exact path='/login' component={SignIn}/>
         <Route exact path='/' component={Landing}/>
-      </body>
+        <Route exact path='/homepage' component={HomePage}/>
+        <Route exact path='/logdisplay' component={() => {
+          return (
+            <>
+              <Nav/>
+              <LogDisplay/>
+            </>
+          )
+        }}/>
+        <Route exact path='/logbook' component={() => {
+          return (
+            <>
+              <Nav/>
+              <LogBook/>
+            </>
+          )
+        }}/>
+        <Route exact path='/usermanual' component={() => {
+          return (
+            <>
+              <Nav/>
+              <UserManual/>
+            </>
+          )
+        }}/>
+        
+        <Route exact path='/logbook/:log_metric' component={(props) => {
+          console.log(props);
+          let renderLogMetric;
+          if (props.match.params.log_metric === 'blood_sugar') {
+            renderLogMetric = ( 
+              <>
+              <Nav/>
+              <SugarLog/>
+              </>
+            )
+          } else if (props.match.params.log_metric === 'medications') {
+            renderLogMetric = (
+              <>
+                <Nav/>
+                <MedicationsLog/>
+              </>
+            )
+          } else if (props.match.params.log_metric === 'meal_regimens') {
+            renderLogMetric = (
+              <>
+                <Nav/>
+                <MealsLog/>
+              </>
+            )
+          }
+          return (
+            <>
+            {renderLogMetric}
+            </>
+          )
+        }}/>
+
+      </>
     )
   }
 }
