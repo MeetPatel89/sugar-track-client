@@ -12,8 +12,6 @@ export default class SignIn extends Component {
     handleChange = (e) => {
         const name = e.target.name;
         const value = e.target.value;
-        console.log(name);
-        console.log(value);
         this.setState({
             [name]: value
         })
@@ -21,8 +19,30 @@ export default class SignIn extends Component {
 
     handleSubmit = (e) => {
         e.preventDefault();
-       console.log('Handle submit works')
        
+       const username = this.state.username;
+       const password = this.state.password;
+       console.log(username);
+       console.log(password);
+       fetch(`http://localhost:8000/users/${username}`)
+        .then(user => user.json())
+        .then(user => {
+            if (!user.length) {
+                this.setState({
+                    error: 'Please enter a correct username'
+                })
+            } else {
+                if (user[0].password !== password) {
+                    this.setState({
+                        error: 'Please enter the correct password'
+                    })} else {
+                        this.setState({
+                            isLogged: true
+                        })
+                    }
+                
+            }
+        })
         
         
     }
@@ -47,6 +67,7 @@ export default class SignIn extends Component {
                         <br/>
                         <button type="submit">LogIn</button>
                     </form>
+                    {this.state.error}
                 </section>
              </>)
              :
