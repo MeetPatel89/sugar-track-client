@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
+import HomePage from '../HomePage/HomePage';
+import Header from '../Header/Header';
 
 export default class SignIn extends Component {
     constructor(props) {
@@ -52,6 +53,7 @@ export default class SignIn extends Component {
             (!this.state.isLogged)
             ?
             (<>
+                <Header/>
                 <section className="log-in">
                     <h2>PLEASE SIGN IN</h2>
                     <form onSubmit={this.handleSubmit}>
@@ -71,7 +73,7 @@ export default class SignIn extends Component {
                 </section>
              </>)
              :
-             <div><button><Link to='/homepage'>Get Started</Link></button></div>
+            <HomePage user={this.state.username} />
 
         )
     }

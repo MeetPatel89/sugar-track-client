@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import SignIn from '../SignIn/SignIn';
+import Header from '../Header/Header';
 
 export default class SignUp extends Component {
     constructor(props) {
@@ -78,7 +79,7 @@ export default class SignUp extends Component {
         return (
         
                 <>
-
+                    <Header/>
                     {(!this.state.signIn)
                     ? <section className="sign-up">
                     <h2>CREATE ACCOUNT</h2>

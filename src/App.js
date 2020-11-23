@@ -17,11 +17,11 @@ export default class App extends Component {
   render() {
     return (
       <>
-        <Header/>
+        
         <Route exact path='/register' component={SignUp}/>
         <Route exact path='/login' component={SignIn}/>
         <Route exact path='/' component={Landing}/>
-        <Route exact path='/homepage' component={HomePage}/>
+        
         <Route exact path='/logdisplay' component={() => {
           return (
             <>

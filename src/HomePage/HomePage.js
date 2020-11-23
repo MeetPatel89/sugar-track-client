@@ -3,11 +3,13 @@ import { Link } from 'react-router-dom';
 import LogDisplay from '../Logdisplay/Logdisplay';
 import LogBook from '../LogBook/LogBook';
 import Nav from '../Nav/Nav';
+import Header from '../Header/Header';
 
 export default class HomePage extends Component {
     render() {
         return (
             <>
+            <Header user={this.props.user}/>
                 <Nav/>
     <br/>
     <br/>
