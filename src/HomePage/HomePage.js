@@ -1,36 +1,50 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, Route } from 'react-router-dom';
 import LogDisplay from '../Logdisplay/Logdisplay';
 import LogBook from '../LogBook/LogBook';
 import Nav from '../Nav/Nav';
 import Header from '../Header/Header';
+import Introduction from '../Introduction/Introduction';
+import UserManual from '../UserManual/UserManual';
+import SignIn from '../SignIn/SignIn';
 
 export default class HomePage extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            isLoggedOut: false
+        }
+    }
+
+    handleClick = () => {
+        this.setState({
+            isLoggedOut: true
+        })
+    }
+
     render() {
+
+        const toRender = (!this.state.isLoggedOut)
+                            ? (<>
+                                <Header user={this.props.user} isLogged={this.props.isLogged}/>
+                                <button type="submit" onClick={this.handleClick}>Log out</button>
+                                    <Nav/>
+                        <br/>
+                        <br/>
+                        
+                          <Route exact path='/' component={Introduction}/>  
+                          <Route path='/logdisplay' component={LogDisplay}/>
+                          <Route path='/logbook' component={LogBook}/>
+                          <Route path='/usermanual' component={UserManual}/>
+                        <footer role="content-info">&#169;Meet 2020</footer>
+                                </>)
+                            : <SignIn/>
+
         return (
             <>
-            <Header user={this.props.user}/>
-                <Nav/>
-    <br/>
-    <br/>
-    <main role="main">
-      <header role="banner">
-        <h1>Sugar Track</h1>
-      </header>
-        
-      
-        <section className="intro">
-            <h2>Introduction</h2>
-            <ul>
-                <li><span><Link to='/logbook'>Logbook</Link></span>: Where you can log values for blood glucose, medications and meals</li>
-                <li><span><Link to='/logdisplay'>LogDisplay</Link></span>: Where you can visulaize the daily logged values</li>
-                <li><span><Link to='/usermanual'>UserManual</Link></span>: Where you can learn more about this app and how to use it optimally</li>
-            </ul>
-        </section>
-      
-    </main>
-    <footer role="content-info">&#169;Meet 2020</footer>
+                {toRender}
             </>
+            
         )
     }
 }

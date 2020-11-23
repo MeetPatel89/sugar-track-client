@@ -13,8 +13,8 @@ export default class LogDisplay extends Component {
     render() {
         return (
             <>
-            <Header/>
-            <Nav/>
+            
+            
             <section>
             <h2>Blood Sugar Levels Log</h2>
             <ul>

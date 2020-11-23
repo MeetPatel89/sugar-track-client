@@ -1,12 +1,14 @@
 import React, { Component } from 'react';
 import HomePage from '../HomePage/HomePage';
 import Header from '../Header/Header';
+import SignUp from '../SignUp/SignUp';
 
 export default class SignIn extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            isLogged: false
+            isLogged: false,
+            signUp: false
         }
     }
 
@@ -15,6 +17,12 @@ export default class SignIn extends Component {
         const value = e.target.value;
         this.setState({
             [name]: value
+        })
+    }
+
+    handleClick = () => {
+        this.setState({
+            signUp: true
         })
     }
 
@@ -50,7 +58,10 @@ export default class SignIn extends Component {
 
     render() {
         return (
-            (!this.state.isLogged)
+
+            (!this.state.signUp) ?
+            (
+                (!this.state.isLogged)
             ?
             (<>
                 <Header/>
@@ -68,13 +79,18 @@ export default class SignIn extends Component {
                         </label>
                         <br/>
                         <button type="submit">LogIn</button>
+                        <p>Don't have an account <button type="submit" onClick={this.handleClick}>Sign up</button></p>
                     </form>
                     {this.state.error}
                 </section>
              </>)
              :
-            <HomePage user={this.state.username} />
+            <HomePage user={this.state.username} isLogged={this.state.isLogged} />
 
         )
-    }
-}
+            
+            : <SignUp/>
+        )
+            
+    
+}}

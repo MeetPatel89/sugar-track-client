@@ -6,8 +6,8 @@ export default class UserManual extends Component {
     render() {
         return (
             <>
-                <Header/>
-                <Nav/>
+                
+                
                 <section className='user-manual'>
                     <h2>User Manual</h2>
                     <li>How to use this app</li>

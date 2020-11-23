@@ -7,8 +7,8 @@ export default class LogBook extends Component {
     render() {
         return (
             <>
-            <Header/>
-            <Nav/>
+            
+            
             <section>
                 <Link to='/logbook/blood_sugar'><button type="submit">Blood Sugar</button></Link>
                 <Link to='/logbook/medications'><button type="submit">Medications</button></Link>

@@ -23,6 +23,12 @@ export default class SignUp extends Component {
        
 }
 
+    handleClick = () => {
+        this.setState({
+            signIn: true
+        })
+    }
+
     handleSubmit = (e) => {
         e.preventDefault();
         const passwd = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,20}$/;
@@ -79,9 +85,12 @@ export default class SignUp extends Component {
         return (
         
                 <>
-                    <Header/>
+                    
                     {(!this.state.signIn)
-                    ? <section className="sign-up">
+                    ? 
+                    <>
+                    <Header/>
+                    <section className="sign-up">
                     <h2>CREATE ACCOUNT</h2>
                     <form onSubmit={this.handleSubmit}>
                         <label>
@@ -108,12 +117,12 @@ export default class SignUp extends Component {
                         <button type="submit">Sign Up</button>
                     </form>
                     <div>
-                        <p>Already have an account? <Link to='/login'>Sign In</Link></p>
+                        <p>Already have an account? <button type="submit" onClick={this.handleClick}>Sign In</button></p>
                         {this.state.error}
                     </div>
                      
                 </section> 
-                        
+                 </>       
                 
                 : <SignIn/>}
                     
