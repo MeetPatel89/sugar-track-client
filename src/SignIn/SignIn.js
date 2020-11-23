@@ -9,18 +9,20 @@ export default class SignIn extends Component {
         }
     }
 
+    handleChange = (e) => {
+        const name = e.target.name;
+        const value = e.target.value;
+        console.log(name);
+        console.log(value);
+        this.setState({
+            [name]: value
+        })
+    }
+
     handleSubmit = (e) => {
         e.preventDefault();
-        console.log('Event works!');
-        const username = e.target.username.value;
-        const password = e.target.password.value;
-        ((username === 'nautilus' && password === 'shell') ||
-        (username === 'logarithm' && password === 'spiral') ||
-        (username === 'fibonacci' && password === 'sequence')) 
-        &&
-        (this.setState({
-                isLogged: true
-        }))
+       console.log('Handle submit works')
+       
         
         
     }
@@ -35,12 +37,12 @@ export default class SignIn extends Component {
                     <form onSubmit={this.handleSubmit}>
                         <label>
                             Username:
-                            <input type="text" name="username"/>
+                            <input type="text" name="username" onChange={this.handleChange} required/>
                         </label>
                         <br/>
                         <label>
                             Password:
-                            <input type="password" name="password"/>
+                            <input type="password" name="password" onChange={this.handleChange} required/>
                         </label>
                         <br/>
                         <button type="submit">LogIn</button>
