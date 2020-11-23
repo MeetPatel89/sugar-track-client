@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import SignIn from '../SignIn/SignIn';
 
 export default class SignUp extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            
+            signIn: false
         }
     }
 
@@ -41,49 +42,80 @@ export default class SignUp extends Component {
             }
         }
 
-        
+        const { fullname, username, password } = this.state;
+        const newUser = {
+            fullname,
+            username,
+            password
+        }
 
-        
-    
-        console.log(this.state);
+        console.log(newUser);
+
+       fetch('http://localhost:8000/users', {
+           method: 'POST',
+           headers: {
+            'Content-Type': 'application/json',
+          },
+           body: JSON.stringify(newUser) 
+       })
+       .then(user => user.json())
+       .then(data => {
+           this.setState({
+               'signIn': true
+           })
+       })
+       .catch(error => console.error({'error': error})) 
+
 
     }
 
     render() {
+
+        const signIn =  (this.state.signIn) 
+                        ? <button type="submit"><Link to='/login'>Sign Up</Link></button>
+                        : <button type="submit">Sign Up</button>
+
         return (
         
                 <>
-                    <section className="sign-up">
-                        <h2>CREATE ACCOUNT</h2>
-                        <form onSubmit={this.handleSubmit}>
-                            <label>
-                                Fullname:
-                                <input type="text" name="name" onChange={this.handleChange} required/>
-                            </label>
-                            <br/>
-                            <label>
-                                Username:
-                                <input type="text" name="username" onChange={this.handleChange} required/>
-                            </label>
-                            <br/>
-                            <label>
-                                Password:
-                                <input type="password" name="password" onChange={this.handleChange} required/>
-                            </label>
-                            <br/>
-                            <label>
-                                Confirm Password:       
-                                <input type="password" name="confirm-password" onChange={this.handleChange} required/>
-                            </label>
-                            <br/>
-                            <button type="submit">Sign Up</button>
-                        </form>
-                        <div>
-                            <p>Already have an account? <Link to='/login'>Sign In</Link></p>
-                            {this.state.error}
-                        </div>
-                         
-                    </section> 
+
+                    {(!this.state.signIn)
+                    ? <section className="sign-up">
+                    <h2>CREATE ACCOUNT</h2>
+                    <form onSubmit={this.handleSubmit}>
+                        <label>
+                            Fullname:
+                            <input type="text" name="fullname" onChange={this.handleChange} required/>
+                        </label>
+                        <br/>
+                        <label>
+                            Username:
+                            <input type="text" name="username" onChange={this.handleChange} required/>
+                        </label>
+                        <br/>
+                        <label>
+                            Password:
+                            <input type="password" name="password" onChange={this.handleChange} required/>
+                        </label>
+                        <br/>
+                        <label>
+                            Confirm Password:       
+                            <input type="password" name="confirm-password" onChange={this.handleChange} required/>
+                        </label>
+                        <br/>
+                        
+                        <button type="submit">Sign Up</button>
+                    </form>
+                    <div>
+                        <p>Already have an account? <Link to='/login'>Sign In</Link></p>
+                        {this.state.error}
+                    </div>
+                     
+                </section> 
+                        
+                
+                : <SignIn/>}
+                    
                 </>
             
         );
