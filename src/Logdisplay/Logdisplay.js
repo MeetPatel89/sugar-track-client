@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import Header from '../Header/Header';
+import Nav from '../Nav/Nav';
 
 export default class LogDisplay extends Component {
     constructor(props) {
@@ -10,6 +12,9 @@ export default class LogDisplay extends Component {
     }
     render() {
         return (
+            <>
+            <Header/>
+            <Nav/>
             <section>
             <h2>Blood Sugar Levels Log</h2>
             <ul>
@@ -23,6 +28,7 @@ export default class LogDisplay extends Component {
     
     
             </section>
+            </>
         )
     }
 }

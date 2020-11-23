@@ -25,7 +25,8 @@ export default class App extends Component {
         <Route exact path='/logdisplay' component={() => {
           return (
             <>
-              <Nav/>
+              
+              
               <LogDisplay/>
             </>
           )
@@ -33,7 +34,7 @@ export default class App extends Component {
         <Route exact path='/logbook' component={() => {
           return (
             <>
-              <Nav/>
+              
               <LogBook/>
             </>
           )
@@ -41,7 +42,7 @@ export default class App extends Component {
         <Route exact path='/usermanual' component={() => {
           return (
             <>
-              <Nav/>
+              
               <UserManual/>
             </>
           )
