@@ -43,11 +43,11 @@ export default class HomePage extends Component {
                               console.log(props);
                               const log_metric = props.match.params.log_metric;
                               if(log_metric === 'blood_sugar') {
-                                  return <SugarLog/>
+                                  return <SugarLog id={this.props.id}/>
                               } else if (log_metric === 'meal_regimens') {
-                                  return <MealsLog/>
+                                  return <MealsLog id={this.props.id}/>
                               }
-                                return <MedicationsLog/>
+                                return <MedicationsLog id={this.props.id}/>
                           }}/>
                         <footer role="content-info">&#169;Meet 2020</footer>
                                 </>)

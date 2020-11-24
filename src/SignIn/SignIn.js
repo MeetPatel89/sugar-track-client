@@ -46,7 +46,8 @@ export default class SignIn extends Component {
                         error: 'Please enter the correct password'
                     })} else {
                         this.setState({
-                            isLogged: true
+                            isLogged: true,
+                            ...user[0]
                         })
                     }
                 
@@ -85,7 +86,7 @@ export default class SignIn extends Component {
                 </section>
              </>)
              :
-            <HomePage user={this.state.username} isLogged={this.state.isLogged} />
+            <HomePage user={this.state.username} isLogged={this.state.isLogged} id={this.state.id} />
 
         )
             
