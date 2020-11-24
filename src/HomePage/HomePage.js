@@ -7,6 +7,9 @@ import Header from '../Header/Header';
 import Introduction from '../Introduction/Introduction';
 import UserManual from '../UserManual/UserManual';
 import SignIn from '../SignIn/SignIn';
+import MealsLog from '../MealsLog/MealsLog';
+import MedicationsLog from '../MedicationsLog/MedicationsLog';
+import SugarLog from '../SugarLog/SugarLog';
 
 export default class HomePage extends Component {
     constructor(props) {
@@ -36,6 +39,16 @@ export default class HomePage extends Component {
                           <Route path='/logdisplay' component={LogDisplay}/>
                           <Route path='/logbook' component={LogBook}/>
                           <Route path='/usermanual' component={UserManual}/>
+                          <Route path='/logbook/:log_metric' component={(props) => {
+                              console.log(props);
+                              const log_metric = props.match.params.log_metric;
+                              if(log_metric === 'blood_sugar') {
+                                  return <SugarLog/>
+                              } else if (log_metric === 'meal_regimens') {
+                                  return <MealsLog/>
+                              }
+                                return <MedicationsLog/>
+                          }}/>
                         <footer role="content-info">&#169;Meet 2020</footer>
                                 </>)
                             : <SignIn/>
