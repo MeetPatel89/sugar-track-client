@@ -22,7 +22,7 @@ export default class MedicationsLog extends Component {
         return (
             <section>
         <h2>Enter the medication regimens</h2>
-        <form>
+        <form onSubmit={this.handleSubmit}>
           <label htmlFor="meds">Medication:</label>
           <input type="text" id="meds" name="meds" placeholder="E.g. Insulin or Metformin" onChange={this.handleChange} required/>
           <br/>
