@@ -8,6 +8,10 @@ export default class SugarLog extends Component {
     }
   }
 
+  handleSubmit = () => {
+    
+  }
+
   handleChange = (e) => {
     const name = e.target.name;
     const value = e.target.value;
@@ -21,10 +25,10 @@ export default class SugarLog extends Component {
         return (
             <section>
           <h2>Enter Sugar Levels</h2>
-        <form className='sugar-levels'>
+        <form className='sugar-levels' onSubmit={this.handleSubmit}>
             <div>
               <label htmlFor="sugar-concentration">Sugar Concentration</label>
-              <input placeholder='sugar level' type="text" name='sugar-level' id='sugar-concentration' onChange={this.handleChange} required/>
+              <input placeholder='sugar level' type="number" name='glucose' id='sugar-concentration' onChange={this.handleChange} required/>
               <span>mg/dl</span>
             </div>
             <br/>
