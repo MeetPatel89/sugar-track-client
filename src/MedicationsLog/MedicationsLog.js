@@ -1,6 +1,14 @@
 import React, { Component } from 'react';
 
 export default class MedicationsLog extends Component {
+    constructor(props) {
+      super(props);
+      this.state = {
+        message: '',
+        error: ''
+      }
+    }
+
     render() {
         return (
             <section>
