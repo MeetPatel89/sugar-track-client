@@ -15,16 +15,24 @@ export default class SugarLog extends Component {
     /*
     const date_time = moment(`${this.state.date}T${this.state.time}`).toISOString()
     */
-   const date_time_moment = moment(`${this.state.date} ${this.state.time}`, 'YYYY-MM-DD HH:mm')
+   const date_time_moment = moment(`${this.state.date} ${this.state.time}`, 'YYYY-MM-DD HH:mm');
    const date_time = date_time_moment.toISOString();
    
-   console.log(date_time);
+   if (date_time_moment.isBefore(moment().subtract(7, 'days'))) {
+     this.setState({
+       error: 'You are not allowed to log glucose values for dates which are more than one week old'
+     })
+   } else if (date_time_moment.isAfter(moment())){
+      this.setState({
+        error: 'You are not allowed to log glucose values for dates in the future'
+      })
+   } else {
     const newGlucoseLog = {
       user_id: this.props.id,
       date_time,
       glucose: this.state.glucose
     };
-    
+
     fetch('http://localhost:8000/glucose_logs')
     .then(res => res.json())
     .then(glucoseLogs => {
@@ -56,6 +64,11 @@ export default class SugarLog extends Component {
       }
       
     })
+   }
+   
+    
+    
+    
     
     
   }
