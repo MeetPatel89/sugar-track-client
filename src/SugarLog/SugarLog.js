@@ -4,11 +4,30 @@ export default class SugarLog extends Component {
   constructor(props) {
     super(props);
     this.state = {
-
+      message: ''
     }
   }
 
-  handleSubmit = () => {
+  handleSubmit = (e) => {
+    e.preventDefault()
+    const newGlucoseLog = {
+      ...this.state
+    };
+    delete newGlucoseLog['message'];
+    fetch('http://localhost:8000/glucose_logs', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(newGlucoseLog)
+    })
+    .then(newGlucoseLog => newGlucoseLog.json())
+    .then(newGlucoseLog => {
+      console.log(newGlucoseLog);
+      this.setState({
+        message: 'You have successfully logged a glucose value'
+      })
+    })
     
   }
 
@@ -42,7 +61,7 @@ export default class SugarLog extends Component {
             </div>
             <br/>
             <button type='submit'>Save</button>
-            
+            {this.state.message}
         </form>
         </section>
         )
