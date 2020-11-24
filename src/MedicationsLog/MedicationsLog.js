@@ -18,6 +18,11 @@ export default class MedicationsLog extends Component {
       })
     }
 
+    handleSubmit = (e) => {
+      e.preventDefault();
+      console.log('On submit handler works')
+    }
+
     render() {
         return (
             <section>
