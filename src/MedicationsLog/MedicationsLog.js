@@ -9,13 +9,22 @@ export default class MedicationsLog extends Component {
       }
     }
 
+    handleChange = (e) => {
+      const user_id = this.props.id;
+      const name = e.target.name;
+      const value = e.target.value;
+      this.setState({
+        [name]: value
+      })
+    }
+
     render() {
         return (
             <section>
         <h2>Enter the medication regimens</h2>
         <form>
-          <label htmlFor="pill">Medication:</label>
-          <input type="text" id="pill" name="pill" placeholder="E.g. Insulin or Metformin" onChange={this.handleChange} required/>
+          <label htmlFor="meds">Medication:</label>
+          <input type="text" id="meds" name="meds" placeholder="E.g. Insulin or Metformin" onChange={this.handleChange} required/>
           <br/>
           <br/>
           <div>
