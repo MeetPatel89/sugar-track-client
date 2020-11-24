@@ -12,7 +12,13 @@ export default class SugarLog extends Component {
 
   handleSubmit = (e) => {
     e.preventDefault()
+    /*
     const date_time = moment(`${this.state.date}T${this.state.time}`).toISOString()
+    */
+   const date_time_moment = moment(`${this.state.date} ${this.state.time}`, 'YYYY-MM-DD HH:mm')
+   const date_time = date_time_moment.toISOString();
+   
+   console.log(date_time);
     const newGlucoseLog = {
       user_id: this.props.id,
       date_time,
@@ -51,29 +57,6 @@ export default class SugarLog extends Component {
       
     })
     
-    /*
-    fetch('http://localhost:8000/glucose_logs', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify(newGlucoseLog)
-    })
-    .then(newGlucoseLog => newGlucoseLog.json())
-    .then(newGlucoseLog => {
-      console.log(newGlucoseLog);
-      
-      this.setState({
-        message: 'You have successfully logged a glucose value'
-      })
-    })
-   */
-    
-   
-   console.log(moment(`${this.state.date}T${this.state.time}`).toString())
-   console.log(moment(`${this.state.date}T${this.state.time}`).toISOString())
-   
-
     
   }
 
@@ -84,6 +67,7 @@ export default class SugarLog extends Component {
       [name]: value,
       
     })
+
   }
 
     render() {
@@ -93,7 +77,7 @@ export default class SugarLog extends Component {
         <form className='sugar-levels' onSubmit={this.handleSubmit}>
             <div>
               <label htmlFor="sugar-concentration">Sugar Concentration</label>
-              <input placeholder='sugar level' type="number" name='glucose' id='sugar-concentration' onChange={this.handleChange} required/>
+              <input placeholder='sugar level' type="number" name='glucose' id='sugar-concentration' onChange={this.handleChange} min="0" max="2000" required/>
               <span>mg/dl</span>
             </div>
             <br/>
