@@ -7,15 +7,7 @@ export default class MedicationsLog extends Component {
         <h2>Enter the medication regimens</h2>
         <form>
           <label htmlFor="pill">Medication:</label>
-          <input type="text" id="pill" name="pill" placeholder="E.g. Insulin injection"/>
-          <br/>
-          <br/>
-          <label htmlFor="dosage">Dosage:</label>
-          <input type="text" id="dosage" name="dosage" placeholder="E.g. 10 mg"/>
-          <br/>
-          <br/>
-          <label htmlFor="route">Route of administration:</label>
-          <input type="text" id="route" name="route" placeholder="E.g. oral or intravenous injection"/>
+          <input type="text" id="pill" name="pill" placeholder="E.g. Insulin or Metformin"/>
           <br/>
           <br/>
           <div>
