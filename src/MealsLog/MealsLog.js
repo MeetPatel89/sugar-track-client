@@ -45,7 +45,29 @@ export default class MealsLog extends Component {
             error: 'You have already logged meals value for the selected date and time',
             message: ''
           })
-        } 
+        } else {
+          const newMealLog = {
+            meals,
+            user_id,
+            date_time
+          }
+          fetch('http://localhost:8000/meals_logs', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(newMealLog)
+          })
+          .then(res => {
+            this.setState({
+              error: '',
+              message: 'You have successfully logged the meals value'
+            })
+            return res.json()
+
+          })
+          .then(mealsLog => console.log(mealsLog))
+        }
       })
     }
 
