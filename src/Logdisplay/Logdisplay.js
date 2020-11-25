@@ -6,12 +6,18 @@ export default class LogDisplay extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            
+
         }
     }
 
     componentDidMount() {
-        console.log('Hello World!')
+        fetch('http://localhost:8000/glucose_logs')
+        .then(glucoseLogs => {
+            this.setState({
+                glucoseLogs
+            })
+        })
+        
     }
     render() {
         return (
@@ -19,14 +25,21 @@ export default class LogDisplay extends Component {
             
             
             <section>
-            <h2>Blood Sugar Levels Log</h2>
-            <ul>
-              <li>Placeholder for date</li>
-              <li>Placeholder for date</li>
-              <li>Placeholder for date</li>
-              <li>Placeholder for date</li>
-            </ul>
-            <button type="submit">Add</button>
+            <form>
+                <h2>Display log for</h2>
+                <label>
+                    month:
+                    <select value="month" onChange={this.handleChange}>
+                        <option></option>
+                    </select>
+                </label>
+                <label>
+                    day:
+                    <select value="day" onChange={this.handleChange}>
+                        <option></option>
+                    </select>
+                </label>
+            </form>
         
     
     

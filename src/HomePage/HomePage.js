@@ -36,8 +36,11 @@ export default class HomePage extends Component {
                         <br/>
                         
                           <Route exact path='/' component={Introduction}/>  
-                          <Route path='/logdisplay' component={LogDisplay}/>
                           <Route path='/logbook' component={LogBook}/>
+                          <Route path='/logdisplay' component={(props) => {
+                              return <LogDisplay id={this.props.id}/>
+                          }}/>
+                          
                           <Route path='/usermanual' component={UserManual}/>
                           <Route path='/logbook/:log_metric' component={(props) => {
                               console.log(props);
