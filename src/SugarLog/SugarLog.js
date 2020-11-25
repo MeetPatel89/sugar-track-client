@@ -17,7 +17,7 @@ export default class SugarLog extends Component {
     */
    const date_time_moment = moment(`${this.state.date} ${this.state.time}`, 'YYYY-MM-DD HH:mm');
    const date_time = date_time_moment.toISOString();
-   
+   const user_id = this.props.id;
    if (date_time_moment.isBefore(moment().subtract(7, 'days'))) {
      this.setState({
        error: 'You are not allowed to log glucose values for dates which are more than one week old'
@@ -37,7 +37,7 @@ export default class SugarLog extends Component {
     .then(res => res.json())
     .then(glucoseLogs => {
       console.log(newGlucoseLog);
-      const duplicateGlucoseLog = glucoseLogs.find(glucoseLog => glucoseLog.date_time === newGlucoseLog.date_time)
+      const duplicateGlucoseLog = glucoseLogs.find(glucoseLog => glucoseLog.date_time === newGlucoseLog.date_time && glucoseLog.user_id === user_id)
       console.log(duplicateGlucoseLog);
       if (duplicateGlucoseLog) {
         this.setState({

@@ -41,9 +41,9 @@ export default class MedicationsLog extends Component {
       } else {
 
         fetch('http://localhost:8000/meds_logs')
-        .then(medsLogs => medsLogs.json())
+        .then(res => res.json())
         .then(medsLogs => {
-          const duplicateMedLog = medsLogs.find(medLog => medLog.date_time === date_time && medLog.meds === meds)
+          const duplicateMedLog = medsLogs.find(medLog => medLog.date_time === date_time && medLog.user_id === user_id)
           console.log(duplicateMedLog);
           if (duplicateMedLog) {
             this.setState({
