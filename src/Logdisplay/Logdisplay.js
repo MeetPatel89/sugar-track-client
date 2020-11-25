@@ -13,7 +13,7 @@ export default class LogDisplay extends Component {
     }
 
     componentDidMount() {
-        
+
         fetch(`http://localhost:8000/glucose_logs/${this.props.id}?sort=date_time`)
         .then(res => res.json())
         .then(sortedGlucoseLogs => {
@@ -27,6 +27,14 @@ export default class LogDisplay extends Component {
         .then(sortedMealsLogs => {
             this.setState({
                 mealsLogs: sortedMealsLogs
+            })
+        })
+
+        fetch(`http://localhost:8000/meds_logs/${this.props.id}?sort=date_time`)
+        .then(res => res.json())
+        .then(sortedMedsLogs => {
+            this.setState({
+                medsLogs: sortedMedsLogs
             })
         })
         
