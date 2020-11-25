@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import moment from 'moment';
 
 export default class MedicationsLog extends Component {
     constructor(props) {
@@ -10,7 +11,7 @@ export default class MedicationsLog extends Component {
     }
 
     handleChange = (e) => {
-      const user_id = this.props.id;
+      
       const name = e.target.name;
       const value = e.target.value;
       this.setState({
@@ -20,7 +21,25 @@ export default class MedicationsLog extends Component {
 
     handleSubmit = (e) => {
       e.preventDefault();
-      console.log('On submit handler works')
+      const user_id = this.props.id;
+      const meds = this.state.meds;
+      console.log(this.state.date)
+      console.log(this.state.time)
+    
+      const date_time_moment = moment(`${this.state.date} ${this.state.time}`, 'YYYY-MM-DD HH:mm');
+      console.log(date_time_moment.isBefore(moment().subtract(7, 'days')))
+      const date_time = date_time_moment.toISOString();
+      if (date_time_moment.isBefore(moment().subtract(7, 'days'))) {
+        this.setState({
+          error: 'You are not allowed to log meds values for dates more than one week old',
+          message: ''
+        })
+      } else if (date_time_moment.isAfter(moment())) {
+          this.setState({
+            
+          })
+      }
+     
     }
 
     render() {
@@ -43,6 +62,8 @@ export default class MedicationsLog extends Component {
             <br/>
           <button type="submit">Add</button>
         </form>
+        {this.state.message}
+        {this.state.error}
       </section>
         )
     }
