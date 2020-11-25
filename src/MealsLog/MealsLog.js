@@ -24,10 +24,16 @@ export default class MealsLog extends Component {
     const user_id = this.props.id;
     const date_time_moment = moment(`${this.state.date} ${this.state.time}`, 'YYYY-MM-DD HH:mm');
     const date_time = date_time_moment.toISOString();
-    console.log({
-      meals,
-      user_id,
-      date_time
+    fetch('http://localhost:8000/meals_logs')
+    .then(res => res.json())
+    .then(mealsLogs => {
+      const duplicateMealsLog = mealsLogs.find(mealsLog => mealsLog.date_time === date_time)
+      if (duplicateMealsLog) {
+        this.setState({
+          error: 'You have already logged meals value for the selected date and time',
+          message: ''
+        })
+      }
     })
   }
 
@@ -54,6 +60,8 @@ export default class MealsLog extends Component {
             <br/>
             <button type='submit'>Add</button>
         </form>
+        {this.state.error}
+        {this.state.message}
       </section>
         )
     }
