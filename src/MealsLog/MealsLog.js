@@ -24,6 +24,13 @@ export default class MealsLog extends Component {
     const user_id = this.props.id;
     const date_time_moment = moment(`${this.state.date} ${this.state.time}`, 'YYYY-MM-DD HH:mm');
     const date_time = date_time_moment.toISOString();
+
+    if (date_time_moment.isBefore(moment().subtract(7, 'days'))) {
+      this.setState({
+        error: 'You are not allowed to log meals value for dates more than one week old'
+      })
+    } 
+
     fetch('http://localhost:8000/meals_logs')
     .then(res => res.json())
     .then(mealsLogs => {
@@ -33,7 +40,7 @@ export default class MealsLog extends Component {
           error: 'You have already logged meals value for the selected date and time',
           message: ''
         })
-      }
+      } 
     })
   }
 
