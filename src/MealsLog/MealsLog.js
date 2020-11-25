@@ -39,7 +39,7 @@ export default class MealsLog extends Component {
       fetch('http://localhost:8000/meals_logs')
       .then(res => res.json())
       .then(mealsLogs => {
-        const duplicateMealsLog = mealsLogs.find(mealsLog => mealsLog.date_time === date_time);
+        const duplicateMealsLog = mealsLogs.find(mealsLog => mealsLog.date_time === date_time && mealsLog.user_id === user_id);
         if (duplicateMealsLog) {
           this.setState({
             error: 'You have already logged meals value for the selected date and time',
