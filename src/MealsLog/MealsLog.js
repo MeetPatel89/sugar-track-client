@@ -35,19 +35,21 @@ export default class MealsLog extends Component {
         error: 'You are not allowed to log meals values for future dates',
         message: ''
       })
-    } 
+    } else {
+      fetch('http://localhost:8000/meals_logs')
+      .then(res => res.json())
+      .then(mealsLogs => {
+        const duplicateMealsLog = mealsLogs.find(mealsLog => mealsLog.date_time === date_time);
+        if (duplicateMealsLog) {
+          this.setState({
+            error: 'You have already logged meals value for the selected date and time',
+            message: ''
+          })
+        } 
+      })
+    }
 
-    fetch('http://localhost:8000/meals_logs')
-    .then(res => res.json())
-    .then(mealsLogs => {
-      const duplicateMealsLog = mealsLogs.find(mealsLog => mealsLog.date_time === date_time)
-      if (duplicateMealsLog) {
-        this.setState({
-          error: 'You have already logged meals value for the selected date and time',
-          message: ''
-        })
-      } 
-    })
+    
   }
 
     render() {
