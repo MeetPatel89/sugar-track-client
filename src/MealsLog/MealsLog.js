@@ -10,16 +10,16 @@ export default class MealsLog extends Component {
         <form className='signup-form'>
             <div>
               <label htmlFor="meal">Meal:</label>
-              <input placeholder='Egg Sandwich' type="text" name='sandwich' id='sandwich' required/>
+              <input placeholder='Egg Sandwich' type="text" name='sandwich' id='sandwich' onChange={this.handleChange} required/>
             </div>
             <br/>
             <div>
               <label htmlFor="date">Date:</label>
-              <input type="date" name='date' id='date' required/>
+              <input type="date" name='date' id='date' onChange={this.handleChange} required/>
               <br/>
               <br/>
               <label htmlFor="time">Time:</label>
-              <input type="time" id="time" name="time" required/>
+              <input type="time" id="time" name="time" onChange={this.handleChange} required/>
             </div>
             <br/>
             <button type='submit'>Add</button>
