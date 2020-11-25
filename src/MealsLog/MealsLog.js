@@ -1,6 +1,14 @@
 import React, { Component } from 'react';
 
 export default class MealsLog extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      error: '',
+      message: ''
+    }
+  }
+
     render() {
         return (
             <section>
