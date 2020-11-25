@@ -11,12 +11,14 @@ export default class LogDisplay extends Component {
     }
 
     componentDidMount() {
-        fetch('http://localhost:8000/glucose_logs')
-        .then(glucoseLogs => {
+        fetch(`http://localhost:8000/glucose_logs/${this.props.id}?sort=date_time`)
+        .then(res => res.json())
+        .then(sortedGlucoseLogs => {
             this.setState({
-                glucoseLogs
+                sortedGlucoseLogs
             })
         })
+        
         
     }
     render() {
