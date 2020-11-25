@@ -38,6 +38,19 @@ export default class MedicationsLog extends Component {
           this.setState({
             error: 'You are not allowed to log meds values for future dates'
           })
+      } else {
+
+        fetch('http://localhost:8000/meds_logs')
+        .then(medsLogs => medsLogs.json())
+        .then(medsLogs => {
+          const duplicateMedLog = medsLogs.find(medLog => medLog.date_time === date_time)
+          console.log(duplicateMedLog);
+          if (duplicateMedLog) {
+            this.setState({
+              error: 'You have already logged a meds value for selected date and time'
+            })
+          } 
+        })
       }
      
     }
