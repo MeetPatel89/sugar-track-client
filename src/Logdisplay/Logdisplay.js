@@ -6,19 +6,29 @@ export default class LogDisplay extends Component {
     constructor(props) {
         super(props);
         this.state = {
-
+            glucoseLogs: '',
+            mealsLogs: '',
+            medsLogs: ''
         }
     }
 
     componentDidMount() {
+        
         fetch(`http://localhost:8000/glucose_logs/${this.props.id}?sort=date_time`)
         .then(res => res.json())
         .then(sortedGlucoseLogs => {
             this.setState({
-                sortedGlucoseLogs
+                glucoseLogs: sortedGlucoseLogs
             })
         })
         
+        fetch(`http://localhost:8000/meals_logs/${this.props.id}?sort=date_time`)
+        .then(res => res.json())
+        .then(sortedMealsLogs => {
+            this.setState({
+                mealsLogs: sortedMealsLogs
+            })
+        })
         
     }
     render() {
