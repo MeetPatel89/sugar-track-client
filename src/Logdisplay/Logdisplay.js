@@ -5,6 +5,9 @@ import Nav from '../Nav/Nav';
 export default class LogDisplay extends Component {
     constructor(props) {
         super(props);
+        this.state = {
+            
+        }
     }
 
     componentDidMount() {
