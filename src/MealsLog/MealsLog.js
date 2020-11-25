@@ -27,7 +27,13 @@ export default class MealsLog extends Component {
 
     if (date_time_moment.isBefore(moment().subtract(7, 'days'))) {
       this.setState({
-        error: 'You are not allowed to log meals value for dates more than one week old'
+        error: 'You are not allowed to log meals value for dates more than one week old',
+        message: ''
+      })
+    } else if (date_time_moment.isAfter(moment())) {
+      this.setState({
+        error: 'You are not allowed to log meals values for future dates',
+        message: ''
       })
     } 
 
