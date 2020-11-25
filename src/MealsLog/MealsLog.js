@@ -9,6 +9,14 @@ export default class MealsLog extends Component {
     }
   }
 
+  handleChange = (e) => {
+    const name = e.target.name;
+    const value = e.target.value;
+    this.setState({
+      [name]: value
+    })
+  }
+
     render() {
         return (
             <section>
@@ -18,7 +26,7 @@ export default class MealsLog extends Component {
         <form className='signup-form'>
             <div>
               <label htmlFor="meal">Meal:</label>
-              <input placeholder='Egg Sandwich' type="text" name='sandwich' id='sandwich' onChange={this.handleChange} required/>
+              <input placeholder='Egg Sandwich' type="text" name="meals" id="meals" onChange={this.handleChange} required/>
             </div>
             <br/>
             <div>
