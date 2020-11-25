@@ -36,7 +36,7 @@ export default class MedicationsLog extends Component {
         })
       } else if (date_time_moment.isAfter(moment())) {
           this.setState({
-            
+            error: 'You are not allowed to log meds values for future dates'
           })
       }
      
