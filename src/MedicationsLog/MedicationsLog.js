@@ -47,9 +47,34 @@ export default class MedicationsLog extends Component {
           console.log(duplicateMedLog);
           if (duplicateMedLog) {
             this.setState({
-              error: 'You have already logged a meds value for selected date and time'
+              error: 'You have already logged a meds value for selected date and time',
+              message: ''
             })
-          } 
+          } else {
+            const newMed = {
+              user_id,
+              meds,
+              date_time
+            }
+
+            fetch('http://localhost:8000/meds_logs', {
+              method: 'POST',
+              headers: {
+                'Content-Type': 'application/json'
+              },
+              body: JSON.stringify(newMed)
+
+            })
+            .then(res => res.json())
+            .then(medLog => {
+              this.setState({
+                message: 'You have successfully logged the meds value for selected date and time',
+                error: ''
+              })
+              console.log(medLog)
+            })
+            
+          }
         })
       }
      
