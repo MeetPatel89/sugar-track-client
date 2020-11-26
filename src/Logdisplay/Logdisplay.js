@@ -46,7 +46,16 @@ export default class LogDisplay extends Component {
         
     }
     render() {
-        
+        let loggedMonths;
+        (this.state.logs) &&
+        (loggedMonths = this.state.logs.map(log => {
+            const loggedMonth = moment(log.date_time).format('MMM');
+            return loggedMonth
+        }))
+        console.log(loggedMonths);
+
+        const uniqueLoggedMonth = [...new Set(loggedMonths)];
+        console.log(uniqueLoggedMonth);
         
         return (
             <>
