@@ -7,7 +7,7 @@ export default class LogDisplay extends Component {
     constructor(props) {
         super(props);
         this.state = {
-           
+           value: ''
         }
     }
 
@@ -46,16 +46,25 @@ export default class LogDisplay extends Component {
         
     }
     render() {
-        let loggedMonths;
+        let loggedDates;
         (this.state.logs) &&
-        (loggedMonths = this.state.logs.map(log => {
-            const loggedMonth = moment(log.date_time).format('MMM');
-            return loggedMonth
+        (loggedDates = this.state.logs.map(log => {
+            const loggedDate = moment(log.date_time).format('MMM DD YYYY');
+            return loggedDate
         }))
-        console.log(loggedMonths);
+        console.log(loggedDates);
 
-        const uniqueLoggedMonth = [...new Set(loggedMonths)];
-        console.log(uniqueLoggedMonth);
+        const uniqueLoggedDates = [...new Set(loggedDates)];
+        console.log(uniqueLoggedDates);
+        const uniqueLoggedMonths = [];
+        const dropDownMonths = uniqueLoggedDates.map((uniqueLoggedDate, i) => {
+            let uniqueLoggedMonth = moment(uniqueLoggedDate).format('MMM');
+            if (!uniqueLoggedMonths.includes(uniqueLoggedMonth)) {
+                uniqueLoggedMonths.push(uniqueLoggedMonth);
+                return <option key={i} value={uniqueLoggedMonth.toLowerCase()}>{uniqueLoggedMonth}</option>
+            } 
+            return null;
+        })
         
         return (
             <>
@@ -66,8 +75,8 @@ export default class LogDisplay extends Component {
                 <h2>Display log for</h2>
                 <label>
                     month:
-                    <select value="month" onChange={this.handleChange}>
-                        <option></option>
+                    <select value={this.state.value} onChange={this.handleChange}>
+                        {dropDownMonths}
                     </select>
                 </label>
                 <label>
