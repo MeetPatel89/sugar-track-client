@@ -22,6 +22,15 @@ export default class LogDisplay extends Component {
         })
     }
 
+    handleSubmit = (e) => {
+        e.preventDefault();
+        if (!this.state.year || !this.state.month || this.state.day) {
+            this.setState({
+                display: 'Please select the year, month and day from the above dropdown menu to display log results for that date!'
+            })
+        }
+    }
+
     componentDidMount() {
         
       let getGlucoseLogs =  fetch(`http://localhost:8000/glucose_logs/${this.props.id}`)
@@ -142,6 +151,7 @@ export default class LogDisplay extends Component {
                 <br/>
                 <button type="submit">Display logs</button>
             </form>
+            {this.state.display}
         
     
     
