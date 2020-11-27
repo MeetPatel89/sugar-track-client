@@ -7,7 +7,8 @@ export default class LogDisplay extends Component {
     constructor(props) {
         super(props);
         this.state = {
-           
+           displayLogs: false,
+           displayError: false
            
         }
     }
@@ -24,11 +25,31 @@ export default class LogDisplay extends Component {
 
     handleSubmit = (e) => {
         e.preventDefault();
-        if (!this.state.year || !this.state.month || this.state.day) {
+        const year = this.state.year;
+        const month = this.state.month;
+        const day = this.state.day;
+        console.log(year);
+        console.log(month);
+        console.log(day);
+        if (year && month && day) {
+            const date = `${month} ${day} ${year}`
+            console.log(date);
+            const filteredLogs = this.state.logs.filter(log => {
+               return moment(log.date_time).format('MMM DD YYYY') === date
+            }) 
+            
             this.setState({
-                display: 'Please select the year, month and day from the above dropdown menu to display log results for that date!'
+                displayLogs: true,
+                displayError: false,
+                filteredLogs
+            })
+        } else {
+            this.setState({
+                displayLogs: false,
+                displayError: true
             })
         }
+
     }
 
     componentDidMount() {
@@ -89,7 +110,7 @@ export default class LogDisplay extends Component {
             let uniqueLoggedMonth = moment(uniqueLoggedDate).format('MMM');
             if (!uniqueLoggedMonths.includes(uniqueLoggedMonth) && year === this.state.year) {
                 uniqueLoggedMonths.push(uniqueLoggedMonth);
-                return <option key={i} value={uniqueLoggedMonth.toLowerCase()}>{uniqueLoggedMonth}</option>
+                return <option key={i} value={uniqueLoggedMonth}>{uniqueLoggedMonth}</option>
             } 
             return null;
         });
@@ -110,13 +131,28 @@ export default class LogDisplay extends Component {
             let uniqueLoggedYear = moment(uniqueLoggedDate).format('YYYY');
             let uniqueLoggedMonth = moment(uniqueLoggedDate).format('MMM')
             let uniqueLoggedDay = moment(uniqueLoggedDate).format('DD');
-            if (!uniqueLoggedDays.includes(uniqueLoggedDay) && uniqueLoggedMonth.toLowerCase() === this.state.month && uniqueLoggedYear === this.state.year) {
+            if (!uniqueLoggedDays.includes(uniqueLoggedDay) && uniqueLoggedMonth === this.state.month && uniqueLoggedYear === this.state.year) {
                 uniqueLoggedDays.push(uniqueLoggedDay);
                 return <option key={i} value={uniqueLoggedDay}>{uniqueLoggedDay}</option>
             }
         })
-        
 
+        let renderLogs;
+        if (this.state.displayLogs) {
+            renderLogs = this.state.filteredLogs.map((log, i) => {
+                const date_time = moment(log.date_time).format('HH:mm');
+                if (log.glucose) {
+                return <li key={i}>Your blood sugar level was {log.glucose} at {date_time}</li>
+                } else if (log.meds) {
+                return <li key={i}>You took {log.meds} medication(s) at {date_time} </li>
+                } else {
+                return <li key={i}>You ate {log.meals} at {date_time} </li>
+                }
+            })
+        } else {
+            renderLogs = <p>Please select a year, month and day from the above dropdown to display logs for that date!</p>
+        }
+            
 
         
         return (
@@ -151,7 +187,7 @@ export default class LogDisplay extends Component {
                 <br/>
                 <button type="submit">Display logs</button>
             </form>
-            {this.state.display}
+           {renderLogs}
         
     
     
