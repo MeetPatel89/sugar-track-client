@@ -7,8 +7,19 @@ export default class LogDisplay extends Component {
     constructor(props) {
         super(props);
         this.state = {
-           value: ''
+           
+           
         }
+    }
+
+    handleChange = (e) => {
+        const value = e.target.value;
+        const name = e.target.name;
+        console.log(value);
+        console.log(name);
+        this.setState({
+            [name]: value
+        })
     }
 
     componentDidMount() {
@@ -29,8 +40,15 @@ export default class LogDisplay extends Component {
 
         Promise.all([getGlucoseLogs, getMealsLogs, getMedsLogs])
                 .then(logs => {
+                    const sortedLogs = [...logs[0], ...logs[1], ...logs[2]].sort((a, b) => {
+                        if (a.date_time < b.date_time) {
+                            return -1
+                        } else {
+                            return 1
+                        }
+                    })
                     this.setState({
-                        logs: [...logs[0], ...logs[1], ...logs[2]]
+                        logs: sortedLogs
                     })
                 })
 
@@ -58,33 +76,71 @@ export default class LogDisplay extends Component {
         console.log(uniqueLoggedDates);
         const uniqueLoggedMonths = [];
         const dropDownMonths = uniqueLoggedDates.map((uniqueLoggedDate, i) => {
+            const year = moment(uniqueLoggedDate).format('YYYY');
             let uniqueLoggedMonth = moment(uniqueLoggedDate).format('MMM');
-            if (!uniqueLoggedMonths.includes(uniqueLoggedMonth)) {
+            if (!uniqueLoggedMonths.includes(uniqueLoggedMonth) && year === this.state.year) {
                 uniqueLoggedMonths.push(uniqueLoggedMonth);
                 return <option key={i} value={uniqueLoggedMonth.toLowerCase()}>{uniqueLoggedMonth}</option>
             } 
             return null;
+        });
+
+        
+
+        const uniqueLoggedYears = [];
+        const dropDownYears = uniqueLoggedDates.map((uniqueLoggedDate, i) => {
+            let uniqueLoggedYear = moment(uniqueLoggedDate).format('YYYY');
+            if(!uniqueLoggedYears.includes(uniqueLoggedYear)) {
+                uniqueLoggedYears.push(uniqueLoggedYear);
+                return <option key={i} value={uniqueLoggedYear}>{uniqueLoggedYear}</option>
+            }
         })
+
+        const uniqueLoggedDays = [];
+        const dropDownDays = uniqueLoggedDates.map((uniqueLoggedDate, i) => {
+            let uniqueLoggedYear = moment(uniqueLoggedDate).format('YYYY');
+            let uniqueLoggedMonth = moment(uniqueLoggedDate).format('MMM')
+            let uniqueLoggedDay = moment(uniqueLoggedDate).format('DD');
+            if (!uniqueLoggedDays.includes(uniqueLoggedDay) && uniqueLoggedMonth.toLowerCase() === this.state.month && uniqueLoggedYear === this.state.year) {
+                uniqueLoggedDays.push(uniqueLoggedDay);
+                return <option key={i} value={uniqueLoggedDay}>{uniqueLoggedDay}</option>
+            }
+        })
+        
+
+
         
         return (
             <>
             
             
             <section>
-            <form>
+            <form onSubmit={this.handleSubmit}>
                 <h2>Display log for</h2>
                 <label>
-                    month:
-                    <select value={this.state.value} onChange={this.handleChange}>
+                    Year:
+                    <select value={this.state.year} name="year" onChange={this.handleChange}>
+                        <option value="years">Years</option>
+                        {dropDownYears}
+                    </select>
+                </label>
+                <label>
+                    Month:
+                    <select value={this.state.month} name="month" onChange={this.handleChange}>
+                        <option value="months">Months</option>
                         {dropDownMonths}
                     </select>
                 </label>
                 <label>
                     day:
-                    <select value="day" onChange={this.handleChange}>
-                        <option></option>
+                    <select value={this.state.day} name="day" onChange={this.handleChange}>
+                        <option value="days">Days</option>
+                        {dropDownDays}
                     </select>
                 </label>
+                <br/>
+                <br/>
+                <button type="submit">Display logs</button>
             </form>
         
     
