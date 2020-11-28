@@ -142,7 +142,7 @@ export default class LogDisplay extends Component {
             renderLogs = this.state.filteredLogs.map((log, i) => {
                 const date_time = moment(log.date_time).format('HH:mm');
                 if (log.glucose) {
-                return <li key={i}>Your blood sugar level was {log.glucose} at {date_time}</li>
+                return <li key={`${i}${glucose}`}>Your blood sugar level was {log.glucose} at {date_time}</li>
                 } else if (log.meds) {
                 return <li key={i}>You took {log.meds} medication(s) at {date_time} </li>
                 } else {
