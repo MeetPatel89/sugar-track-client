@@ -54,6 +54,7 @@ export default class LogDisplay extends Component {
 
     componentDidMount() {
         
+        /*
       let getGlucoseLogs =  fetch(`http://localhost:8000/glucose_logs/${this.props.id}`)
         .then(res => res.json())
         .then(glucoseLogs => glucoseLogs)
@@ -65,8 +66,17 @@ export default class LogDisplay extends Component {
      let getMedsLogs = fetch(`http://localhost:8000/meds_logs/${this.props.id}`)
         .then(res => res.json())
         .then(medsLogs => medsLogs)
+    */
 
-     
+    fetch('http://localhost:8000/logs')
+        .then(res => res.json())
+        .then(logs => {
+            this.setState({
+                logs
+            })
+        })
+
+        /*
 
         Promise.all([getGlucoseLogs, getMealsLogs, getMedsLogs])
                 .then(logs => {
@@ -142,7 +152,7 @@ export default class LogDisplay extends Component {
             renderLogs = this.state.filteredLogs.map((log, i) => {
                 const date_time = moment(log.date_time).format('HH:mm');
                 if (log.glucose) {
-                return <li key={`${i}${glucose}`}>Your blood sugar level was {log.glucose} at {date_time}</li>
+                return <li key={`${i}`}>Your blood sugar level was {log.glucose} at {date_time}</li>
                 } else if (log.meds) {
                 return <li key={i}>You took {log.meds} medication(s) at {date_time} </li>
                 } else {
