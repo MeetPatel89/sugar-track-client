@@ -3,14 +3,12 @@ import HomePage from '../HomePage/HomePage';
 import Header from '../Header/Header';
 import SignUp from '../SignUp/SignUp';
 
-
 export default class SignIn extends Component {
     constructor(props) {
         super(props);
         this.state = {
             isLogged: false,
-            signUp: false,
-            signInTransparent: true
+            signUp: false
         }
     }
 
@@ -47,10 +45,8 @@ export default class SignIn extends Component {
                     this.setState({
                         error: 'Please enter the correct password'
                     })} else {
-                        this.props.setTransparent();
                         this.setState({
                             isLogged: true,
-                            signInTransparent: false,
                             ...user[0]
                         })
                     }
@@ -62,15 +58,6 @@ export default class SignIn extends Component {
     }
 
     render() {
-        let opacity;
-        if (!this.state.signInTransparent) {
-            opacity = ''
-            
-        }
-        
-         else if (this.props.signInTransparent) {
-            opacity = 'transparent'
-        }
         return (
 
             (!this.state.signUp) ?
@@ -78,12 +65,10 @@ export default class SignIn extends Component {
                 (!this.state.isLogged)
             ?
             (<>
-                
-                
-                <div  className={`sign-in-container form-container ${opacity} ${this.props.noDisplay ? `noDisplay` : ``}`}>
-                    
+                <Header/>
+                <section className="log-in">
+                    <h2>PLEASE SIGN IN</h2>
                     <form onSubmit={this.handleSubmit}>
-                        <h2 className="form-title">PLEASE SIGN IN</h2>
                         <label>
                             Username:
                             <input type="text" name="username" onChange={this.handleChange} required/>
@@ -94,19 +79,14 @@ export default class SignIn extends Component {
                             <input type="password" name="password" onChange={this.handleChange} required/>
                         </label>
                         <br/>
-                        <button type="submit" className="form-button">LogIn</button>
-                        {this.state.error}
-                        
+                        <button type="submit">LogIn</button>
+                        <p>Don't have an account <button type="submit" onClick={this.handleClick}>Sign up</button></p>
                     </form>
-                    {/* <div className="sign-up-direct">
-                        <p>Don't have an account <button type="button" className="form-button" onClick={this.handleClick}>Sign up</button></p>
-                    </div> */}
-                    
-                    
-                </div>
+                    {this.state.error}
+                </section>
              </>)
              :
-            <HomePage user={this.state.username} isLogged={this.state.isLogged} id={this.state.id} setTransparent={this.props.setTransparent} />
+            <HomePage user={this.state.username} isLogged={this.state.isLogged} id={this.state.id} />
 
         )
             

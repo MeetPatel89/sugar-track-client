@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom';
 import SignIn from '../SignIn/SignIn';
 import Header from '../Header/Header';
 
-
 export default class SignUp extends Component {
     constructor(props) {
         super(props)
@@ -13,6 +12,9 @@ export default class SignUp extends Component {
     }
 
     handleChange = (e) => {
+        console.log(e.target);
+        console.log(e.target.value);
+        console.log(e.target.name);
         const name = e.target.name;
         const value = e.target.value;
         this.setState({
@@ -76,11 +78,10 @@ export default class SignUp extends Component {
 
     render() {
 
-        /*
         const signIn =  (this.state.signIn) 
                         ? <button type="submit"><Link to='/login'>Sign Up</Link></button>
                         : <button type="submit">Sign Up</button>
-        */
+
         return (
         
                 <>
@@ -88,13 +89,10 @@ export default class SignUp extends Component {
                     {(!this.state.signIn)
                     ? 
                     <>
-                    
-                    
-                    <div className={`sign-up-container form-container ${this.props.noDisplay ? `noDisplay` : ``}`}>
-                    
-                    
+                    <Header/>
+                    <section className="sign-up">
+                    <h2>CREATE ACCOUNT</h2>
                     <form onSubmit={this.handleSubmit}>
-                    <h2 className="form-title">CREATE ACCOUNT</h2>
                         <label>
                             Fullname:
                             <input type="text" name="fullname" onChange={this.handleChange} required/>
@@ -116,16 +114,14 @@ export default class SignUp extends Component {
                         </label>
                         <br/>
                         
-                        <button type="submit" className="form-button">Sign Up</button>
-                        {this.state.error}
+                        <button type="submit">Sign Up</button>
                     </form>
-                    {/* <div className="sign-in-direct">
-                        <p>Already have an account? <button type="button" className="form-button" onClick={this.handleClick}>Sign In</button></p>
-                        
-                    </div> */}
-                    
+                    <div>
+                        <p>Already have an account? <button type="submit" onClick={this.handleClick}>Sign In</button></p>
+                        {this.state.error}
+                    </div>
                      
-                </div> 
+                </section> 
                  </>       
                 
                 : <SignIn/>}
