@@ -10,7 +10,7 @@ import SignIn from '../SignIn/SignIn';
 import MealsLog from '../MealsLog/MealsLog';
 import MedicationsLog from '../MedicationsLog/MedicationsLog';
 import SugarLog from '../SugarLog/SugarLog';
-import './HomePage.css';
+
 
 export default class HomePage extends Component {
     constructor(props) {
@@ -56,7 +56,7 @@ export default class HomePage extends Component {
                           }}/>
                         <footer role="content-info">&#169;Meet 2020</footer>
                                 </div>)
-                            : <SignIn/>
+                            : <SignIn />
 
         return (
             <>

@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import SignIn from '../SignIn/SignIn';
 import Header from '../Header/Header';
-import './SignUp.css';
+
 
 export default class SignUp extends Component {
     constructor(props) {

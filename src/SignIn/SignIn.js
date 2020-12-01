@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import HomePage from '../HomePage/HomePage';
 import Header from '../Header/Header';
 import SignUp from '../SignUp/SignUp';
-import './SignIn.css';
+
 
 export default class SignIn extends Component {
     constructor(props) {
@@ -65,7 +65,10 @@ export default class SignIn extends Component {
         let opacity;
         if (!this.state.signInTransparent) {
             opacity = ''
-        } else if (this.props.signInTransparent) {
+            
+        }
+        
+         else if (this.props.signInTransparent) {
             opacity = 'transparent'
         }
         return (
@@ -103,7 +106,7 @@ export default class SignIn extends Component {
                 </div>
              </>)
              :
-            <HomePage user={this.state.username} isLogged={this.state.isLogged} id={this.state.id} setTransparent={this.props.setTransparent}/>
+            <HomePage user={this.state.username} isLogged={this.state.isLogged} id={this.state.id} setTransparent={this.props.setTransparent} />
 
         )
             

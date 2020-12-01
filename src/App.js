@@ -3,7 +3,7 @@ import SignUp from './SignUp/SignUp';
 import SignIn from './SignIn/SignIn';
 import Overlay from './Overlay/Overlay';
 import Header from './Header/Header';
-import './App.css'
+
 
 export default class App extends Component {
   constructor(props) {
@@ -16,7 +16,8 @@ export default class App extends Component {
   }
   handleClickSignUpButton = () => this.setState({
     rightPanelActive: true,
-    signInTransparent: true
+    signInTransparent: true,
+    
 });
 
 handleClickSignInButton = () => this.setState({
@@ -40,12 +41,13 @@ handleSetTransparent = () => this.setState({
                     id="container"
                 >
                   
-                    <SignUp noDisplay={this.state.noDisplay}/>
+                    <SignUp noDisplay={this.state.noDisplay} />
                     <SignIn signInTransparent={this.state.signInTransparent} noDisplay={this.state.noDisplay} setTransparent={this.handleSetTransparent}/>
                     <Overlay
                         handleClickSignInButton={handleClickSignInButton}
                         handleClickSignUpButton={handleClickSignUpButton}
                         noDisplay={this.state.noDisplay}
+                        setTransparent={this.handleSetTransparent}
                     />
                 </div>
             </div>
