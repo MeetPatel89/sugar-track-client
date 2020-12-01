@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import SignIn from '../SignIn/SignIn';
+import './Header.css';
 
 export default class Header extends Component {
 
@@ -25,8 +25,8 @@ export default class Header extends Component {
 
         return (
             <>
-            <header role="banner">
-            <br/>
+            <header className="logo">
+            
             <h1><Link to='/'>SugarTrack</Link></h1>
             {welcomeMsg}
             

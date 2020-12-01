@@ -80,7 +80,7 @@ export default class SignIn extends Component {
                         </label>
                         <br/>
                         <button type="submit">LogIn</button>
-                        <p>Don't have an account <button type="submit" onClick={this.handleClick}>Sign up</button></p>
+                        <p>Don't have an account <button type="button" onClick={this.handleClick}>Sign up</button></p>
                     </form>
                     {this.state.error}
                 </section>
