@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import HomePage from '../HomePage/HomePage';
 import Header from '../Header/Header';
 import SignUp from '../SignUp/SignUp';
+import './SignIn.css';
 
 export default class SignIn extends Component {
     constructor(props) {
@@ -65,10 +66,12 @@ export default class SignIn extends Component {
                 (!this.state.isLogged)
             ?
             (<>
-                <Header/>
-                <section className="log-in">
-                    <h2>PLEASE SIGN IN</h2>
+                
+                
+                <div className="sign-in-container form-container">
+                    
                     <form onSubmit={this.handleSubmit}>
+                        <h2 className="form-title">PLEASE SIGN IN</h2>
                         <label>
                             Username:
                             <input type="text" name="username" onChange={this.handleChange} required/>
@@ -79,11 +82,16 @@ export default class SignIn extends Component {
                             <input type="password" name="password" onChange={this.handleChange} required/>
                         </label>
                         <br/>
-                        <button type="submit">LogIn</button>
-                        <p>Don't have an account <button type="button" onClick={this.handleClick}>Sign up</button></p>
+                        <button type="submit" className="form-button">LogIn</button>
+                        {this.state.error}
+                        
                     </form>
-                    {this.state.error}
-                </section>
+                    {/* <div className="sign-up-direct">
+                        <p>Don't have an account <button type="button" className="form-button" onClick={this.handleClick}>Sign up</button></p>
+                    </div> */}
+                    
+                    
+                </div>
              </>)
              :
             <HomePage user={this.state.username} isLogged={this.state.isLogged} id={this.state.id} />
