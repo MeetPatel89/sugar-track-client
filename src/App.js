@@ -9,16 +9,26 @@ export default class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      rightPanelActive: false
+      rightPanelActive: false,
+      signInTransparent: false,
+      noDisplay: false
     }
   }
   handleClickSignUpButton = () => this.setState({
     rightPanelActive: true,
+    signInTransparent: true
 });
 
 handleClickSignInButton = () => this.setState({
     rightPanelActive: false,
+    signInTransparent: false
 });
+
+handleSetTransparent = () => this.setState({
+  noDisplay: !this.state.noDisplay
+})
+
+
   render() {
     const { handleClickSignUpButton, handleClickSignInButton } = this;
         const { rightPanelActive } = this.state;
@@ -30,11 +40,12 @@ handleClickSignInButton = () => this.setState({
                     id="container"
                 >
                   
-                    <SignUp />
-                    <SignIn />
+                    <SignUp noDisplay={this.state.noDisplay}/>
+                    <SignIn signInTransparent={this.state.signInTransparent} noDisplay={this.state.noDisplay} setTransparent={this.handleSetTransparent}/>
                     <Overlay
                         handleClickSignInButton={handleClickSignInButton}
                         handleClickSignUpButton={handleClickSignUpButton}
+                        noDisplay={this.state.noDisplay}
                     />
                 </div>
             </div>

@@ -90,7 +90,7 @@ export default class SignUp extends Component {
                     <>
                     
                     
-                    <div className="sign-up-container form-container">
+                    <div className={`sign-up-container form-container ${this.props.noDisplay ? `noDisplay` : ``}`}>
                     
                     
                     <form onSubmit={this.handleSubmit}>

@@ -9,7 +9,8 @@ export default class SignIn extends Component {
         super(props);
         this.state = {
             isLogged: false,
-            signUp: false
+            signUp: false,
+            signInTransparent: true
         }
     }
 
@@ -46,8 +47,10 @@ export default class SignIn extends Component {
                     this.setState({
                         error: 'Please enter the correct password'
                     })} else {
+                        this.props.setTransparent();
                         this.setState({
                             isLogged: true,
+                            signInTransparent: false,
                             ...user[0]
                         })
                     }
@@ -59,6 +62,12 @@ export default class SignIn extends Component {
     }
 
     render() {
+        let opacity;
+        if (!this.state.signInTransparent) {
+            opacity = ''
+        } else if (this.props.signInTransparent) {
+            opacity = 'transparent'
+        }
         return (
 
             (!this.state.signUp) ?
@@ -68,7 +77,7 @@ export default class SignIn extends Component {
             (<>
                 
                 
-                <div className="sign-in-container form-container">
+                <div  className={`sign-in-container form-container ${opacity} ${this.props.noDisplay ? `noDisplay` : ``}`}>
                     
                     <form onSubmit={this.handleSubmit}>
                         <h2 className="form-title">PLEASE SIGN IN</h2>
@@ -94,7 +103,7 @@ export default class SignIn extends Component {
                 </div>
              </>)
              :
-            <HomePage user={this.state.username} isLogged={this.state.isLogged} id={this.state.id} />
+            <HomePage user={this.state.username} isLogged={this.state.isLogged} id={this.state.id} setTransparent={this.props.setTransparent}/>
 
         )
             

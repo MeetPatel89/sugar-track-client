@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import './Header.css';
 
-export default class Header extends Component {
+
+export default class Welcome extends Component {
 
     constructor(props) {
         super(props);
@@ -18,17 +18,20 @@ export default class Header extends Component {
     }
 
     render() {
-      
+        let welcomeMsg;
+    if (this.props.user) {
+        welcomeMsg = <p>Welcome {this.props.user}</p>
+    }
 
         return (
             <>
-            <header className="logo">
+            <div className="welcome">
             
-            <h1><Link to='/'>SugarTrack</Link></h1>
             
+            <p>Welcome {this.props.user}</p>
             
             <hr/>
-        </header>
+        </div>
             </>
         )
         

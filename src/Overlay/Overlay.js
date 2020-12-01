@@ -4,7 +4,7 @@ export default class Overlay extends Component {
     render() {
         const { handleClickSignUpButton, handleClickSignInButton } = this.props;
         return (
-            <div className="overlay-container">
+            <div className={`overlay-container ${this.props.noDisplay ? `noDisplay` : ``}`}>
                 <div className="overlay">
                     <div className="overlay-panel overlay-left">
                         <h1>Welcome Back!</h1>

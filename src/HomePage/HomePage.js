@@ -3,13 +3,14 @@ import { Link, Route } from 'react-router-dom';
 import LogDisplay from '../Logdisplay/Logdisplay';
 import LogBook from '../LogBook/LogBook';
 import Nav from '../Nav/Nav';
-import Header from '../Header/Header';
+import Welcome from '../Welcome/Welcome';
 import Introduction from '../Introduction/Introduction';
 import UserManual from '../UserManual/UserManual';
 import SignIn from '../SignIn/SignIn';
 import MealsLog from '../MealsLog/MealsLog';
 import MedicationsLog from '../MedicationsLog/MedicationsLog';
 import SugarLog from '../SugarLog/SugarLog';
+import './HomePage.css';
 
 export default class HomePage extends Component {
     constructor(props) {
@@ -20,6 +21,7 @@ export default class HomePage extends Component {
     }
 
     handleClick = () => {
+        this.props.setTransparent();
         this.setState({
             isLoggedOut: true
         })
@@ -28,9 +30,9 @@ export default class HomePage extends Component {
     render() {
 
         const toRender = (!this.state.isLoggedOut)
-                            ? (<>
-                                <Header user={this.props.user} isLogged={this.props.isLogged}/>
-                                <button type="submit" onClick={this.handleClick}>Log out</button>
+                            ? (<div className="homepage">
+                                <Welcome user={this.props.user} isLogged={this.props.isLogged}/>
+                                <button type="button" onClick={this.handleClick}>Log out</button>
                                     <Nav/>
                         <br/>
                         <br/>
@@ -53,7 +55,7 @@ export default class HomePage extends Component {
                                 return <MedicationsLog id={this.props.id}/>
                           }}/>
                         <footer role="content-info">&#169;Meet 2020</footer>
-                                </>)
+                                </div>)
                             : <SignIn/>
 
         return (

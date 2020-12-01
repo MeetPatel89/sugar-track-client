@@ -1,4 +1,8 @@
-h1 {
+* {
+	box-sizing: border-box;
+}
+
+h2 {
     font-weight: bold;
     margin: 0;
 }
@@ -111,6 +115,7 @@ input {
 
 .container.right-panel-active .sign-in-container {
     transform: translateX(100%);
+    
 }
 
 .container.right-panel-active .sign-up-container {
@@ -201,4 +206,13 @@ input {
 
 .container.right-panel-active .overlay-right {
     transform: translateX(20%);
+}
+
+.transparent {
+    opacity: 0;
+}
+
+.noDisplay {
+    opacity: 0;
+    z-index: -1;
 }
