@@ -90,7 +90,9 @@ export default class SignUp extends Component {
                     ? 
                     <>
                     <Header/>
-                    <section className="sign-up">
+                    
+                    <div class="container">
+                    <div className="form-container sign-up-container">
                     <h2>CREATE ACCOUNT</h2>
                     <form onSubmit={this.handleSubmit}>
                         <label>
@@ -115,13 +117,14 @@ export default class SignUp extends Component {
                         <br/>
                         
                         <button type="submit">Sign Up</button>
-                    </form>
-                    <div>
                         <p>Already have an account? <button type="submit" onClick={this.handleClick}>Sign In</button></p>
                         {this.state.error}
+                    </form>
+                    
                     </div>
+                    
                      
-                </section> 
+                </div> 
                  </>       
                 
                 : <SignIn/>}

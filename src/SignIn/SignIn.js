@@ -66,8 +66,11 @@ export default class SignIn extends Component {
             ?
             (<>
                 <Header/>
-                <section className="log-in">
-                    <h2>PLEASE SIGN IN</h2>
+                
+
+                <div class="container">
+                <div className="form-container sign-in-container">
+                <h2>PLEASE SIGN IN</h2>
                     <form onSubmit={this.handleSubmit}>
                         <label>
                             Username:
@@ -83,7 +86,8 @@ export default class SignIn extends Component {
                         <p>Don't have an account <button type="submit" onClick={this.handleClick}>Sign up</button></p>
                     </form>
                     {this.state.error}
-                </section>
+                </div>
+                </div>
              </>)
              :
             <HomePage user={this.state.username} isLogged={this.state.isLogged} id={this.state.id} />

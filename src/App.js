@@ -11,6 +11,7 @@ import SugarLog from './SugarLog/SugarLog';
 import MedicationsLog from './MedicationsLog/MedicationsLog';
 import MealsLog from './MealsLog/MealsLog';
 import Nav from './Nav/Nav';
+import './App.css';
 
 export default class App extends Component {
   render() {
