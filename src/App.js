@@ -12,13 +12,14 @@ import MedicationsLog from './MedicationsLog/MedicationsLog';
 import MealsLog from './MealsLog/MealsLog';
 import Nav from './Nav/Nav';
 import './App.css';
+import Footer from './Footer/Footer';
 
 export default class App extends Component {
   render() {
     return (
       <>
         <SignUp/>
-        
+        <Footer/>
 
       </>
     )

@@ -1,11 +1,12 @@
 .logo {
     text-align: center;
-    
+    width: 70%;
 }
 
 #header {
     font-size: 50px;
-    color: #FF4B2B;
+    color: #2f004f;
+    font-weight: 550;
     text-decoration-line: none;
     
 }

@@ -53,7 +53,7 @@ export default class HomePage extends Component {
                                 return <MedicationsLog id={this.props.id}/>
                           }}/>
                             
-                        <footer role="content-info">&#169;Meet 2020</footer>
+                        
                                 </>)
                             : <SignIn/>
 
