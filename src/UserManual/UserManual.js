@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Header from '../Header/Header';
 import Nav from '../Nav/Nav';
+import './UserManual.css'
 
 export default class UserManual extends Component {
     render() {

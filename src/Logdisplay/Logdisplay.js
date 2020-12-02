@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import Header from '../Header/Header';
 import Nav from '../Nav/Nav';
 import moment from 'moment';
+import './LogDisplay.css';
 
 export default class LogDisplay extends Component {
     constructor(props) {
@@ -172,6 +173,7 @@ export default class LogDisplay extends Component {
             <section>
             <form onSubmit={this.handleSubmit}>
                 <h2>Display log for</h2>
+                <div className="select-menus">
                 <label>
                     Year:
                     <select value={this.state.year} name="year" onChange={this.handleChange}>
@@ -193,8 +195,7 @@ export default class LogDisplay extends Component {
                         {dropDownDays}
                     </select>
                 </label>
-                <br/>
-                <br/>
+                </div>
                 <button type="submit">Display logs</button>
             </form>
            {renderLogs}
