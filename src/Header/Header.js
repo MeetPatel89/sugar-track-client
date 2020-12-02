@@ -21,7 +21,7 @@ export default class Header extends Component {
     render() {
         let welcomeMsg;
     if (this.props.user) {
-        welcomeMsg = <p>Welcome {this.props.user}</p>
+        welcomeMsg = <p className="flex-container"><span className="welcome-msg">Welcome {this.props.user}</span><span><button type="button" className="log-out" onClick={this.props.handleClick}>Log out</button></span></p>
     } else {
         welcomeMsg = <><p>Keeping it (not) sweet and simple</p><p> SugarTrack helps you maintain a logbook of blood sugar levels, meals and medications to better monitor your glycemic health! </p></>
     }

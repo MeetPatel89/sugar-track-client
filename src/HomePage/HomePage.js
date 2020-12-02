@@ -29,8 +29,8 @@ export default class HomePage extends Component {
 
         const toRender = (!this.state.isLoggedOut)
                             ? (<>
-                                <Header user={this.props.user} isLogged={this.props.isLogged}/>
-                                <button type="button" className="log-out" onClick={this.handleClick}>Log out</button>
+                                <Header user={this.props.user} isLogged={this.props.isLogged} handleClick={this.handleClick}/>
+                                
                                     <Nav/>
                         <br/>
                         <br/>
@@ -52,6 +52,7 @@ export default class HomePage extends Component {
                               }
                                 return <MedicationsLog id={this.props.id}/>
                           }}/>
+                            
                         <footer role="content-info">&#169;Meet 2020</footer>
                                 </>)
                             : <SignIn/>

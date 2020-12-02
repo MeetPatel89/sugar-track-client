@@ -9,3 +9,24 @@
     text-decoration-line: none;
     
 }
+
+.flex-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.welcome-msg {
+    font-size: 15px;
+    color: #2f004f;
+}
+
+.log-out {
+    border: none;
+    background-color: #f6f5f7;
+    color:  #2f004f;
+    font-size: 15px;
+    font-weight: normal;
+    margin-top: 0;
+    padding-top: 0;
+}
