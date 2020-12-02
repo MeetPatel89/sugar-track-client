@@ -78,7 +78,7 @@ export default class MealsLog extends Component {
         return (
             <section>
         <header>
-            <h3>Enter Meal Regimens</h3>
+            <h2>Enter Meal Regimens</h2>
         </header>
         <form className="meals_log" onSubmit={this.handleSubmit}>
             <div>

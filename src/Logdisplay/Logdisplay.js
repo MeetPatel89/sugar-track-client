@@ -200,8 +200,9 @@ export default class LogDisplay extends Component {
                 
                 </div>
                 <button type="submit">Display logs</button>
+                {renderLogs}
             </form>
-           {renderLogs}
+           
         
     
     
