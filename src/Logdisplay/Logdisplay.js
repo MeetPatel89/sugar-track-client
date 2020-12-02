@@ -172,29 +172,32 @@ export default class LogDisplay extends Component {
             
             <section>
             <form onSubmit={this.handleSubmit}>
-                <h2>Display log for</h2>
+                <h2>Display logs for</h2>
                 <div className="select-menus">
-                <label>
-                    Year:
+                
+                    
                     <select value={this.state.year} name="year" onChange={this.handleChange}>
-                        <option value="years">Years</option>
+                        
+
+                        
+                        <option value="years">Select Year</option>
+                        
                         {dropDownYears}
+                        
                     </select>
-                </label>
-                <label>
-                    Month:
+                
+               
                     <select value={this.state.month} name="month" onChange={this.handleChange}>
-                        <option value="months">Months</option>
+                        <option value="months">Select Month</option>
                         {dropDownMonths}
                     </select>
-                </label>
-                <label>
-                    day:
+                
+                
                     <select value={this.state.day} name="day" onChange={this.handleChange}>
-                        <option value="days">Days</option>
+                        <option value="days">Select Day</option>
                         {dropDownDays}
                     </select>
-                </label>
+                
                 </div>
                 <button type="submit">Display logs</button>
             </form>
