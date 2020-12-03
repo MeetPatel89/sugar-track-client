@@ -12,9 +12,6 @@ export default class SignUp extends Component {
     }
 
     handleChange = (e) => {
-        console.log(e.target);
-        console.log(e.target.value);
-        console.log(e.target.name);
         const name = e.target.name;
         const value = e.target.value;
         this.setState({
@@ -78,18 +75,13 @@ export default class SignUp extends Component {
 
     render() {
 
-        const signIn =  (this.state.signIn) 
-                        ? <button type="submit"><Link to='/login'>Sign Up</Link></button>
-                        : <button type="submit">Sign Up</button>
+      
 
         return (
         
-                <>
-                    
-                    {(!this.state.signIn)
-                    ? 
+               
                     <>
-                    <Header/>
+                    
                     
                     <div class="container">
                     <div className="form-container sign-up-container">
@@ -127,9 +119,9 @@ export default class SignUp extends Component {
                 </div> 
                  </>       
                 
-                : <SignIn/>}
+                
                     
-                </>
+                
             
         );
 

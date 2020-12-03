@@ -1,14 +1,11 @@
 import React, { Component } from 'react';
 import HomePage from '../HomePage/HomePage';
-import Header from '../Header/Header';
-import SignUp from '../SignUp/SignUp';
 
 export default class SignIn extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            isLogged: false,
-            signUp: false
+            isLogged: false
         }
     }
 
@@ -20,22 +17,13 @@ export default class SignIn extends Component {
         })
     }
 
-    handleClick = () => {
-        this.setState({
-            signUp: true
-        })
-    }
-
     handleSubmit = (e) => {
         e.preventDefault();
-       
-       const username = this.state.username;
-       const password = this.state.password;
-       console.log(username);
-       console.log(password);
-       fetch(`http://localhost:8000/users/${username}`)
-        .then(user => user.json())
-        .then(user => {
+        const username = this.state.username;
+        const password = this.state.password;
+        fetch(`http://localhost:8000/users/${username}`)
+            .then(user => user.json())
+            .then(user => {
             if (!user.length) {
                 this.setState({
                     error: 'Please enter a correct username'
@@ -60,42 +48,41 @@ export default class SignIn extends Component {
     render() {
         return (
 
-            (!this.state.signUp) ?
-            (
-                (!this.state.isLogged)
-            ?
-            (<>
-                <Header/>
+            <>
+                {(this.state.isLogged)
+                    ? <HomePage user={this.state.username} isLogged={this.state.isLogged} id={this.state.id} />
+                    :  <div className="container">
+                        <div className="form-container sign-in-container">
+                        <h2>PLEASE SIGN IN</h2>
+                        <form onSubmit={this.handleSubmit}>
+                            <div className="label-control">
+                            <label htmlFor="username">Username:</label>
+                                <input type="text" name="username" id="username" onChange={this.handleChange} required/>
+                                </div>
+                            
+                            <div className="label-control">
+                            <label htmlFor="password"> Password:</label>
+                               
+                                <input type="password" name="password" id="password" onChange={this.handleChange} required/>
+                                </div>
+                            
+                            <button type="submit">LogIn</button>
+                            <p>Don't have an account <button type="submit" onClick={this.props.handleClick}>Sign up</button></p>
+                        </form>
+                        {this.state.error}
+                    </div>
+                    </div>}
                 
 
-                <div className="container">
-                <div className="form-container sign-in-container">
-                <h2>PLEASE SIGN IN</h2>
-                    <form onSubmit={this.handleSubmit}>
-                        <label>
-                            Username:
-                            <input type="text" name="username" onChange={this.handleChange} required/>
-                        </label>
-                        <br/>
-                        <label>
-                            Password:
-                            <input type="password" name="password" onChange={this.handleChange} required/>
-                        </label>
-                        <br/>
-                        <button type="submit">LogIn</button>
-                        <p>Don't have an account <button type="submit" onClick={this.props.handleClick}>Sign up</button></p>
-                    </form>
-                    {this.state.error}
-                </div>
-                </div>
+               
              </>)
-             :
-            <HomePage user={this.state.username} isLogged={this.state.isLogged} id={this.state.id} />
-
-        )
+             
             
-            : <SignUp/>
-        )
+
+        
+            
+           
+        
             
     
 }}

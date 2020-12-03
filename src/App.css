@@ -74,8 +74,9 @@ input {
 	background-color: #eee;
 	border: none;
 	padding: 12px 15px;
-	margin: 8px 0;
+	margin-top: 10px;
 	width: 100%;
+	border-radius: 10px;
 }
 
 .container {
@@ -89,4 +90,8 @@ input {
             max-width: 100%;
             min-height: 480px;
             margin: auto;
+}
+
+.label-control {
+	margin: 15px;
 }
