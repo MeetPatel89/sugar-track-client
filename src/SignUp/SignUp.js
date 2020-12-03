@@ -117,7 +117,7 @@ export default class SignUp extends Component {
                         <br/>
                         
                         <button type="submit">Sign Up</button>
-                        <p>Already have an account? <button type="submit" onClick={this.handleClick}>Sign In</button></p>
+                        <p>Already have an account? <button type="submit" onClick={this.props.handleClick}>Sign In</button></p>
                         {this.state.error}
                     </form>
                     

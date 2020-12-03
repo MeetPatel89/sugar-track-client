@@ -1,26 +1,34 @@
 import React, { Component } from 'react';
-import { Route } from 'react-router-dom';
-import Header from './Header/Header';
 import SignUp from './SignUp/SignUp';
 import SignIn from './SignIn/SignIn';
-import HomePage from './HomePage/HomePage';
-import LogDisplay from './Logdisplay/Logdisplay';
-import LogBook from './LogBook/LogBook';
-import UserManual from './UserManual/UserManual';
-import SugarLog from './SugarLog/SugarLog';
-import MedicationsLog from './MedicationsLog/MedicationsLog';
-import MealsLog from './MealsLog/MealsLog';
-import Nav from './Nav/Nav';
 import './App.css';
 import Footer from './Footer/Footer';
 
 export default class App extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      signInForm: true
+    }
+  }
+
+  handleClick = () => {
+
+    // Reverse state's signInForm boolean on click
+    this.setState(prevState => {
+      return {
+        signInForm: !prevState.signInForm
+      }
+    })
+  }
+
   render() {
     return (
       <>
-        <SignUp/>
+        {(this.state.signInForm)
+          ? <SignIn handleClick={this.handleClick}/>
+          : <SignUp handleClick={this.handleClick}/>}
         <Footer/>
-
       </>
     )
   }
