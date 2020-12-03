@@ -68,7 +68,7 @@ export default class SignIn extends Component {
                 <Header/>
                 
 
-                <div class="container">
+                <div className="container">
                 <div className="form-container sign-in-container">
                 <h2>PLEASE SIGN IN</h2>
                     <form onSubmit={this.handleSubmit}>
