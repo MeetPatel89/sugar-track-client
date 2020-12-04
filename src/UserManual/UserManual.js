@@ -1,6 +1,4 @@
 import React, { Component } from 'react';
-import Header from '../Header/Header';
-import Nav from '../Nav/Nav';
 import './UserManual.css'
 
 export default class UserManual extends Component {
@@ -19,6 +17,7 @@ export default class UserManual extends Component {
                             <li>After meal: Log glucose value about one hour after every meal of the day. For instance log glucose after having breakfast, after having dinner, etc.</li>
                             <li>Before sleep: Log glucose immediately prior to sleep.</li>
                             <li>You are not allowed to log more than one glucose value for the same date-time.</li>
+                            
                             </ul>
                             
                         </li>
@@ -36,6 +35,7 @@ export default class UserManual extends Component {
                                 <li>You are not allowed to log more than one meal value for the same date-time.</li>
                             </ul>
                         </li>
+                        <li>For all above metrics you are not allowed to log values for future dates as well as for dates more than 7 days in the past.</li>
                     </ul>
                 </section>
             </>

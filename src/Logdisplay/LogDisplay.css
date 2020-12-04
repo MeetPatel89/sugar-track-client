@@ -3,7 +3,7 @@ form {
 }
 
 .select-menus {
-    width: 80%;
+    width: 100%;
     display: flex;
     flex-direction: row;
     justify-content: space-around;
@@ -14,6 +14,8 @@ select {
     background: #f6f5f7;
     border-radius: 15px;
     cursor: pointer;
+    margin: 10px;
+    width: 33%;
 }
 
 option {
@@ -44,4 +46,8 @@ th, td {
 tr:nth-child(even) {
     background-color: #f2f2f2;
   }
+
+button.display-logs {
+    margin: 10px;
+}
 

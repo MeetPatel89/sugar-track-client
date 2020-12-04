@@ -189,7 +189,7 @@ export default class LogDisplay extends Component {
                 
                
                     <select value={this.state.month} name="month" onChange={this.handleChange}>
-                        <option value="months">Select Month</option>
+                        <option value="months">Select Mon</option>
                         {dropDownMonths}
                     </select>
                 
@@ -200,7 +200,7 @@ export default class LogDisplay extends Component {
                     </select>
                 
                 </div>
-                <button type="submit">Display logs</button>
+                <button className="display-logs" type="submit">Display logs</button>
                 {(this.state.displayLogs) &&
                 <table className="log-display-table">
                 <tr>
