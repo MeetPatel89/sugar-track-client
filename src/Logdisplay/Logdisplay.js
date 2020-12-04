@@ -69,7 +69,7 @@ export default class LogDisplay extends Component {
         .then(medsLogs => medsLogs)
     */
 
-    fetch('http://localhost:8000/logs')
+    fetch(`http://localhost:8000/logs/${this.props.id}`)
         .then(res => res.json())
         .then(logs => {
             this.setState({
@@ -153,11 +153,11 @@ export default class LogDisplay extends Component {
             renderLogs = this.state.filteredLogs.map((log, i) => {
                 const date_time = moment(log.date_time).format('HH:mm');
                 if (log.glucose) {
-                return <li className="log-display-list-item" key={`${i}`}>Your blood sugar level was {log.glucose} at {date_time}</li>
+                return <li className="log-display-list-item" key={`${i}glucose`}><span>{date_time}</span><span>Blood Sugar Level</span><span>{log.glucose}</span></li>
                 } else if (log.meds) {
-                return <li className="log-display-list-item" key={i}>You took {log.meds} medication(s) at {date_time} </li>
+                return <li className="log-display-list-item" key={`${i}med`}><span>{date_time}</span><span>Medication</span><span>{log.meds}</span>   </li>
                 } else {
-                return <li className="log-display-list-item" key={i}>You ate {log.meals} at {date_time} </li>
+                return <li className="log-display-list-item" key={`${i}meal`}> <span>{date_time}</span><span>Meal</span> <span>{log.meals}</span></li>
                 }
             })
         } else {
@@ -200,9 +200,11 @@ export default class LogDisplay extends Component {
                 
                 </div>
                 <button type="submit">Display logs</button>
-                <ul className="log-display-list">
+                <table className="log-display-table">
+
+                </table>
                 {renderLogs}
-                </ul>
+                
                 
             </form>
            
