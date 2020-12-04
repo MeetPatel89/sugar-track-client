@@ -7,7 +7,7 @@ export default class Nav extends Component {
         return (
             <nav className="navigation">
               
-      <ul className="flex-container nav-links">
+      <ul className="nav-links">
         <li><Link to='/'>Home</Link></li>
         <li><Link to='/logdisplay' >LogDisplay</Link></li>
         <li><Link to='/logbook' >LogBook</Link></li>

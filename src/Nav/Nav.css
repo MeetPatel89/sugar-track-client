@@ -4,20 +4,21 @@ nav {
     align-items: center;
     background-color: #FF4B2B;
     border-radius: 20px;
-    padding-right: 25px;
     width: 80%;
 }
 
-.flex-container {
+.nav-links {
     display: flex;
     flex-direction: row;
-    justify-content: space-around;
+    justify-content: center;
     width: 100%;
+    padding-inline-start: 0;
 }
 
 .nav-links li {
     list-style-type: none;
-   
+    text-align: center;
+    
 }
 
 .nav-links li a {
