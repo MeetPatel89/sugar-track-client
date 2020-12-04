@@ -15,21 +15,16 @@ export default class HomePage extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            isLoggedOut: false
+            
         }
     }
 
-    handleClick = () => {
-        this.setState({
-            isLoggedOut: true
-        })
-    }
+   
 
     render() {
 
-        const toRender = (!this.state.isLoggedOut)
-                            ? (<>
-                                <Header user={this.props.user} isLogged={this.props.isLogged} handleClick={this.handleClick}/>
+        const toRender =  (<>
+                                <Header user={this.props.user} handleLogOut={this.props.handleLogOut}/>
                                 
                                     <Nav/>
                         <br/>
@@ -55,7 +50,7 @@ export default class HomePage extends Component {
                             
                         
                                 </>)
-                            : <SignIn/>
+                            
 
         return (
             <>

@@ -12,6 +12,19 @@ export default class SignIn extends Component {
         }
     }
 
+    handleLogOut = () => {
+        let user = {
+            id: '',
+            fullname: '',
+            password: '',
+            username: ''
+        }
+        this.setState({
+            ...user,
+            isLogged: false
+        })
+    }
+
     handleChange = (e) => {
         const name = e.target.name;
         const value = e.target.value;
@@ -54,7 +67,7 @@ export default class SignIn extends Component {
 
             <>
                 {(this.state.isLogged)
-                    ? <HomePage user={this.state.username} isLogged={this.state.isLogged} id={this.state.id} />
+                    ? <HomePage user={this.state.username} handleLogOut={this.handleLogOut} id={this.state.id} />
                     :  
                     <>
                     <Header/>

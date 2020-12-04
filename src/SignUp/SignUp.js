@@ -56,7 +56,7 @@ export default class SignUp extends Component {
                 password
             }
 
-        console.log(newUser);
+        
 
        fetch('http://localhost:8000/users', {
            method: 'POST',
