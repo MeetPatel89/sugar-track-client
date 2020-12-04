@@ -10,7 +10,7 @@ nav {
 .nav-links {
     display: flex;
     flex-direction: row;
-    justify-content: center;
+    justify-content: space-around;
     width: 100%;
     padding-inline-start: 0;
 }
@@ -24,4 +24,5 @@ nav {
 .nav-links li a {
     text-decoration-line: none;
     color: #FFFFFF;
+    font-size: 20px;
 }
