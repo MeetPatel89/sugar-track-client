@@ -6,7 +6,9 @@ export default class SignIn extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            isLogged: false
+            isLogged: false,
+            username: '',
+            password: ''
         }
     }
 
@@ -23,11 +25,12 @@ export default class SignIn extends Component {
         const username = this.state.username;
         const password = this.state.password;
         fetch(`http://localhost:8000/users/${username}`)
-            .then(user => user.json())
+            .then(response => response.json())
             .then(user => {
+         
             if (!user.length) {
                 this.setState({
-                    error: 'Please enter a correct username'
+                    error: 'Please enter the correct username'
                 })
             } else {
                 if (user[0].password !== password) {
@@ -61,19 +64,20 @@ export default class SignIn extends Component {
                         <form className="sign-in-form" onSubmit={this.handleSubmit}>
                             <div className="label-control">
                             <label htmlFor="username">Username:</label>
-                                <input type="text" name="username" id="username" onChange={this.handleChange} required/>
+                                <input type="text" name="username" id="username" value={this.state.username} onChange={this.handleChange} required/>
                                 </div>
                             
                             <div className="label-control">
                             <label htmlFor="password"> Password:</label>
                                
-                                <input type="password" name="password" id="password" onChange={this.handleChange} required/>
+                                <input type="password" name="password" id="password" value={this.state.password} onChange={this.handleChange} required/>
                                 </div>
                             
                             <button type="submit">LogIn</button>
                             <p>Don't have an account <button type="submit" onClick={this.props.handleClick}>Sign up</button></p>
+                            <p style={{color: "red"}}>{this.state.error}</p>
                         </form>
-                        {this.state.error}
+                        
                     </div>
                     </div>
                     </>}
