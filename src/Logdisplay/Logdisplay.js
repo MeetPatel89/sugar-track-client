@@ -149,20 +149,21 @@ export default class LogDisplay extends Component {
         })
 
         let renderLogs;
+
         if (this.state.displayLogs) {
             renderLogs = this.state.filteredLogs.map((log, i) => {
                 const date_time = moment(log.date_time).format('HH:mm');
                 if (log.glucose) {
-                return <li className="log-display-list-item" key={`${i}glucose`}><span>{date_time}</span><span>Blood Sugar Level</span><span>{log.glucose}</span></li>
+                return <tr className="log-display-list-item" key={`${i}glucose`}><td>{date_time}</td><td>Blood Sugar Level</td><td>{log.glucose}</td></tr>
                 } else if (log.meds) {
-                return <li className="log-display-list-item" key={`${i}med`}><span>{date_time}</span><span>Medication</span><span>{log.meds}</span>   </li>
+                return <tr className="log-display-list-item" key={`${i}med`}><td>{date_time}</td><td>Medication</td><td>{log.meds}</td>   </tr>
                 } else {
-                return <li className="log-display-list-item" key={`${i}meal`}> <span>{date_time}</span><span>Meal</span> <span>{log.meals}</span></li>
+                return <tr className="log-display-list-item" key={`${i}meal`}> <td>{date_time}</td><td>Meal</td> <td>{log.meals}</td></tr>
                 }
             })
-        } else {
-            renderLogs = <p>Please select a year, month and day from the above dropdown to display logs for that date!</p>
+        
         }
+       
             
 
         
@@ -200,10 +201,19 @@ export default class LogDisplay extends Component {
                 
                 </div>
                 <button type="submit">Display logs</button>
+                {(this.state.displayLogs) &&
                 <table className="log-display-table">
-
-                </table>
+                <tr>
+                    <th>Time (24-hour)</th>
+                    <th>Log Metric</th>
+                    <th>Log Value</th>
+                </tr>
                 {renderLogs}
+            </table>}
+                    {(this.state.displayError) &&
+                    <p style={{color: "red"}}>Please select a year, month and day from the above dropdown to display logs for that date!</p>}
+                
+                
                 
                 
             </form>
