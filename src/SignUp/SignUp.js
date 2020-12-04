@@ -4,7 +4,10 @@ export default class SignUp extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            
+            fullname: '',
+            username: '',
+            password: '',
+            'confirm-password': ''
         }
     }
 
@@ -23,8 +26,18 @@ export default class SignUp extends Component {
 
         // validation variable for password
         const passwd = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,20}$/;
-        
-        if (!this.state.password.match(passwd)) {
+        if (this.state.fullname.length > 36) {
+            this.setState({
+                error: 'Full name should be less than 36 characters',
+                signUp: ''
+            })
+        } else if (this.state.username.length > 36) {
+            this.setState({
+                error: 'Username should be less than 36 characters',
+                signUp: ''
+            })
+        }
+        else if (!this.state.password.match(passwd)) {
             this.setState({
                 error: 'Password should contain at least one uppercase letter, one lowercase letter and one numeric digit',
                 signUp: ''
@@ -63,7 +76,7 @@ export default class SignUp extends Component {
                'confirm-password': ''
            })
        })
-       .catch(error => console.error({'error': error})) 
+       .catch(error => ({'error': error})) 
             }
         
 
