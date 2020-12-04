@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import HomePage from '../HomePage/HomePage';
+import Header from '../Header/Header';
 
 export default class SignIn extends Component {
     constructor(props) {
@@ -51,7 +52,10 @@ export default class SignIn extends Component {
             <>
                 {(this.state.isLogged)
                     ? <HomePage user={this.state.username} isLogged={this.state.isLogged} id={this.state.id} />
-                    :  <div className="container">
+                    :  
+                    <>
+                    <Header/>
+                    <div className="container">
                         <div className="form-container sign-in-container">
                         <h2>PLEASE SIGN IN</h2>
                         <form onSubmit={this.handleSubmit}>
@@ -71,7 +75,8 @@ export default class SignIn extends Component {
                         </form>
                         {this.state.error}
                     </div>
-                    </div>}
+                    </div>
+                    </>}
                 
 
                

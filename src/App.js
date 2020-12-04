@@ -3,14 +3,14 @@ import SignUp from './SignUp/SignUp';
 import SignIn from './SignIn/SignIn';
 import './App.css';
 import Footer from './Footer/Footer';
-import Header from './Header/Header';
+
 
 export default class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
       signInForm: true
-    }
+    };
   }
 
   handleClick = () => {
@@ -26,7 +26,7 @@ export default class App extends Component {
   render() {
     return (
       <>
-        <Header/>
+        
         {(this.state.signInForm)
           ? <SignIn handleClick={this.handleClick}/>
           : <SignUp handleClick={this.handleClick}/>}
