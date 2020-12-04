@@ -12,9 +12,7 @@ export default class SugarLog extends Component {
 
   handleSubmit = (e) => {
     e.preventDefault()
-    /*
-    const date_time = moment(`${this.state.date}T${this.state.time}`).toISOString()
-    */
+    
    const date_time_moment = moment(`${this.state.date} ${this.state.time}`, 'YYYY-MM-DD HH:mm');
    const date_time = date_time_moment.toISOString();
    const user_id = this.props.id;

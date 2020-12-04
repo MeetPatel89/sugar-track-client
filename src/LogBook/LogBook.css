@@ -8,11 +8,12 @@
 .log-metric a button {
     font-weight: normal;
     font-size: 5px;
-    letter-spacing: normal;
+    
     text-transform: none;
     width: 100%;
     height: 100%;
-    background-color: #FF4B2B;
+  
+    
 }
 
 .log-metric a {
