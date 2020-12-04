@@ -61,7 +61,10 @@ export default class MealsLog extends Component {
           .then(res => {
             this.setState({
               error: '',
-              message: 'You have successfully logged the meals value'
+              message: 'You have successfully logged the meals value',
+              meals: '',
+              time: '',
+              date: ''
             })
             return res.json()
 
@@ -81,24 +84,26 @@ export default class MealsLog extends Component {
             <h2>Enter Meal Regimens</h2>
         </header>
         <form className="meals_log" onSubmit={this.handleSubmit}>
-            <div>
+            <div className="label-control">
               <label htmlFor="meal">Meal:</label>
-              <input placeholder='Egg Sandwich' type="text" name="meals" id="meals" onChange={this.handleChange} required/>
+              <input placeholder='Egg Sandwich' type="text" name="meals" id="meals" value={this.state.meals} onChange={this.handleChange} required/>
             </div>
-            <br/>
-            <div>
+            
+            <div className="label-control">
               <label htmlFor="date">Date:</label>
-              <input type="date" name='date' id='date' onChange={this.handleChange} required/>
-              <br/>
-              <br/>
-              <label htmlFor="time">Time:</label>
-              <input type="time" id="time" name="time" onChange={this.handleChange} required/>
+              <input type="date" name="date" id="date" value={this.state.date} onChange={this.handleChange} required/>
             </div>
-            <br/>
+            <div className="label-control">
+              <label htmlFor="time">Time:</label>
+              <input type="time" id="time" name="time" value={this.state.time} onChange={this.handleChange} required/>
+            </div>
+            
             <button type='submit'>Add</button>
+            <p style={{color: "red"}}>{this.state.error}</p>
+            <p style={{color: "#2f004f", margin: "10px"}}>{this.state.message}</p>
         </form>
-        {this.state.error}
-        {this.state.message}
+        
+       
       </section>
         )
     }

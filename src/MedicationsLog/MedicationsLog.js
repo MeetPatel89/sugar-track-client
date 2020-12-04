@@ -6,7 +6,10 @@ export default class MedicationsLog extends Component {
       super(props);
       this.state = {
         message: '',
-        error: ''
+        error: '',
+        date: '',
+        time: '',
+        meds: ''
       }
     }
 
@@ -23,8 +26,7 @@ export default class MedicationsLog extends Component {
       e.preventDefault();
       const user_id = this.props.id;
       const meds = this.state.meds;
-      console.log(this.state.date)
-      console.log(this.state.time)
+      
     
       const date_time_moment = moment(`${this.state.date} ${this.state.time}`, 'YYYY-MM-DD HH:mm');
       console.log(date_time_moment.isBefore(moment().subtract(7, 'days')))
@@ -69,9 +71,12 @@ export default class MedicationsLog extends Component {
             .then(medLog => {
               this.setState({
                 message: 'You have successfully logged the meds value for selected date and time',
-                error: ''
+                error: '',
+                date: '',
+                time: '',
+                meds: ''
               })
-              console.log(medLog)
+              
             })
             
           }
@@ -85,23 +90,26 @@ export default class MedicationsLog extends Component {
             <section>
         <h2>Enter the medication regimens</h2>
         <form onSubmit={this.handleSubmit}>
+          <div className="label-control">
           <label htmlFor="meds">Medication:</label>
-          <input type="text" id="meds" name="meds" placeholder="E.g. Insulin or Metformin" onChange={this.handleChange} required/>
-          <br/>
-          <br/>
-          <div>
+          <input type="text" id="meds" name="meds" value={this.state.meds} placeholder="E.g. insulin, metformin, etc." onChange={this.handleChange} required/>
+          </div>
+          
+            <div className="label-control">
               <label htmlFor="date">Date:</label>
-              <input type="date" name='date' id='date' onChange={this.handleChange} required/>
-              <br/>
-              <br/>
+              <input type="date" name="date" id="date" value={this.state.date} onChange={this.handleChange} required/>
+              </div>
+              <div className="label-control">
               <label htmlFor="time">Time:</label>
-              <input type="time" id="time" name="time" onChange={this.handleChange} required/>
+              <input type="time" id="time" name="time" value={this.state.time} onChange={this.handleChange} required/>
             </div>
-            <br/>
+            
           <button type="submit">Add</button>
+          <p style={{color: "#2f004f", margin: "10px"}}>{this.state.message}</p>
+          <p style={{color: "red"}}>{this.state.error}</p>
         </form>
-        {this.state.message}
-        {this.state.error}
+        
+        
       </section>
         )
     }
