@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import Header from '../Header/Header';
 
 export default class SignUp extends Component {
     constructor(props) {
@@ -76,7 +77,11 @@ export default class SignUp extends Component {
                'confirm-password': ''
            })
        })
-       .catch(error => ({'error': error})) 
+       .catch(error => {
+           this.setState({
+               error: error.message
+           })
+       }) 
             }
         
 
@@ -94,7 +99,7 @@ export default class SignUp extends Component {
                
                     <>
                     
-                    
+                    <Header/>
                     <div className="container">
                     <div className="form-container sign-up-container">
                     <h2>CREATE ACCOUNT</h2>
