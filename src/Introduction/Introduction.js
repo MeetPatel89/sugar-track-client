@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import './Introduction.css';
 
-export default function() {
+export default function Introduction() {
     return (
         <section className="intro">
             <h2>Introduction</h2>
