@@ -4,7 +4,7 @@ export default class SignUp extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            signIn: false
+            
         }
     }
 
@@ -17,11 +17,6 @@ export default class SignUp extends Component {
        
 }
 
-    handleClick = () => {
-        this.setState({
-            signIn: true
-        })
-    }
 
     handleSubmit = (e) => {
         e.preventDefault();
@@ -31,26 +26,22 @@ export default class SignUp extends Component {
         
         if (!this.state.password.match(passwd)) {
             this.setState({
-                error: 'Password should contain at least one uppercase letter, one lowercase letter and one numeric digit'
+                error: 'Password should contain at least one uppercase letter, one lowercase letter and one numeric digit',
+                signUp: ''
             })
-        } else {
-            if (this.state.password !== this.state['confirm-password']) {
+        } 
+           else if (this.state.password !== this.state['confirm-password']) {
                 this.setState({
-                    error: '"Password" and "Confirm Password" fields should match each other'
+                    error: '"Password" and "Confirm Password" fields should match each other',
+                    signUp: ''
                 })
-            } else {
-                this.setState({
-                    error: ''
-                })
+            } else  {
+                const { fullname, username, password } = this.state;
+            const newUser = {
+                fullname,
+                username,
+                password
             }
-        }
-
-        const { fullname, username, password } = this.state;
-        const newUser = {
-            fullname,
-            username,
-            password
-        }
 
         console.log(newUser);
 
@@ -62,12 +53,21 @@ export default class SignUp extends Component {
            body: JSON.stringify(newUser) 
        })
        .then(user => user.json())
-       .then(data => {
+       .then(() => {
            this.setState({
-               'signIn': true
+               signUp: 'You can now log in using newly created user credentials',
+               error: '',
+               fullname: '',
+               username: '',
+               password: '',
+               'confirm-password': ''
            })
        })
        .catch(error => console.error({'error': error})) 
+            }
+        
+
+        
 
 
     }
@@ -89,28 +89,29 @@ export default class SignUp extends Component {
                         <div className="label-control">
                         <label htmlFor="fullname">Fullname:</label>
                             
-                            <input type="text" name="fullname" id="fullname" onChange={this.handleChange} required/>
+                            <input type="text" name="fullname" id="fullname" value={this.state.fullname} onChange={this.handleChange} required/>
                             </div>
                         <div className="label-control">
                         <label htmlFor="username">Username:</label>
                             
-                            <input type="text" name="username" id="username" onChange={this.handleChange} required/>
+                            <input type="text" name="username" id="username" value={this.state.username} onChange={this.handleChange} required/>
                             </div>
                       <div className="label-control">
                         <label htmlFor="password">Password:</label>
                             
-                            <input type="password" name="password" id="password" onChange={this.handleChange} required/>
+                            <input type="password" name="password" id="password" value={this.state.password} onChange={this.handleChange} required/>
                             </div> 
                        <div className="label-control"> 
                         <label htmlFor="confirm-password">Confirm Password:</label>
                                    
-                            <input type="password" name="confirm-password" id="confirm-password" onChange={this.handleChange} required/>
+                            <input type="password" name="confirm-password" id="confirm-password" value={this.state['confirm-password']} onChange={this.handleChange} required/>
                             </div>
                         
                         
                         <button type="submit">Sign Up</button>
                         <p>Already have an account? <button type="submit" onClick={this.props.handleClick}>Sign In</button></p>
                         <p style={{color:"red"}}>{this.state.error}</p>
+                        <p style={{color: "#2f004f"}}>{this.state.signUp}</p>
                     </form>
                     
                     </div>
