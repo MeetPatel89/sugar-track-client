@@ -1,7 +1,4 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
-import SignIn from '../SignIn/SignIn';
-import Header from '../Header/Header';
 
 export default class SignUp extends Component {
     constructor(props) {
@@ -16,7 +13,7 @@ export default class SignUp extends Component {
         const value = e.target.value;
         this.setState({
             [name]: value
-        })
+        });
        
 }
 
@@ -28,6 +25,8 @@ export default class SignUp extends Component {
 
     handleSubmit = (e) => {
         e.preventDefault();
+
+        // validation variable for password
         const passwd = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,20}$/;
         
         if (!this.state.password.match(passwd)) {
@@ -83,34 +82,35 @@ export default class SignUp extends Component {
                     <>
                     
                     
-                    <div class="container">
+                    <div className="container">
                     <div className="form-container sign-up-container">
                     <h2>CREATE ACCOUNT</h2>
-                    <form onSubmit={this.handleSubmit}>
-                        <label>
-                            Fullname:
-                            <input type="text" name="fullname" onChange={this.handleChange} required/>
-                        </label>
-                        <br/>
-                        <label>
-                            Username:
-                            <input type="text" name="username" onChange={this.handleChange} required/>
-                        </label>
-                        <br/>
-                        <label>
-                            Password:
-                            <input type="password" name="password" onChange={this.handleChange} required/>
-                        </label>
-                        <br/>
-                        <label>
-                            Confirm Password:       
-                            <input type="password" name="confirm-password" onChange={this.handleChange} required/>
-                        </label>
-                        <br/>
+                    <form className="sign-up-form" onSubmit={this.handleSubmit}>
+                        <div className="label-control">
+                        <label htmlFor="fullname">Fullname:</label>
+                            
+                            <input type="text" name="fullname" id="fullname" onChange={this.handleChange} required/>
+                            </div>
+                        <div className="label-control">
+                        <label htmlFor="username">Username:</label>
+                            
+                            <input type="text" name="username" id="username" onChange={this.handleChange} required/>
+                            </div>
+                      <div className="label-control">
+                        <label htmlFor="password">Password:</label>
+                            
+                            <input type="password" name="password" id="password" onChange={this.handleChange} required/>
+                            </div> 
+                       <div className="label-control"> 
+                        <label htmlFor="confirm-password">Confirm Password:</label>
+                                   
+                            <input type="password" name="confirm-password" id="confirm-password" onChange={this.handleChange} required/>
+                            </div>
+                        
                         
                         <button type="submit">Sign Up</button>
                         <p>Already have an account? <button type="submit" onClick={this.props.handleClick}>Sign In</button></p>
-                        {this.state.error}
+                        <p style={{color:"red"}}>{this.state.error}</p>
                     </form>
                     
                     </div>

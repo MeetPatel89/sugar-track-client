@@ -58,7 +58,7 @@ export default class SignIn extends Component {
                     <div className="container">
                         <div className="form-container sign-in-container">
                         <h2>PLEASE SIGN IN</h2>
-                        <form onSubmit={this.handleSubmit}>
+                        <form className="sign-in-form" onSubmit={this.handleSubmit}>
                             <div className="label-control">
                             <label htmlFor="username">Username:</label>
                                 <input type="text" name="username" id="username" onChange={this.handleChange} required/>
