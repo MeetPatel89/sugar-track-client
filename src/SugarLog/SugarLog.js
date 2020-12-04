@@ -6,7 +6,10 @@ export default class SugarLog extends Component {
     super(props);
     this.state = {
       message: '',
-      error: ''
+      error: '',
+      date: '',
+      glucose: '',
+      time: ''
     }
   }
 
@@ -34,9 +37,9 @@ export default class SugarLog extends Component {
     fetch('http://localhost:8000/glucose_logs')
     .then(res => res.json())
     .then(glucoseLogs => {
-      console.log(newGlucoseLog);
+      
       const duplicateGlucoseLog = glucoseLogs.find(glucoseLog => glucoseLog.date_time === newGlucoseLog.date_time && glucoseLog.user_id === user_id)
-      console.log(duplicateGlucoseLog);
+      
       if (duplicateGlucoseLog) {
         this.setState({
           error: 'You have already logged a glucose value for the selected date and time',
@@ -51,12 +54,15 @@ export default class SugarLog extends Component {
       body: JSON.stringify(newGlucoseLog)
     })
     .then(newGlucoseLog => newGlucoseLog.json())
-    .then(newGlucoseLog => {
-      console.log(newGlucoseLog);
+    .then(() => {
+      
       
       this.setState({
         message: 'You have successfully logged a glucose value',
-        error: ''
+        error: '',
+        glucose: '',
+        date: '',
+        time: ''
       })
     })
       }
@@ -83,27 +89,27 @@ export default class SugarLog extends Component {
 
     render() {
         return (
-            <section>
+            <section className="sugar-levels">
           <h2>Enter Sugar Levels</h2>
-        <form className='sugar-levels' onSubmit={this.handleSubmit}>
-            <div>
-              <label htmlFor="sugar-concentration">Sugar Concentration</label>
-              <input placeholder='sugar level' type="number" name='glucose' id='sugar-concentration' onChange={this.handleChange} min="0" max="2000" required/>
-              <span>mg/dl</span>
+        <form className="sugar-levels" onSubmit={this.handleSubmit}>
+            <div className="label-control">
+              <label htmlFor="sugar-concentration">Sugar Concentration (mg/dl)</label>
+              <input placeholder="For e.g. 120" type="number" name='glucose' value={this.state.glucose} id="sugar-concentration" onChange={this.handleChange} min="0" max="2000" required/>
+              
             </div>
-            <br/>
-            <div>
+            
+            <div className="label-control">
               <label htmlFor="date">Date:</label>
-              <input type="date" name='date' id='date' onChange={this.handleChange} required/>
-              <br/>
-              <br/>
-              <label htmlFor="time">Time:</label>
-              <input type="time" id="time" name="time" onChange={this.handleChange} required/>
+              <input type="date" name="date" id="date" value={this.state.date} onChange={this.handleChange} required/>
             </div>
-            <br/>
-            <button type='submit'>Save</button>
-            {this.state.message}
-            {this.state.error}
+            <div className="label-control">
+              <label htmlFor="time">Time:</label>
+              <input type="time" id="time" value={this.state.time} name="time" onChange={this.handleChange} required/>
+            </div>
+            
+            <button type="submit">Save</button>
+            <p style={{color: "#2f004f", margin: "10px"}}>{this.state.message}</p>
+            <p style={{color: "red"}}>{this.state.error}</p>
         </form>
         </section>
         )
