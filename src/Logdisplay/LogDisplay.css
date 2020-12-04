@@ -20,7 +20,7 @@ option {
     cursor: pointer;
 }
 
-log-display-list {
+.log-display-list {
     width: 100%;
     
     list-style: none;
