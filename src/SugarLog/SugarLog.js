@@ -25,7 +25,8 @@ export default class SugarLog extends Component {
      })
    } else if (date_time_moment.isAfter(moment())){
       this.setState({
-        error: 'You are not allowed to log glucose values for dates in the future'
+        error: 'You are not allowed to log glucose values for dates in the future',
+        message: ''
       })
    } else {
     const newGlucoseLog = {
@@ -107,9 +108,9 @@ export default class SugarLog extends Component {
               <input type="time" id="time" value={this.state.time} name="time" onChange={this.handleChange} required/>
             </div>
             
-            <button type="submit">Save</button>
+            <button className="sugar-log-submit" type="submit">Submit</button>
             <p style={{color: "#2f004f", margin: "10px"}}>{this.state.message}</p>
-            <p style={{color: "red"}}>{this.state.error}</p>
+            <p style={{color: "red", width: "100%"}}>{this.state.error}</p>
         </form>
         </section>
         )

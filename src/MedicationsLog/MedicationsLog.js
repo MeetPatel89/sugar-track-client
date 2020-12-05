@@ -38,7 +38,8 @@ export default class MedicationsLog extends Component {
         })
       } else if (date_time_moment.isAfter(moment())) {
           this.setState({
-            error: 'You are not allowed to log meds values for future dates'
+            error: 'You are not allowed to log meds values for future dates',
+            message: ''
           })
       } else {
 
@@ -87,7 +88,7 @@ export default class MedicationsLog extends Component {
 
     render() {
         return (
-            <section>
+            <section className="med-regimens">
         <h2>Enter the medication regimens</h2>
         <form onSubmit={this.handleSubmit}>
           <div className="label-control">
@@ -104,7 +105,7 @@ export default class MedicationsLog extends Component {
               <input type="time" id="time" name="time" value={this.state.time} onChange={this.handleChange} required/>
             </div>
             
-          <button type="submit">Add</button>
+          <button className="med-log-submit" type="submit">Submit</button>
           <p style={{color: "#2f004f", margin: "10px"}}>{this.state.message}</p>
           <p style={{color: "red"}}>{this.state.error}</p>
         </form>

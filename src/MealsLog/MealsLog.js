@@ -79,7 +79,7 @@ export default class MealsLog extends Component {
 
     render() {
         return (
-            <section>
+            <section className="meals">
         <header>
             <h2>Enter Meal Regimens</h2>
         </header>
@@ -98,7 +98,7 @@ export default class MealsLog extends Component {
               <input type="time" id="time" name="time" value={this.state.time} onChange={this.handleChange} required/>
             </div>
             
-            <button type='submit'>Add</button>
+            <button className="meal-log-submit" type='submit'>Submit</button>
             <p style={{color: "red"}}>{this.state.error}</p>
             <p style={{color: "#2f004f", margin: "10px"}}>{this.state.message}</p>
         </form>

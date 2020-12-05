@@ -1,6 +1,4 @@
 import React, { Component } from 'react';
-import Header from '../Header/Header';
-import Nav from '../Nav/Nav';
 import moment from 'moment';
 import './LogDisplay.css';
 
@@ -55,19 +53,7 @@ export default class LogDisplay extends Component {
 
     componentDidMount() {
         
-        /*
-      let getGlucoseLogs =  fetch(`http://localhost:8000/glucose_logs/${this.props.id}`)
-        .then(res => res.json())
-        .then(glucoseLogs => glucoseLogs)
-        
-     let getMealsLogs =  fetch(`http://localhost:8000/meals_logs/${this.props.id}`)
-        .then(res => res.json())
-        .then(mealsLogs => mealsLogs)
-
-     let getMedsLogs = fetch(`http://localhost:8000/meds_logs/${this.props.id}`)
-        .then(res => res.json())
-        .then(medsLogs => medsLogs)
-    */
+       
 
     fetch(`http://localhost:8000/logs/${this.props.id}`)
         .then(res => res.json())
@@ -77,31 +63,9 @@ export default class LogDisplay extends Component {
             })
         })
 
-        /*
+        
 
-        Promise.all([getGlucoseLogs, getMealsLogs, getMedsLogs])
-                .then(logs => {
-                    const sortedLogs = [...logs[0], ...logs[1], ...logs[2]].sort((a, b) => {
-                        if (a.date_time < b.date_time) {
-                            return -1
-                        } else {
-                            return 1
-                        }
-                    })
-                    this.setState({
-                        logs: sortedLogs
-                    })
-                })
-
-        /*
-        const loggedMonths = logs.map(log => {
-            const loggedMonth = moment(log.date_time).format('MMM');
-            return loggedMonth;
-        })
-        const uniqueLoggedMonth = [...new Set(loggedMonths)];
-        console.log(loggedMonths);
-        console.log(uniqueLoggedMonth);
-       */
+       
         
     }
     render() {
@@ -135,6 +99,7 @@ export default class LogDisplay extends Component {
                 uniqueLoggedYears.push(uniqueLoggedYear);
                 return <option key={i} value={uniqueLoggedYear}>{uniqueLoggedYear}</option>
             }
+            
         })
 
         const uniqueLoggedDays = [];
@@ -156,9 +121,9 @@ export default class LogDisplay extends Component {
                 if (log.glucose) {
                 return <tr className="log-display-list-item" key={`${i}glucose`}><td>{date_time}</td><td>Blood Sugar Level</td><td>{log.glucose}</td></tr>
                 } else if (log.meds) {
-                return <tr className="log-display-list-item" key={`${i}med`}><td>{date_time}</td><td>Medication</td><td>{log.meds}</td>   </tr>
+                return <tr className="log-display-list-item" key={`${i}med`}><td>{date_time}</td><td>Medication</td><td>{log.meds}</td></tr>
                 } else {
-                return <tr className="log-display-list-item" key={`${i}meal`}> <td>{date_time}</td><td>Meal</td> <td>{log.meals}</td></tr>
+                return <tr className="log-display-list-item" key={`${i}meal`}><td>{date_time}</td><td>Meal</td><td>{log.meals}</td></tr>
                 }
             })
         
@@ -203,12 +168,18 @@ export default class LogDisplay extends Component {
                 <button className="display-logs" type="submit">Display logs</button>
                 {(this.state.displayLogs) &&
                 <table className="log-display-table">
-                <tr>
+                
+                    <thead>
+                        <tr>
                     <th>Time (24-hour)</th>
                     <th>Log Metric</th>
                     <th>Log Value</th>
-                </tr>
+                    </tr>
+                    </thead>
+                <tbody>
                 {renderLogs}
+                </tbody>
+                
             </table>}
                     {(this.state.displayError) &&
                     <p style={{color: "red"}}>Please select a year, month and day from the above dropdown to display logs for that date!</p>}

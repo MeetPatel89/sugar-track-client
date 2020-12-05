@@ -20,4 +20,13 @@
     font-size: 10px;
     margin: 5px;
     width: 25%;
+    min-width: 140px;
+}
+
+.sugar-logbook,
+.med-logbook,
+.meal-logbook {
+    background-color: #9cd08f;
+    border: 1px solid darkgreen;
+    color: black;
 }

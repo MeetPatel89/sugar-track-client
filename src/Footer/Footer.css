@@ -1,11 +1,14 @@
 footer {
-   color: #2f004f;
-    position: absolute;
-    bottom: 5px;
-   width: 100vw;
-   display: flex;
-   align-items: center;
-   justify-content: center;
-   
+   background-color: #2f004f;
+   color: #fff;
+    position: fixed;
+    bottom: 4px;
+    
+   width: 100%;
+   text-align: center;
+   padding: 15px;
+   font-weight: 450;
+   width: 80%;
+   border-radius: 20px;
 }
 
