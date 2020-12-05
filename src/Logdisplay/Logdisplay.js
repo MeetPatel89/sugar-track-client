@@ -113,13 +113,21 @@ export default class LogDisplay extends Component {
                 return log;
             }
         }
-        
-        this.setState(prevState => {
+
+        fetch(`http://localhost:8000/${logMetric}_logs/${id}`, {
+            method: 'DELETE',
+            headers: {
+                'Content-type': 'application/json'
+            }
+        })
+        .then(this.setState(prevState => {
             const postDeleteLogs = prevState.filteredLogs.filter(log => filterByIdAndMetric(log, id, logMetric))
             return {
                 filteredLogs: postDeleteLogs
             }
-        })
+        }))
+        
+        
         
 
     }
