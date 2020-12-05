@@ -7,8 +7,8 @@ export default class LogDisplay extends Component {
         super(props);
         this.state = {
            displayLogs: false,
-           displayError: false
-           
+           displayError: false,
+           focus: false
         }
     }
 
@@ -48,6 +48,23 @@ export default class LogDisplay extends Component {
                 displayError: true
             })
         }
+
+    }
+
+    handleMouseOver = (e) => {
+        console.log('This event works!');
+        const tableRow = e.target.parentElement;
+        console.log(tableRow);
+       tableRow.style.backgroundColor = "darkgray"
+
+
+    }
+
+    handleMouseOut = (e) => {
+        console.log('MouseOut works too')
+        const tableRow = e.target.parentElement;
+        console.log(tableRow);
+        tableRow.style.backgroundColor = "";
 
     }
 
@@ -114,18 +131,21 @@ export default class LogDisplay extends Component {
         })
 
         let renderLogs;
+        let renderButtons;
 
         if (this.state.displayLogs) {
             renderLogs = this.state.filteredLogs.map((log, i) => {
                 const date_time = moment(log.date_time).format('HH:mm');
                 if (log.glucose) {
-                return <tr className="log-display-list-item" key={`${i}glucose`}><td>{date_time}</td><td>Blood Sugar Level</td><td>{log.glucose}</td></tr>
+                return <tr onMouseOver={this.handleMouseOver} onMouseOut={this.handleMouseOut}className="log-display-list-item" key={`${i}glucose`}><td>{date_time}</td><td>Blood Sugar Level</td><td>{log.glucose}</td></tr>
                 } else if (log.meds) {
-                return <tr className="log-display-list-item" key={`${i}med`}><td>{date_time}</td><td>Medication</td><td>{log.meds}</td></tr>
+                return <tr onMouseOver={this.handleMouseOver} onMouseOut={this.handleMouseOut}className="log-display-list-item" key={`${i}med`}><td>{date_time}</td><td>Medication</td><td>{log.meds}</td></tr>
                 } else {
-                return <tr className="log-display-list-item" key={`${i}meal`}><td>{date_time}</td><td>Meal</td><td>{log.meals}</td></tr>
+                return <tr onMouseOver={this.handleMouseOver} onMouseOut={this.handleMouseOut}className="log-display-list-item" key={`${i}meal`}><td>{date_time}</td><td>Meal</td><td>{log.meals}</td></tr>
                 }
             })
+
+            renderButtons = <div className="modify-logs"><button type="button" className="visualize-logs">Visualize</button> <button type="button" className="edit-logs">Edit</button><button type="button" className="delete-logs">Delete</button></div>
         
         }
        
@@ -183,7 +203,7 @@ export default class LogDisplay extends Component {
             </table>}
                     {(this.state.displayError) &&
                     <p style={{color: "red"}}>Please select a year, month and day from the above dropdown to display logs for that date!</p>}
-                
+                    {renderButtons}
                 
                 
                 

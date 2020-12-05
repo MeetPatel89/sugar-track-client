@@ -53,8 +53,14 @@ th {
     background-color: #f2f2f2;
 }
 
-button.display-logs {
+button.display-logs,
+button.edit-logs,
+button.visualize-logs,
+button.delete-logs {
     margin: 10px;
+    background-color: #9cd08f;
+    border: 1px solid darkgreen;
+    color: black;
 }
 
 .sugar-log-submit,
@@ -70,3 +76,6 @@ section.med-regimens {
     width: 50%;
 }
 
+.focus {
+    background-color: darkgray;
+}
