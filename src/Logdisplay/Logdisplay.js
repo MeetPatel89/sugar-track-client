@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import moment from 'moment';
 import './LogDisplay.css';
+import LogTable from '../LogTable/LogTable';
 
 export default class LogDisplay extends Component {
     constructor(props) {
@@ -183,20 +184,7 @@ export default class LogDisplay extends Component {
                 </div>
                 <button className="display-logs" type="submit">Display logs</button>
                 {(this.state.displayLogs) &&
-                <table className="log-display-table">
-                
-                    <thead>
-                        <tr>
-                    <th>Time (24-hour)</th>
-                    <th>Log Metric</th>
-                    <th>Log Value</th>
-                    </tr>
-                    </thead>
-                <tbody>
-                {renderLogs}
-                </tbody>
-                
-            </table>}
+                <LogTable renderLogs={renderLogs}/>}
                     {(this.state.displayError) &&
                     <p style={{color: "red"}}>Please select a year, month and day from the above dropdown to display logs for that date!</p>}
                     {renderVisualizeButton}
