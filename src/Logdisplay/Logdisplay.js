@@ -84,15 +84,44 @@ export default class LogDisplay extends Component {
 
     }
 
-    handleDelete = (e) => {
+    handleEdit = (e) => {
         console.log(e.target.parentElement.parentElement.previousElementSibling);
         const DeleteRow = e.target.parentElement.parentElement.previousElementSibling;
-        console.log(DeleteRow.getAttribute('id'))    
+        const idAttribute = (DeleteRow.getAttribute('id'))
+        const id = idAttribute.split(' ')[0];
+        const logMetric = idAttribute.split(' ')[1];
+        console.log(id);
+        console.log(logMetric); 
+           
         
     }
 
-    handleEdit = (e) => {
-        console.log(e.target.parentElement);
+    handleDelete = (e) => {
+        console.log(e.target.parentElement.parentElement.previousElementSibling);
+        const DeleteRow = e.target.parentElement.parentElement.previousElementSibling;
+        const idAttribute = (DeleteRow.getAttribute('id'))
+        const id = idAttribute.split(' ')[0];
+        const logMetric = idAttribute.split(' ')[1];
+        console.log(id);
+        console.log(logMetric);
+        const filterByIdAndMetric = (log, id, logMetric) => {
+            if (log.id === parseInt(id)) {
+                if (Object.keys(log).includes(logMetric)) {
+                    return null;
+                }
+            } else {
+                return log;
+            }
+        }
+        
+        this.setState(prevState => {
+            const postDeleteLogs = prevState.filteredLogs.filter(log => filterByIdAndMetric(log, id, logMetric))
+            return {
+                filteredLogs: postDeleteLogs
+            }
+        })
+        
+
     }
 
     componentDidMount() {
@@ -174,15 +203,15 @@ export default class LogDisplay extends Component {
             renderLogs = this.state.filteredLogs.map((log) => {
                 const date_time = moment(log.date_time).format('HH:mm');
                 if (log.glucose) {
-                return <Fragment key={`${log.id}glu`}><tr id={`${log.id}glu`} onMouseOver={this.handleMouseOver} onMouseOut={this.handleMouseOut} onClick={this.handleClick} className="log-display-list-item" ><td>{date_time}</td><td>Glucose</td><td>{log.glucose}</td></tr>
+                return <Fragment key={`${log.id}glu`}><tr id={`${log.id} glucose`} onMouseOver={this.handleMouseOver} onMouseOut={this.handleMouseOut} onClick={this.handleClick} className="log-display-list-item" ><td>{date_time}</td><td>Glucose</td><td>{log.glucose}</td></tr>
                     
                     {editRow}
                         
                         </Fragment>
                 } else if (log.meds) {
-                return <Fragment key={`${log.id}med`}><tr id={`${log.id}med`}  onMouseOver={this.handleMouseOver} onMouseOut={this.handleMouseOut} onClick={this.handleClick} className="log-display-list-item" ><td>{date_time}</td><td>Medication</td><td>{log.meds}</td></tr>{editRow}</Fragment>
+                return <Fragment key={`${log.id}med`}><tr id={`${log.id} meds`}  onMouseOver={this.handleMouseOver} onMouseOut={this.handleMouseOut} onClick={this.handleClick} className="log-display-list-item" ><td>{date_time}</td><td>Medication</td><td>{log.meds}</td></tr>{editRow}</Fragment>
                 } else {
-                return <Fragment key={`${log.id}meal`}><tr id={`${log.id}meal`} onMouseOver={this.handleMouseOver} onMouseOut={this.handleMouseOut} onClick={this.handleClick} className="log-display-list-item" ><td>{date_time}</td><td>Meal</td><td>{log.meals}</td></tr>{editRow}</Fragment>
+                return <Fragment key={`${log.id}meal`}><tr id={`${log.id} meals`} onMouseOver={this.handleMouseOver} onMouseOut={this.handleMouseOut} onClick={this.handleClick} className="log-display-list-item" ><td>{date_time}</td><td>Meal</td><td>{log.meals}</td></tr>{editRow}</Fragment>
                 }
             })
         
