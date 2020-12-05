@@ -10,6 +10,7 @@ export default class LogTable extends Component {
 
     render() {
         return (
+            <>
             <table className="log-display-table">
                 
                     <thead>
@@ -24,6 +25,8 @@ export default class LogTable extends Component {
                 </tbody>
                 
             </table>
+            <button type="button" className="visualize-logs">Visualize</button>
+            </>
         )
     }
 }

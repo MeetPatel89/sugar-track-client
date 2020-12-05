@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import moment from 'moment';
 import './LogDisplay.css';
 import LogTable from '../LogTable/LogTable';
@@ -9,7 +9,10 @@ export default class LogDisplay extends Component {
         this.state = {
            displayLogs: false,
            displayError: false,
-           
+           year: '',
+           month: '',
+           day: '',
+           expandView: false
         }
     }
 
@@ -29,7 +32,8 @@ export default class LogDisplay extends Component {
         console.log(year);
         console.log(month);
         console.log(day);
-        if (year && month && day) {
+       
+             if (year && month && day) {
             const date = `${month} ${day} ${year}`
             console.log(date);
             const filteredLogs = this.state.logs.filter(log => {
@@ -41,10 +45,14 @@ export default class LogDisplay extends Component {
                 displayError: false,
                 filteredLogs
             })
-        } else {
+        } 
+         else {
             this.setState({
                 displayLogs: false,
-                displayError: true
+                displayError: true,
+                
+                month: '',
+                day: ''
             })
         }
 
@@ -63,6 +71,28 @@ export default class LogDisplay extends Component {
         
         tableRow.style.backgroundColor = "";
 
+    }
+
+    handleClick = (e) => {
+        const editRow = e.target.parentElement.nextSibling.firstChild;
+        editRow.setAttribute("class", "")
+    }
+
+    handleCancel = (e) => {
+        const editRow = e.target.parentElement;
+        editRow.setAttribute("class", "hidden");
+
+    }
+
+    handleDelete = (e) => {
+        console.log(e.target.parentElement.parentElement.previousElementSibling);
+        const DeleteRow = e.target.parentElement.parentElement.previousElementSibling;
+        console.log(DeleteRow.getAttribute('id'))    
+        
+    }
+
+    handleEdit = (e) => {
+        console.log(e.target.parentElement);
     }
 
     componentDidMount() {
@@ -113,6 +143,7 @@ export default class LogDisplay extends Component {
                 uniqueLoggedYears.push(uniqueLoggedYear);
                 return <option key={i} value={uniqueLoggedYear}>{uniqueLoggedYear}</option>
             }
+            return null;
             
         })
 
@@ -125,25 +156,37 @@ export default class LogDisplay extends Component {
                 uniqueLoggedDays.push(uniqueLoggedDay);
                 return <option key={i} value={uniqueLoggedDay}>{uniqueLoggedDay}</option>
             }
+            return null;
         })
 
         let renderLogs;
-        let renderVisualizeButton;
+       let editRow = <tr>
+       <td colSpan="3" className="hidden">
+       
+        <button type="button" className="edit-button" onClick={this.handleEdit}>Edit</button>
+       <button type="button" className="delete-button" onClick={this.handleDelete}>Delete</button>
+       <button type="button" className="cancel-button" onClick={this.handleCancel}>Cancel</button>
+   
+       </td>
+        </tr>
 
         if (this.state.displayLogs) {
-            renderLogs = this.state.filteredLogs.map((log, i) => {
+            renderLogs = this.state.filteredLogs.map((log) => {
                 const date_time = moment(log.date_time).format('HH:mm');
                 if (log.glucose) {
-                return <tr onMouseOver={this.handleMouseOver} onMouseOut={this.handleMouseOut}className="log-display-list-item" key={`${i}glucose`}><td>{date_time}</td><td>Blood Sugar Level</td><td>{log.glucose}</td></tr>
+                return <Fragment key={`${log.id}glu`}><tr id={`${log.id}glu`} onMouseOver={this.handleMouseOver} onMouseOut={this.handleMouseOut} onClick={this.handleClick} className="log-display-list-item" ><td>{date_time}</td><td>Glucose</td><td>{log.glucose}</td></tr>
+                    
+                    {editRow}
+                        
+                        </Fragment>
                 } else if (log.meds) {
-                return <tr onMouseOver={this.handleMouseOver} onMouseOut={this.handleMouseOut}className="log-display-list-item" key={`${i}med`}><td>{date_time}</td><td>Medication</td><td>{log.meds}</td></tr>
+                return <Fragment key={`${log.id}med`}><tr id={`${log.id}med`}  onMouseOver={this.handleMouseOver} onMouseOut={this.handleMouseOut} onClick={this.handleClick} className="log-display-list-item" ><td>{date_time}</td><td>Medication</td><td>{log.meds}</td></tr>{editRow}</Fragment>
                 } else {
-                return <tr onMouseOver={this.handleMouseOver} onMouseOut={this.handleMouseOut}className="log-display-list-item" key={`${i}meal`}><td>{date_time}</td><td>Meal</td><td>{log.meals}</td></tr>
+                return <Fragment key={`${log.id}meal`}><tr id={`${log.id}meal`} onMouseOver={this.handleMouseOver} onMouseOut={this.handleMouseOut} onClick={this.handleClick} className="log-display-list-item" ><td>{date_time}</td><td>Meal</td><td>{log.meals}</td></tr>{editRow}</Fragment>
                 }
             })
-
-            renderVisualizeButton = <div className="modify-logs"><button type="button" className="visualize-logs">Visualize</button> </div>
         
+            
         }
        
             
@@ -163,7 +206,7 @@ export default class LogDisplay extends Component {
                         
 
                         
-                        <option value="years">Select Year</option>
+                        <option value="">Select Year</option>
                         
                         {dropDownYears}
                         
@@ -171,13 +214,13 @@ export default class LogDisplay extends Component {
                 
                
                     <select value={this.state.month} name="month" onChange={this.handleChange}>
-                        <option value="months">Select Mon</option>
+                        <option value="">Select Mon</option>
                         {dropDownMonths}
                     </select>
                 
                 
                     <select value={this.state.day} name="day" onChange={this.handleChange}>
-                        <option value="days">Select Day</option>
+                        <option value="">Select Day</option>
                         {dropDownDays}
                     </select>
                 
@@ -187,7 +230,7 @@ export default class LogDisplay extends Component {
                 <LogTable renderLogs={renderLogs}/>}
                     {(this.state.displayError) &&
                     <p style={{color: "red"}}>Please select a year, month and day from the above dropdown to display logs for that date!</p>}
-                    {renderVisualizeButton}
+                    
                 
                 
                 

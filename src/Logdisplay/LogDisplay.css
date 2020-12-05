@@ -56,7 +56,10 @@ th {
 button.display-logs,
 button.edit-logs,
 button.visualize-logs,
-button.delete-logs {
+button.delete-logs,
+button.edit-button,
+button.delete-button,
+button.cancel-button {
     margin: 10px;
     background-color: #9cd08f;
     border: 1px solid darkgreen;
@@ -76,6 +79,6 @@ section.med-regimens {
     width: 50%;
 }
 
-.focus {
-    background-color: darkgray;
+.hidden {
+    display: none;
 }
