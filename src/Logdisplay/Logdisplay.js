@@ -8,15 +8,13 @@ export default class LogDisplay extends Component {
         this.state = {
            displayLogs: false,
            displayError: false,
-           focus: false
+           
         }
     }
 
     handleChange = (e) => {
         const value = e.target.value;
         const name = e.target.name;
-        console.log(value);
-        console.log(name);
         this.setState({
             [name]: value
         })
@@ -52,18 +50,16 @@ export default class LogDisplay extends Component {
     }
 
     handleMouseOver = (e) => {
-        console.log('This event works!');
         const tableRow = e.target.parentElement;
-        console.log(tableRow);
        tableRow.style.backgroundColor = "darkgray"
 
 
     }
 
     handleMouseOut = (e) => {
-        console.log('MouseOut works too')
+        
         const tableRow = e.target.parentElement;
-        console.log(tableRow);
+        
         tableRow.style.backgroundColor = "";
 
     }
@@ -131,7 +127,7 @@ export default class LogDisplay extends Component {
         })
 
         let renderLogs;
-        let renderButtons;
+        let renderVisualizeButton;
 
         if (this.state.displayLogs) {
             renderLogs = this.state.filteredLogs.map((log, i) => {
@@ -145,7 +141,7 @@ export default class LogDisplay extends Component {
                 }
             })
 
-            renderButtons = <div className="modify-logs"><button type="button" className="visualize-logs">Visualize</button> <button type="button" className="edit-logs">Edit</button><button type="button" className="delete-logs">Delete</button></div>
+            renderVisualizeButton = <div className="modify-logs"><button type="button" className="visualize-logs">Visualize</button> </div>
         
         }
        
@@ -156,7 +152,7 @@ export default class LogDisplay extends Component {
             <>
             
             
-            <section>
+            <section className="log-display">
             <form onSubmit={this.handleSubmit}>
                 <h2>Display logs for</h2>
                 <div className="select-menus">
@@ -203,7 +199,7 @@ export default class LogDisplay extends Component {
             </table>}
                     {(this.state.displayError) &&
                     <p style={{color: "red"}}>Please select a year, month and day from the above dropdown to display logs for that date!</p>}
-                    {renderButtons}
+                    {renderVisualizeButton}
                 
                 
                 
