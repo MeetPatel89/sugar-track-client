@@ -92,7 +92,11 @@ export default class LogDisplay extends Component {
         const logMetric = idAttribute.split(' ')[1];
         console.log(id);
         console.log(logMetric); 
-           
+        const selectedLog = this.state.filteredLogs.find(log => log.id === parseInt(id) && Object.keys(log).includes(logMetric));
+        this.setState({
+            selectedLog
+        })
+
         
     }
 
@@ -197,7 +201,7 @@ export default class LogDisplay extends Component {
         })
 
         let renderLogs;
-       let editRow = <tr>
+       let modifyRow = <tr>
        <td colSpan="3" className="hidden">
        
         <button type="button" className="edit-button" onClick={this.handleEdit}>Edit</button>
@@ -207,19 +211,38 @@ export default class LogDisplay extends Component {
        </td>
         </tr>
 
+        const editForm = <tr><td colSpan="3" className="hidden"><form className="edit-form">
+                            <div className="label-control">
+                                <label htmlFor="log-metric">{this.state.logMetric}:</label>
+                                { (this.state.logMetric === "glucose")
+                                    ? 
+                                     <input type="number" name="log-metric" id="log-metric"/>
+                                    :
+                                    <input type="text" name="log-metric" id="log-metric"/>
+                                }
+                                  
+                            </div>
+                            <div className="label-control">
+                                <label htmlFor="time">{this.state.time}</label>
+                                <input type="time" name="time" id="time" />
+                            </div>
+                         </form>
+                         </td>
+                         </tr>
+
         if (this.state.displayLogs) {
             renderLogs = this.state.filteredLogs.map((log) => {
                 const date_time = moment(log.date_time).format('HH:mm');
                 if (log.glucose) {
                 return <Fragment key={`${log.id}glu`}><tr id={`${log.id} glucose`} onMouseOver={this.handleMouseOver} onMouseOut={this.handleMouseOut} onClick={this.handleClick} className="log-display-list-item" ><td>{date_time}</td><td>Glucose</td><td>{log.glucose}</td></tr>
                     
-                    {editRow}
-                        
+                    {modifyRow}
+                    {editForm} 
                         </Fragment>
                 } else if (log.meds) {
-                return <Fragment key={`${log.id}med`}><tr id={`${log.id} meds`}  onMouseOver={this.handleMouseOver} onMouseOut={this.handleMouseOut} onClick={this.handleClick} className="log-display-list-item" ><td>{date_time}</td><td>Medication</td><td>{log.meds}</td></tr>{editRow}</Fragment>
+                return <Fragment key={`${log.id}med`}><tr id={`${log.id} meds`}  onMouseOver={this.handleMouseOver} onMouseOut={this.handleMouseOut} onClick={this.handleClick} className="log-display-list-item" ><td>{date_time}</td><td>Medication</td><td>{log.meds}</td></tr>{modifyRow}{editForm}</Fragment>
                 } else {
-                return <Fragment key={`${log.id}meal`}><tr id={`${log.id} meals`} onMouseOver={this.handleMouseOver} onMouseOut={this.handleMouseOut} onClick={this.handleClick} className="log-display-list-item" ><td>{date_time}</td><td>Meal</td><td>{log.meals}</td></tr>{editRow}</Fragment>
+                return <Fragment key={`${log.id}meal`}><tr id={`${log.id} meals`} onMouseOver={this.handleMouseOver} onMouseOut={this.handleMouseOut} onClick={this.handleClick} className="log-display-list-item" ><td>{date_time}</td><td>Meal</td><td>{log.meals}</td></tr>{modifyRow}{editForm}</Fragment>
                 }
             })
         
