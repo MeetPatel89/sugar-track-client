@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import moment from 'moment';
+// eslint-disable-next-line no-unused-vars
 import { Link } from 'react-router-dom';
 
 export default class EditLogForm extends Component {

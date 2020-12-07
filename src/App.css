@@ -40,6 +40,8 @@ button {
 	letter-spacing: 1px;
 	text-transform: uppercase;
 	transition: transform 80ms ease-in;
+	margin: 5px;
+	width: 173px;
 }
 
 button:hover {
@@ -88,7 +90,7 @@ input {
             position: relative;
             overflow: hidden;
             width: 768px;
-            max-width: 100%;
+            max-width: 80%;
             min-height: 480px;
             margin: auto;
 }
@@ -112,6 +114,11 @@ input {
 	align-items: center;
 }
 
+.errorMessage {
+	color: red;
+	margin: 5px;
+}
+
 @media all and (max-width: 650px) {
 	h1 #header {
 		font-size: 1.3em;
@@ -121,15 +128,25 @@ input {
 		font-size: 25px;
 	}
 
-	 p,
-	 ul {
-		font-size: 10px;
+	 body {
+		font-size: 5px;
 	}
 
 	button {
 		font-size: 8px;
-		letter-spacing: normal;
-		padding: 10px;
+		letter-spacing: -1;
+		padding: 8px;
+		width: 100px;
+		font-weight: normal;
+	}
+
+	.log-in-button,
+	.sign-up-button {
+		width: 99px;
+	}
+
+	.dummy-account {
+		margin: 38px;
 	}
 }
 
@@ -144,5 +161,19 @@ input {
 
 	button {
 		padding: 8px;
+		
+		
+		letter-spacing: -1;
 	}
+
+	.log-in-button,
+	.sign-up-button {
+		width: 80px;
+	}
+
+	.label-control {
+		display: flex;
+		flex-direction: column;
+	}
+
 }

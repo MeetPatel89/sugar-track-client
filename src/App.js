@@ -11,42 +11,54 @@ export default class App extends Component {
     super(props);
     this.state = {
       signInForm: true,
-      Landing: true
+      Landing: true,
     };
   }
 
   handleClick = () => {
-
     // Reverse state's signInForm boolean on click
-    this.setState(prevState => {
-      return {
-        signInForm: !prevState.signInForm
-      }
-    })
-  }
+    this.setState((prevState) => ({
+      signInForm: !prevState.signInForm,
+    }));
+  };
 
   handleStart = () => {
     this.setState({
-      Landing: false
-    })
-  }
+      Landing: false,
+    });
+  };
 
   render() {
     return (
       <>
-        {(this.state.Landing)
-        ? <><Header/><main className="main-container"><UserManual/><div className="dummy-account"><p>Use the following user credentials to explore the app:
-        <ul>
-          <li>Username: nautilusshell89</li>
-          <li>Password: RandomNautilus89</li></ul></p></div><button type="button" className="get-started" onClick={this.handleStart}>Get Started</button></main></>
-        :(
-          (this.state.signInForm)
-          ? <SignIn handleClick={this.handleClick}/>
-          : <SignUp handleClick={this.handleClick}/>
-        )
-        }
-        <Footer/>
+        {this.state.Landing ? (
+          <>
+            <Header />
+            <main className="main-container">
+              <UserManual />
+              <div className="dummy-account">
+                <p>Use the following user credentials to explore the app:</p>
+                <ul>
+                  <li>Username: nautilusshell89</li>
+                  <li>Password: RandomNautilus89</li>
+                </ul>
+              </div>
+              <button
+                type="button"
+                className="get-started"
+                onClick={this.handleStart}
+              >
+                Get Started
+              </button>
+            </main>
+          </>
+        ) : this.state.signInForm ? (
+          <SignIn handleClick={this.handleClick} />
+        ) : (
+          <SignUp handleClick={this.handleClick} />
+        )}
+        <Footer />
       </>
-    )
+    );
   }
 }
