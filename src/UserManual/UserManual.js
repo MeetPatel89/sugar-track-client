@@ -36,6 +36,7 @@ export default class UserManual extends Component {
                             </ul>
                         </li>
                         <li>For all above metrics you are not allowed to log values for future dates as well as for dates more than 7 days in the past.</li>
+                        <li>You can edit and delete any of the logs but we recommend you use it cautiously to avoid introducing any inaccuracy in your logs.</li>
                     </ul>
                 </section>
             </>

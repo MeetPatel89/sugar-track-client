@@ -19,7 +19,7 @@ export default class Header extends Component {
             <>
             <header className="logo">
             
-            <h1><Link to='/' id="header">SugarTrack</Link></h1>
+            <h1 className="main-heading"><Link to='/' id="header">SugarTrack</Link></h1>
             {welcomeMsg}
             
             <hr/>

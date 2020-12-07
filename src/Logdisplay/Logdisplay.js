@@ -2,6 +2,7 @@ import React, { Component, Fragment } from 'react';
 import moment from 'moment';
 import './LogDisplay.css';
 import LogTable from '../LogTable/LogTable';
+import EditLogForm from '../EditLogForm/EditLogForm';
 
 export default class LogDisplay extends Component {
     constructor(props) {
@@ -12,7 +13,7 @@ export default class LogDisplay extends Component {
            year: '',
            month: '',
            day: '',
-           expandView: false
+           editForm: false
         }
     }
 
@@ -75,6 +76,7 @@ export default class LogDisplay extends Component {
 
     handleClick = (e) => {
         const editRow = e.target.parentElement.nextSibling.firstChild;
+        
         editRow.setAttribute("class", "")
     }
 
@@ -84,8 +86,53 @@ export default class LogDisplay extends Component {
 
     }
 
+    handleCancelEdit = () => {
+        this.setState({
+            editForm: false
+        })
+        fetch(`http://localhost:8000/logs/${this.props.id}`)
+        .then(res => res.json())
+        .then(logs => {
+            this.setState(prevState => {
+                const year = this.state.year;
+        const month = this.state.month;
+        const day = this.state.day;
+       
+              
+            const date = `${month} ${day} ${year}`
+            console.log(date);
+            const filteredLogs = logs.filter(log => {
+               return moment(log.date_time).format('MMM DD YYYY') === date
+            })
+
+            return {
+                logs,
+                filteredLogs
+            }
+            })
+            
+             
+        })
+    }
+
+    handleAfterEdit = () => {
+        fetch(`http://localhost:8000/logs/${this.props.id}`)
+        .then(res => res.json())
+        .then(logs => {
+            
+            const filteredLogs = this.state.filteredLogs.map(log => {if (log.id === this.state.selectedLog.id) {
+                if (Object.keys(log).includes(this.state.logMetric)) {
+                    return null;
+                }
+            } else {
+                return log;
+            }})
+        })
+    }
+
     handleEdit = (e) => {
         console.log(e.target.parentElement.parentElement.previousElementSibling);
+        console.log(e.target);
         const DeleteRow = e.target.parentElement.parentElement.previousElementSibling;
         const idAttribute = (DeleteRow.getAttribute('id'))
         const id = idAttribute.split(' ')[0];
@@ -94,11 +141,15 @@ export default class LogDisplay extends Component {
         console.log(logMetric); 
         const selectedLog = this.state.filteredLogs.find(log => log.id === parseInt(id) && Object.keys(log).includes(logMetric));
         this.setState({
-            selectedLog
+            selectedLog,
+            editForm: true,
+            logMetric
         })
 
         
     }
+
+    
 
     handleDelete = (e) => {
         console.log(e.target.parentElement.parentElement.previousElementSibling);
@@ -211,24 +262,6 @@ export default class LogDisplay extends Component {
        </td>
         </tr>
 
-        const editForm = <tr><td colSpan="3" className="hidden"><form className="edit-form">
-                            <div className="label-control">
-                                <label htmlFor="log-metric">{this.state.logMetric}:</label>
-                                { (this.state.logMetric === "glucose")
-                                    ? 
-                                     <input type="number" name="log-metric" id="log-metric"/>
-                                    :
-                                    <input type="text" name="log-metric" id="log-metric"/>
-                                }
-                                  
-                            </div>
-                            <div className="label-control">
-                                <label htmlFor="time">{this.state.time}</label>
-                                <input type="time" name="time" id="time" />
-                            </div>
-                         </form>
-                         </td>
-                         </tr>
 
         if (this.state.displayLogs) {
             renderLogs = this.state.filteredLogs.map((log) => {
@@ -237,12 +270,12 @@ export default class LogDisplay extends Component {
                 return <Fragment key={`${log.id}glu`}><tr id={`${log.id} glucose`} onMouseOver={this.handleMouseOver} onMouseOut={this.handleMouseOut} onClick={this.handleClick} className="log-display-list-item" ><td>{date_time}</td><td>Glucose</td><td>{log.glucose}</td></tr>
                     
                     {modifyRow}
-                    {editForm} 
+                     
                         </Fragment>
                 } else if (log.meds) {
-                return <Fragment key={`${log.id}med`}><tr id={`${log.id} meds`}  onMouseOver={this.handleMouseOver} onMouseOut={this.handleMouseOut} onClick={this.handleClick} className="log-display-list-item" ><td>{date_time}</td><td>Medication</td><td>{log.meds}</td></tr>{modifyRow}{editForm}</Fragment>
+                return <Fragment key={`${log.id}med`}><tr id={`${log.id} meds`}  onMouseOver={this.handleMouseOver} onMouseOut={this.handleMouseOut} onClick={this.handleClick} className="log-display-list-item" ><td>{date_time}</td><td>Medication</td><td>{log.meds}</td></tr>{modifyRow}</Fragment>
                 } else {
-                return <Fragment key={`${log.id}meal`}><tr id={`${log.id} meals`} onMouseOver={this.handleMouseOver} onMouseOut={this.handleMouseOut} onClick={this.handleClick} className="log-display-list-item" ><td>{date_time}</td><td>Meal</td><td>{log.meals}</td></tr>{modifyRow}{editForm}</Fragment>
+                return <Fragment key={`${log.id}meal`}><tr id={`${log.id} meals`} onMouseOver={this.handleMouseOver} onMouseOut={this.handleMouseOut} onClick={this.handleClick} className="log-display-list-item" ><td>{date_time}</td><td>Meal</td><td>{log.meals}</td></tr>{modifyRow}</Fragment>
                 }
             })
         
@@ -254,6 +287,10 @@ export default class LogDisplay extends Component {
         
         return (
             <>
+            {(this.state.editForm)
+            ?
+            <EditLogForm selectedLog={this.state.selectedLog} handleEditSubmit={this.handleEditSubmit} handleCancelEdit={this.handleCancelEdit} userId={this.props.id} handleAfterEdit={this.handleAfterEdit}/>
+            :
             
             
             <section className="log-display">
@@ -295,11 +332,12 @@ export default class LogDisplay extends Component {
                 
                 
             </form>
-           
+            
         
     
     
             </section>
+    }
             </>
         )
     }

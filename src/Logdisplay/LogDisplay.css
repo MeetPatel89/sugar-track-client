@@ -82,3 +82,10 @@ section.med-regimens {
 .hidden {
     display: none;
 }
+
+.log-display {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center
+}
