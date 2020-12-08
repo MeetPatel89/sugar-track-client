@@ -186,6 +186,14 @@ export default class EditLogForm extends Component {
   }
 }
 
+EditLogForm.defaultProps = {
+  selectedLog: {},
+  handleCancelEdit() {
+    return 'HandleCancelEdit function';
+  },
+  userId: 0,
+};
+
 EditLogForm.propTypes = {
   selectedLog: PropTypes.object.isRequired,
   handleCancelEdit: PropTypes.func.isRequired,
