@@ -106,6 +106,7 @@ export default class SugarLog extends Component {
               aria-label="sugar-concentration"
               aria-required="true"
               aria-describedby="sugarConstraint"
+              aria-invalid="true"
               onChange={this.handleChange}
               min="0"
               max="2000"
@@ -125,6 +126,7 @@ export default class SugarLog extends Component {
               aria-label="date for sugar entry"
               aria-required="true"
               aria-describedby="dateConstraint"
+              aria-invalid="true"
               value={this.state.date}
               onChange={this.handleChange}
               required

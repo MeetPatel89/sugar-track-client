@@ -99,6 +99,8 @@ export default class MedicationsLog extends Component {
               type="text"
               id="meds"
               name="meds"
+              aria-label="meds"
+              aria-required="true"
               value={this.state.meds}
               placeholder="E.g. insulin, metformin, etc."
               onChange={this.handleChange}
@@ -112,10 +114,18 @@ export default class MedicationsLog extends Component {
               type="date"
               name="date"
               id="date"
+              aria-label="date for meal entry"
+              aria-required="true"
+              aria-describedby="dateConstraint"
+              aria-invalid="true"
               value={this.state.date}
               onChange={this.handleChange}
               required
             />
+            <div id="dateConstraint">
+              Future dates as well as dates from more than a week in the past
+              are not allowed.
+            </div>
           </div>
           <div className="label-control">
             <label htmlFor="time">Time:</label>
@@ -123,6 +133,8 @@ export default class MedicationsLog extends Component {
               type="time"
               id="time"
               name="time"
+              aria-label="time for med entry"
+              aria-required="true"
               value={this.state.time}
               onChange={this.handleChange}
               required

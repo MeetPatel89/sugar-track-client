@@ -97,6 +97,8 @@ export default class MealsLog extends Component {
               type="text"
               name="meals"
               id="meals"
+              aria-label="meal"
+              aria-required="true"
               value={this.state.meals}
               onChange={this.handleChange}
               required
@@ -109,10 +111,18 @@ export default class MealsLog extends Component {
               type="date"
               name="date"
               id="date"
+              aria-label="date for meal entry"
+              aria-required="true"
+              aria-describedby="dateConstraint"
+              aria-invalid="true"
               value={this.state.date}
               onChange={this.handleChange}
               required
             />
+            <div id="dateConstraint">
+              Future dates as well as dates from more than a week in the past
+              are not allowed.
+            </div>
           </div>
           <div className="label-control">
             <label htmlFor="time">Time:</label>
@@ -120,6 +130,8 @@ export default class MealsLog extends Component {
               type="time"
               id="time"
               name="time"
+              aria-label="time for meal entry"
+              aria-required="true"
               value={this.state.time}
               onChange={this.handleChange}
               required
@@ -129,10 +141,8 @@ export default class MealsLog extends Component {
           <button className="meal-log-submit" type="submit">
             Submit
           </button>
-          <p style={{ color: 'red' }}>{this.state.error}</p>
-          <p style={{ color: '#2f004f', margin: '10px' }}>
-            {this.state.message}
-          </p>
+          <div className="errorMessage">{this.state.error}</div>
+          <div className="successMessage">{this.state.message}</div>
         </form>
       </section>
     );
