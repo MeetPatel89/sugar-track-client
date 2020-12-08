@@ -366,6 +366,9 @@ export default class LogDisplay extends Component {
                       value={this.state.year}
                       name="year"
                       id="year"
+                      aria-label="select year for log display"
+                      aria-required="true"
+                      aria-describedby="selectionError"
                       onChange={this.handleChange}
                     >
                       <option value="">Year</option>
@@ -379,6 +382,9 @@ export default class LogDisplay extends Component {
                       value={this.state.month}
                       name="month"
                       id="month"
+                      aria-label="select month for log display"
+                      aria-required="true"
+                      aria-describedby="selectionError"
                       onChange={this.handleChange}
                     >
                       <option value="">Month</option>
@@ -391,23 +397,27 @@ export default class LogDisplay extends Component {
                       value={this.state.day}
                       name="day"
                       id="day"
+                      aria-required="true"
+                      aria-label="select day for log display"
+                      aria-describedby="selectionError"
+                      aria-invalid="true"
                       onChange={this.handleChange}
                     >
                       <option value="">Day</option>
                       {dropDownDays}
                     </select>
                   </div>
+                  {this.state.displayError && (
+                    <div className="errorMessage" id="selectionError">
+                      Please select a year, month and day from the above
+                      dropdown to display logs for that date!
+                    </div>
+                  )}
                 </div>
                 <button className="display-logs" type="submit">
                   Display logs
                 </button>
                 {this.state.displayLogs && <LogTable renderLogs={renderLogs} />}
-                {this.state.displayError && (
-                  <p style={{ color: 'red' }}>
-                    Please select a year, month and day from the above dropdown
-                    to display logs for that date!
-                  </p>
-                )}
               </form>
             </section>
           </main>

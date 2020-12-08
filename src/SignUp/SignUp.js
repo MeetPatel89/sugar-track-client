@@ -154,6 +154,10 @@ export default class SignUp extends Component {
                   type="password"
                   name="password"
                   id="password"
+                  aria-label="password"
+                  aria-required="true"
+                  aria-describedby="passwordError"
+                  aria-invalid="true"
                   value={this.state.password}
                   onChange={this.handleChange}
                   required
@@ -169,6 +173,10 @@ export default class SignUp extends Component {
                   type="password"
                   name="confirm-password"
                   id="confirm-password"
+                  aria-label="confirm-password"
+                  aria-required="true"
+                  aria-describedby="confirmPasswordError"
+                  aria-invalid="true"
                   value={this.state['confirm-password']}
                   onChange={this.handleChange}
                   required
