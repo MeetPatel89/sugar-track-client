@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-indent */
 /* eslint-disable react/jsx-one-expression-per-line */
 import React from 'react';
 import { Link } from 'react-router-dom';
@@ -9,10 +10,7 @@ export default function Header(props) {
   if (props.user) {
     welcomeMsg = (
       <div className="header-container">
-        <span className="welcome-msg">
-          Welcome
-          {props.user}!
-        </span>
+        <span className="welcome-msg">Welcome {props.user}!</span>
         <button type="button" className="log-out" onClick={props.handleLogOut}>
           Log out
         </button>

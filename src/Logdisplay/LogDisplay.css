@@ -88,7 +88,8 @@ button.cancel-button {
 section.sugar-levels,
 section.meals,
 section.med-regimens {
-    width: 50%;
+    width: 70%;
+    max-width: 730px;
 }
 
 .hidden {

@@ -25,28 +25,29 @@ export default class HomePage extends Component {
         <Nav />
         <br />
         <br />
+        <main className="main-container">
+          <Route exact path="/" component={Introduction} />
+          <Route path="/logbook" component={LogBook} />
+          <Route
+            path="/logdisplay"
+            component={() => <LogDisplay id={this.props.id} />}
+          />
 
-        <Route exact path="/" component={Introduction} />
-        <Route path="/logbook" component={LogBook} />
-        <Route
-          path="/logdisplay"
-          component={() => <LogDisplay id={this.props.id} />}
-        />
-
-        <Route path="/usermanual" component={UserManual} />
-        <Route
-          path="/logbook/:log_metric"
-          component={(props) => {
-            const logMetric = props.match.params.log_metric;
-            if (logMetric === 'blood_sugar') {
-              return <SugarLog id={this.props.id} />;
-            }
-            if (logMetric === 'meal_regimens') {
-              return <MealsLog id={this.props.id} />;
-            }
-            return <MedicationsLog id={this.props.id} />;
-          }}
-        />
+          <Route path="/usermanual" component={UserManual} />
+          <Route
+            path="/logbook/:log_metric"
+            component={(props) => {
+              const logMetric = props.match.params.log_metric;
+              if (logMetric === 'blood_sugar') {
+                return <SugarLog id={this.props.id} />;
+              }
+              if (logMetric === 'meal_regimens') {
+                return <MealsLog id={this.props.id} />;
+              }
+              return <MedicationsLog id={this.props.id} />;
+            }}
+          />
+        </main>
       </>
     );
 

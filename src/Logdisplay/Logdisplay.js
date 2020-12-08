@@ -355,72 +355,70 @@ export default class LogDisplay extends Component {
             handleAfterEdit={this.handleAfterEdit}
           />
         ) : (
-          <main className="main-container">
-            <section className="log-display">
-              <form className="log-display-form" onSubmit={this.handleSubmit}>
-                <h2>Display logs for</h2>
-                <div className="select-menus">
-                  <div className="label-control-select">
-                    <label htmlFor="year">Select Year</label>
-                    <select
-                      value={this.state.year}
-                      name="year"
-                      id="year"
-                      aria-label="select year for log display"
-                      aria-required="true"
-                      aria-describedby="selectionError"
-                      onChange={this.handleChange}
-                    >
-                      <option value="">Year</option>
+          <section className="log-display">
+            <form className="log-display-form" onSubmit={this.handleSubmit}>
+              <h2>Display logs for</h2>
+              <div className="select-menus">
+                <div className="label-control-select">
+                  <label htmlFor="year">Select Year</label>
+                  <select
+                    value={this.state.year}
+                    name="year"
+                    id="year"
+                    aria-label="select year for log display"
+                    aria-required="true"
+                    aria-describedby="selectionError"
+                    onChange={this.handleChange}
+                  >
+                    <option value="">Year</option>
 
-                      {dropDownYears}
-                    </select>
-                  </div>
-                  <div className="label-control-select">
-                    <label htmlFor="month">Select Month</label>
-                    <select
-                      value={this.state.month}
-                      name="month"
-                      id="month"
-                      aria-label="select month for log display"
-                      aria-required="true"
-                      aria-describedby="selectionError"
-                      onChange={this.handleChange}
-                    >
-                      <option value="">Month</option>
-                      {dropDownMonths}
-                    </select>
-                  </div>
-                  <div className="label-control-select">
-                    <label htmlFor="day">Select Day</label>
-                    <select
-                      value={this.state.day}
-                      name="day"
-                      id="day"
-                      aria-required="true"
-                      aria-label="select day for log display"
-                      aria-describedby="selectionError"
-                      aria-invalid="true"
-                      onChange={this.handleChange}
-                    >
-                      <option value="">Day</option>
-                      {dropDownDays}
-                    </select>
-                  </div>
-                  {this.state.displayError && (
-                    <div className="errorMessage" id="selectionError">
-                      Please select a year, month and day from the above
-                      dropdown to display logs for that date!
-                    </div>
-                  )}
+                    {dropDownYears}
+                  </select>
                 </div>
-                <button className="display-logs" type="submit">
-                  Display logs
-                </button>
-                {this.state.displayLogs && <LogTable renderLogs={renderLogs} />}
-              </form>
-            </section>
-          </main>
+                <div className="label-control-select">
+                  <label htmlFor="month">Select Month</label>
+                  <select
+                    value={this.state.month}
+                    name="month"
+                    id="month"
+                    aria-label="select month for log display"
+                    aria-required="true"
+                    aria-describedby="selectionError"
+                    onChange={this.handleChange}
+                  >
+                    <option value="">Month</option>
+                    {dropDownMonths}
+                  </select>
+                </div>
+                <div className="label-control-select">
+                  <label htmlFor="day">Select Day</label>
+                  <select
+                    value={this.state.day}
+                    name="day"
+                    id="day"
+                    aria-required="true"
+                    aria-label="select day for log display"
+                    aria-describedby="selectionError"
+                    aria-invalid="true"
+                    onChange={this.handleChange}
+                  >
+                    <option value="">Day</option>
+                    {dropDownDays}
+                  </select>
+                </div>
+              </div>
+              {this.state.displayError && (
+                <div className="errorMessage" id="selectionError">
+                  Please select a year, month and day from the above dropdown to
+                  display logs for that date!
+                </div>
+              )}
+              <button className="display-logs" type="submit">
+                Display logs
+              </button>
+              {this.state.displayLogs && <LogTable renderLogs={renderLogs} />}
+            </form>
+          </section>
         )}
       </>
     );
