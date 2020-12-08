@@ -7,14 +7,16 @@ import ReactDOM from 'react-dom';
 // make the SugarLog component available
 import SugarLog from './SugarLog';
 
-// this is the test case
-it('renders component without crashing', () => {
+describe('SugarLog Component', () => {
+  // this is the test case
+  it('renders component without crashing', () => {
     // first create a DOM element to render the component into
     const div = document.createElement('div');
 
     // render the component, this is the actual test, if something is wrong it will fail here
-    ReactDOM.render(<SugarLog/>, div);
+    ReactDOM.render(<SugarLog />, div);
 
     // clean up code
     ReactDOM.unmountComponentAtNode(div);
+  });
 });

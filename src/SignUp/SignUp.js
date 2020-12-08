@@ -201,6 +201,12 @@ export default class SignUp extends Component {
   }
 }
 
+SignUp.defaultProps = {
+  handleClick() {
+    return 'handleClick function';
+  },
+};
+
 SignUp.propTypes = {
-  handleClick: PropTypes.func.isRequired,
+  handleClick: PropTypes.func,
 };

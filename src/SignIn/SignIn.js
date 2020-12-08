@@ -139,6 +139,12 @@ export default class SignIn extends Component {
   }
 }
 
+SignIn.defaultProps = {
+  handleClick() {
+    return 'handleClick function';
+  },
+};
+
 SignIn.propTypes = {
-  handleClick: PropTypes.func.isRequired,
+  handleClick: PropTypes.func,
 };

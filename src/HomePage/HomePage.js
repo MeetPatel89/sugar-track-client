@@ -55,8 +55,16 @@ export default class HomePage extends Component {
   }
 }
 
+HomePage.defaultProps = {
+  user: 'randomUser',
+  handleLogOut() {
+    return 'handleLogOut function';
+  },
+  id: 0,
+};
+
 HomePage.propTypes = {
-  user: PropTypes.string.isRequired,
-  handleLogOut: PropTypes.func.isRequired,
-  id: PropTypes.number.isRequired,
+  user: PropTypes.string,
+  handleLogOut: PropTypes.func,
+  id: PropTypes.number,
 };

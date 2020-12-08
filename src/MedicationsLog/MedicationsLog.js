@@ -154,6 +154,10 @@ export default class MedicationsLog extends Component {
   }
 }
 
+MedicationsLog.defaultProps = {
+  id: 0,
+};
+
 MedicationsLog.propTypes = {
-  id: PropTypes.number.isRequired,
+  id: PropTypes.number,
 };

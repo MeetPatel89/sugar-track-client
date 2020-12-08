@@ -149,6 +149,10 @@ export default class MealsLog extends Component {
   }
 }
 
+MealsLog.defaultProps = {
+  id: 0,
+};
+
 MealsLog.propTypes = {
-  id: PropTypes.number.isRequired,
+  id: PropTypes.number,
 };

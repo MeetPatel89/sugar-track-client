@@ -32,6 +32,10 @@ export default class LogTable extends Component {
   }
 }
 
+LogTable.defaultProps = {
+  renderLogs: [],
+};
+
 LogTable.propTypes = {
-  renderLogs: PropTypes.array.isRequired,
+  renderLogs: PropTypes.array,
 };

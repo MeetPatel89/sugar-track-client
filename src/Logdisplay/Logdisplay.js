@@ -425,6 +425,10 @@ export default class LogDisplay extends Component {
   }
 }
 
+LogDisplay.defaultProps = {
+  id: 0,
+};
+
 LogDisplay.propTypes = {
-  id: PropTypes.number.isRequired,
+  id: PropTypes.number,
 };

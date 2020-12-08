@@ -5,16 +5,18 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 
 // make the MealsLog component available
-import MealsLog from './MealsLog';;
+import MealsLog from './MealsLog';
 
-// this is the test case
-it('renders component without crashing', () => {
+describe('MealsLog Component', () => {
+  // this is the test case
+  it('renders component without crashing', () => {
     // first create a DOM element to render the component into
     const div = document.createElement('div');
 
     // render the component, this is the actual test, if something is wrong it will fail here
-    ReactDOM.render(<MealsLog/>, div);
+    ReactDOM.render(<MealsLog />, div);
 
     // clean up code
     ReactDOM.unmountComponentAtNode(div);
+  });
 });

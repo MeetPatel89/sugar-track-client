@@ -159,6 +159,10 @@ export default class SugarLog extends Component {
   }
 }
 
+SugarLog.defaultProps = {
+  id: 0,
+};
+
 SugarLog.propTypes = {
-  id: PropTypes.number.isRequired,
+  id: PropTypes.number,
 };

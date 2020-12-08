@@ -7,14 +7,16 @@ import ReactDOM from 'react-dom';
 // make the LogDisplay component available
 import LogDisplay from './Logdisplay';
 
-// this is the test case
-it('renders component without crashing', () => {
+describe('LogDisplay Component', () => {
+  // this is the test case
+  it('renders component without crashing', () => {
     // first create a DOM element to render the component into
     const div = document.createElement('div');
 
     // render the component, this is the actual test, if something is wrong it will fail here
-    ReactDOM.render(<LogDisplay/>, div);
+    ReactDOM.render(<LogDisplay />, div);
 
     // clean up code
     ReactDOM.unmountComponentAtNode(div);
+  });
 });
