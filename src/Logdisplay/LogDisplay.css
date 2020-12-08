@@ -3,7 +3,7 @@ form {
 }
 
 .select-menus {
-    width: 100%;
+    width: 80%;
     display: flex;
     flex-direction: row;
     justify-content: space-around;
@@ -15,13 +15,20 @@ select {
     border-radius: 15px;
     cursor: pointer;
     margin: 10px;
-    width: 33%;
+    min-width: 80px;
     
 }
 
 option {
     cursor: pointer;
     
+}
+
+.log-display-form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
 .log-display-list {
@@ -51,6 +58,11 @@ tr:nth-child(even) {
 
 th {
     background-color: #f2f2f2;
+}
+
+.label-control-select {
+    display: flex;
+    flex-direction: column;
 }
 
 button.display-logs,
@@ -87,5 +99,6 @@ section.med-regimens {
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center
+    justify-content: center;
+    width: 100%;
 }

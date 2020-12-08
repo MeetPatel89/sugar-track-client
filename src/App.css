@@ -112,10 +112,15 @@ input {
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
+	width: 85%;
 }
 
 .errorMessage {
 	color: red;
+	margin: 5px;
+}
+.sign-up {
+	color: #2f004f;
 	margin: 5px;
 }
 
@@ -148,6 +153,25 @@ input {
 	.dummy-account {
 		margin: 38px;
 	}
+
+	.nav-links {
+		flex-direction: column;
+	}
+
+	.navigation {
+		width: 200px;
+	}
+
+	.main-container {
+		width: 85%;
+	}
+
+	.select-menus {
+		flex-direction: column;
+		justify-content: center;
+    	align-items: center;
+	}
+	
 }
 
 @media all and (max-width: 450px) {
@@ -156,7 +180,7 @@ input {
 	}
 
 	h2 {
-		font-size: 20px;
+		font-size: 15px;
 	}
 
 	button {
@@ -176,4 +200,11 @@ input {
 		flex-direction: column;
 	}
 
+	.header-container {
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
+	}
+
 }
+

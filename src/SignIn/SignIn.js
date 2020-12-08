@@ -23,7 +23,8 @@ export default class SignIn extends Component {
     this.setState({
       ...user,
       isLogged: false,
-      error: '',
+      usernameError: '',
+      passwordError: '',
     });
   };
 
@@ -44,11 +45,13 @@ export default class SignIn extends Component {
       .then((user) => {
         if (!user.length) {
           this.setState({
-            error: 'Please enter the correct username',
+            usernameError: 'Please enter the correct username',
+            passwordError: '',
           });
         } else if (user[0].password !== password) {
           this.setState({
-            error: 'Please enter the correct password',
+            passwordError: 'Please enter the correct password',
+            usernameError: '',
           });
         } else {
           this.setState({
@@ -84,10 +87,15 @@ export default class SignIn extends Component {
                       id="username"
                       aria-label="Username for the account"
                       aria-required="true"
+                      aria-describedby="usernameError"
+                      aria-invalid="true"
                       value={this.state.username}
                       onChange={this.handleChange}
                       required
                     />
+                    <div className="errorMessage" id="usernameError">
+                      {this.state.usernameError}
+                    </div>
                   </div>
 
                   <div className="label-control">
@@ -99,14 +107,14 @@ export default class SignIn extends Component {
                       id="password"
                       aria-label="Password for the account"
                       aria-required="true"
-                      aria-describedby="ccError"
+                      aria-describedby="passwordError"
                       aria-invalid="true"
                       value={this.state.password}
                       onChange={this.handleChange}
                       required
                     />
-                    <div className="errorMessage" id="ccError">
-                      {this.state.error}
+                    <div className="errorMessage" id="passwordError">
+                      {this.state.passwordError}
                     </div>
                   </div>
 

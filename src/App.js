@@ -34,23 +34,22 @@ export default class App extends Component {
         {this.state.Landing ? (
           <>
             <Header />
-            <main className="main-container">
-              <UserManual />
-              <div className="dummy-account">
-                <p>Use the following user credentials to explore the app:</p>
-                <ul>
-                  <li>Username: nautilusshell89</li>
-                  <li>Password: RandomNautilus89</li>
-                </ul>
-              </div>
-              <button
-                type="button"
-                className="get-started"
-                onClick={this.handleStart}
-              >
-                Get Started
-              </button>
-            </main>
+
+            <UserManual />
+            <div className="dummy-account">
+              <p>Use the following user credentials to explore the app:</p>
+              <ul>
+                <li>Username: nautilusshell89</li>
+                <li>Password: RandomNautilus89</li>
+              </ul>
+            </div>
+            <button
+              type="button"
+              className="get-started"
+              onClick={this.handleStart}
+            >
+              Get Started
+            </button>
           </>
         ) : this.state.signInForm ? (
           <SignIn handleClick={this.handleClick} />
