@@ -123,7 +123,7 @@ export default class SignIn extends Component {
                   </button>
                   <p>Don't have an account</p>
                   <button
-                    type="submit"
+                    type="button"
                     className="sign-up-button"
                     onClick={this.props.handleClick}
                   >

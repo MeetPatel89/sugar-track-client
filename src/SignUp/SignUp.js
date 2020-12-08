@@ -1,3 +1,4 @@
+/* eslint-disable no-shadow */
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import Header from '../Header/Header';
@@ -14,6 +15,7 @@ export default class SignUp extends Component {
       fullnameError: '',
       passwordError: '',
       confirmPasswordError: '',
+      usernameExists: '',
     };
   }
 
@@ -37,6 +39,7 @@ export default class SignUp extends Component {
         usernameError: '',
         passwordError: '',
         confirmPasswordError: '',
+        usernameExists: '',
       });
     } else if (this.state.username.length > 36) {
       this.setState({
@@ -45,6 +48,7 @@ export default class SignUp extends Component {
         fullnameError: '',
         passwordError: '',
         confirmPasswordError: '',
+        usernameExists: '',
       });
     } else if (!this.state.password.match(passwd)) {
       this.setState({
@@ -54,6 +58,7 @@ export default class SignUp extends Component {
         confirmPasswordError: '',
         fullnameError: '',
         usernameError: '',
+        usernameExists: '',
       });
     } else if (this.state.password !== this.state['confirm-password']) {
       this.setState({
@@ -63,6 +68,7 @@ export default class SignUp extends Component {
         fullnameError: '',
         usernameError: '',
         passwordError: '',
+        usernameExists: '',
       });
     } else {
       const { fullname, username, password } = this.state;
@@ -72,31 +78,52 @@ export default class SignUp extends Component {
         password,
       };
 
-      fetch('http://localhost:8000/users', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(newUser),
-      })
-        .then((user) => user.json())
-        .then(() => {
-          this.setState({
-            signUp: 'You can now log in using newly created user credentials',
-            fullnameError: '',
-            usernameError: '',
-            passwordError: '',
-            confirmPasswordError: '',
-            fullname: '',
-            username: '',
-            password: '',
-            'confirm-password': '',
-          });
-        })
-        .catch((error) => {
-          this.setState({
-            error: error.message,
-          });
+      fetch('http://localhost:8000/users')
+        .then((response) => response.json())
+        .then((users) => {
+          const username = users.find(
+            (user) => user.username === newUser.username
+          );
+          if (username) {
+            this.setState({
+              confirmPasswordError: '',
+              signUp: '',
+              fullnameError: '',
+              usernameError: '',
+              passwordError: '',
+              usernameExists:
+                'This username is already taken. Please enter a different one',
+            });
+          } else {
+            fetch('http://localhost:8000/users', {
+              method: 'POST',
+              headers: {
+                'Content-Type': 'application/json',
+              },
+              body: JSON.stringify(newUser),
+            })
+              .then((user) => user.json())
+              .then(() => {
+                this.setState({
+                  signUp:
+                    'You can now log in using newly created user credentials',
+                  fullnameError: '',
+                  usernameError: '',
+                  passwordError: '',
+                  confirmPasswordError: '',
+                  fullname: '',
+                  username: '',
+                  password: '',
+                  'confirm-password': '',
+                  usernameExists: '',
+                });
+              })
+              .catch((error) => {
+                this.setState({
+                  error: error.message,
+                });
+              });
+          }
         });
     }
   };
@@ -146,6 +173,7 @@ export default class SignUp extends Component {
                 <div className="errorMessage" id="usernameError">
                   {this.state.usernameError}
                 </div>
+                <div className="errorMessage">{this.state.usernameExists}</div>
               </div>
               <div className="label-control">
                 <label htmlFor="password">Password</label>
@@ -188,7 +216,7 @@ export default class SignUp extends Component {
 
               <button type="submit">Sign Up</button>
               <p>Already have an account?</p>
-              <button type="submit" onClick={this.props.handleClick}>
+              <button type="button" onClick={this.props.handleClick}>
                 Sign In
               </button>
               <div className="fetchErrorMessage">{this.state.error}</div>
