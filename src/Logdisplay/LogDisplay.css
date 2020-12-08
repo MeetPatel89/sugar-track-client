@@ -102,3 +102,16 @@ section.med-regimens {
     justify-content: center;
     width: 100%;
 }
+
+.modify-row button {
+    font-weight: normal;
+    font-size: x-small;
+    width: 100px;
+    padding: 2px;
+}
+
+.modify-row td {
+    text-align: center;
+}
+
+

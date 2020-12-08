@@ -252,7 +252,7 @@ export default class LogDisplay extends Component {
 
     let renderLogs;
     const modifyRow = (
-      <tr>
+      <tr className="modify-row">
         <td colSpan="3" className="hidden">
           <button
             type="button"

@@ -171,6 +171,11 @@ input {
 		justify-content: center;
     	align-items: center;
 	}
+
+	button.visualize-logs {
+		padding: 12px;
+		width: 140px;
+	}
 	
 }
 
@@ -204,6 +209,14 @@ input {
 		flex-direction: column;
 		justify-content: center;
 		align-items: center;
+	}
+
+	.table-content {
+		overflow-x: auto;
+	}
+
+	table {
+		background-color: #f6f5f7;
 	}
 
 }
