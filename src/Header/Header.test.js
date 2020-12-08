@@ -1,3 +1,4 @@
+/* eslint-disable func-names */
 // make React available
 import React from 'react';
 

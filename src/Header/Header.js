@@ -45,9 +45,9 @@ export default function Header(props) {
 }
 
 Header.defaultProps = {
-  user: 'randomUser',
+  user: '',
   handleLogOut() {
-    return 'Default handleLogOut function';
+    return null;
   },
 };
 
