@@ -44,7 +44,14 @@ export default function Header(props) {
   );
 }
 
+Header.defaultProps = {
+  user: 'randomUser',
+  handleLogOut() {
+    return 'Default handleLogOut function';
+  },
+};
+
 Header.propTypes = {
-  user: PropTypes.string.isRequired,
-  handleLogOut: PropTypes.func.isRequired,
+  user: PropTypes.string,
+  handleLogOut: PropTypes.func,
 };

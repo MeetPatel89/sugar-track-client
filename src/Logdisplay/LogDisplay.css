@@ -90,6 +90,10 @@ section.meals,
 section.med-regimens {
     width: 70%;
     max-width: 730px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
 .hidden {

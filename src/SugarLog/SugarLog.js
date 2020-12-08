@@ -94,9 +94,7 @@ export default class SugarLog extends Component {
         <h2>Enter Sugar Levels</h2>
         <form className="sugar-levels" onSubmit={this.handleSubmit}>
           <div className="label-control">
-            <label htmlFor="sugar-concentration">
-              Sugar Concentration (mg/dl)
-            </label>
+            <label htmlFor="sugar-concentration">Sugar Level (mg/dl)</label>
             <input
               placeholder="For e.g. 120"
               type="number"
