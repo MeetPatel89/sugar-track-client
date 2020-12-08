@@ -192,7 +192,7 @@ export default class SignUp extends Component {
                 Sign In
               </button>
               <div className="fetchErrorMessage">{this.state.error}</div>
-              <div className="sign-up">{this.state.signUp}</div>
+              <div className="sign-up successMessage">{this.state.signUp}</div>
             </form>
           </section>
         </main>

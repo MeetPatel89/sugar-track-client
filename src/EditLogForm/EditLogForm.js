@@ -195,7 +195,7 @@ EditLogForm.defaultProps = {
 };
 
 EditLogForm.propTypes = {
-  selectedLog: PropTypes.object.isRequired,
-  handleCancelEdit: PropTypes.func.isRequired,
-  userId: PropTypes.number.isRequired,
+  selectedLog: PropTypes.object,
+  handleCancelEdit: PropTypes.func,
+  userId: PropTypes.number,
 };
