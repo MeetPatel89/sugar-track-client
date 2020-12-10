@@ -69,16 +69,13 @@ export default class EditLogForm extends Component {
         [logMetric]: logValue,
         date_time: dateTime,
       };
-      fetch(
-        `http://localhost:8000/${logMetric}_logs/${this.props.userId}/${this.state.id}`,
-        {
-          method: 'PATCH',
-          headers: {
-            'Content-type': 'application/json',
-          },
-          body: JSON.stringify(newLog),
-        }
-      ).then(() => {
+      fetch(`http://localhost:8000/${logMetric}_logs/${this.state.id}`, {
+        method: 'PATCH',
+        headers: {
+          'Content-type': 'application/json',
+        },
+        body: JSON.stringify(newLog),
+      }).then(() => {
         this.setState({
           editSuccess: true,
           editError: false,

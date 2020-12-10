@@ -244,11 +244,14 @@ section.med-regimens {
 	}
 
 	.table-content {
-		overflow-x: auto;
+		display: flex;
+		font-family: 'Times New Roman', Times, serif;
+		font-size: 5px;
 	}
 
-	table {
-		background-color: #f6f5f7;
+	th,
+	td {
+		padding: 5px;
 	}
 
 	.log-metric {
@@ -273,4 +276,3 @@ input {
 }
 
 }
-

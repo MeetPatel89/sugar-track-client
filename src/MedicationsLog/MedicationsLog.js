@@ -144,10 +144,8 @@ export default class MedicationsLog extends Component {
           <button className="med-log-submit" type="submit">
             Submit
           </button>
-          <p style={{ color: '#2f004f', margin: '10px' }}>
-            {this.state.message}
-          </p>
-          <p style={{ color: 'red' }}>{this.state.error}</p>
+          <div className="successMessage">{this.state.message}</div>
+          <div className="errorMessage">{this.state.error}</div>
         </form>
       </section>
     );

@@ -13,7 +13,7 @@ export default class LogTable extends Component {
     return (
       <>
         <div className="table-content">
-          <table className="log-display-table">
+          <table id="log-display-table">
             <thead>
               <tr>
                 <th>Time (24-hour)</th>
@@ -21,7 +21,7 @@ export default class LogTable extends Component {
                 <th>Log Value</th>
               </tr>
             </thead>
-            <tbody>{this.props.renderLogs}</tbody>
+            <tbody id="table-body">{this.props.renderLogs}</tbody>
           </table>
         </div>
         <button type="button" className="visualize-logs">
