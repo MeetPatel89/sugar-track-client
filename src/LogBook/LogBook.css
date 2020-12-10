@@ -7,8 +7,6 @@
 
 .log-metric a button {
     font-weight: normal;
-    font-size: 5px;
-    
     text-transform: none;
     width: 100%;
     height: 100%;
@@ -17,7 +15,6 @@
 }
 
 .log-metric a {
-    font-size: 10px;
     margin: 5px;
     width: 25%;
     min-width: 140px;
