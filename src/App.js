@@ -5,6 +5,7 @@ import './App.css';
 import Footer from './Footer/Footer';
 import UserManual from './UserManual/UserManual';
 import Header from './Header/Header';
+import config from '../config';
 
 export default class App extends Component {
   constructor(props) {
@@ -29,6 +30,7 @@ export default class App extends Component {
   };
 
   render() {
+    console.log(config);
     return (
       <>
         {this.state.Landing ? (
