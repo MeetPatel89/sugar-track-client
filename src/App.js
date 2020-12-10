@@ -41,8 +41,8 @@ export default class App extends Component {
             <div className="dummy-account">
               <p>Use the following user credentials to explore the app:</p>
               <ul>
-                <li>Username: nautilusshell89</li>
-                <li>Password: RandomNautilus89</li>
+                <li>Username: fibonacci89</li>
+                <li>Password: RandomFibonacci12#</li>
               </ul>
             </div>
             <button

@@ -160,13 +160,13 @@ input {
 		
 		letter-spacing: -1;
 		padding: 8px;
-		width: 120px;
+		width: 140px;
 		font-weight: normal;
 	}
 
 	.log-in-button,
 	.sign-up-button {
-		width: 99px;
+		width: 110px;
 	}
 
 	.dummy-account {
@@ -220,7 +220,7 @@ section.med-regimens {
 
 	.log-in-button,
 	.sign-up-button {
-		width: 80px;
+		width: 90px;
 	}
 
 	.label-control {
@@ -239,7 +239,7 @@ section.med-regimens {
 	.table-content {
 		display: flex;
 		font-family: 'Times New Roman', Times, serif;
-		font-size: 5px;
+		
 	}
 
 	th,
