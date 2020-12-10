@@ -2,6 +2,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import Header from '../Header/Header';
+import config from '../config';
 
 export default class SignUp extends Component {
   constructor(props) {
@@ -78,7 +79,7 @@ export default class SignUp extends Component {
         password,
       };
 
-      fetch('http://localhost:8000/users')
+      fetch(`${config.API_BASE_URL}/api/users`)
         .then((response) => response.json())
         .then((users) => {
           const username = users.find(
@@ -95,7 +96,7 @@ export default class SignUp extends Component {
                 'This username is already taken. Please enter a different one',
             });
           } else {
-            fetch('http://localhost:8000/users', {
+            fetch(`${config.API_BASE_URL}/api/users`, {
               method: 'POST',
               headers: {
                 'Content-Type': 'application/json',

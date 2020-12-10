@@ -2,6 +2,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import moment from 'moment';
+import config from '../config';
 
 export default class SugarLog extends Component {
   constructor(props) {
@@ -42,7 +43,7 @@ export default class SugarLog extends Component {
         glucose: this.state.glucose,
       };
 
-      fetch('http://localhost:8000/glucose_logs')
+      fetch(`${config.API_BASE_URL}/api/glucose_logs`)
         .then((res) => res.json())
         .then((glucoseLogs) => {
           const duplicateGlucoseLog = glucoseLogs.find(
@@ -58,7 +59,7 @@ export default class SugarLog extends Component {
               message: '',
             });
           } else {
-            fetch('http://localhost:8000/glucose_logs', {
+            fetch(`${config.API_BASE_URL}/api/glucose_logs`, {
               method: 'POST',
               headers: {
                 'Content-Type': 'application/json',

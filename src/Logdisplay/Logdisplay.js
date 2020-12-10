@@ -9,6 +9,7 @@ import PropTypes from 'prop-types';
 import './LogDisplay.css';
 import LogTable from '../LogTable/LogTable';
 import EditLogForm from '../EditLogForm/EditLogForm';
+import config from '../config';
 
 export default class LogDisplay extends Component {
   constructor(props) {
@@ -24,7 +25,7 @@ export default class LogDisplay extends Component {
   }
 
   componentDidMount() {
-    fetch(`http://localhost:8000/logs/${this.props.id}`)
+    fetch(`${config.API_BASE_URL}/api/logs/${this.props.id}`)
       .then((res) => res.json())
       .then((logs) => {
         this.setState({
@@ -98,7 +99,7 @@ export default class LogDisplay extends Component {
     this.setState({
       editForm: false,
     });
-    fetch(`http://localhost:8000/logs/${this.props.id}`)
+    fetch(`${config.API_BASE_URL}/api/logs/${this.props.id}`)
       .then((res) => res.json())
       .then((logs) => {
         this.setState((prevState) => {
@@ -120,7 +121,7 @@ export default class LogDisplay extends Component {
   };
 
   handleAfterEdit = () => {
-    fetch(`http://localhost:8000/logs/${this.props.id}`)
+    fetch(`${config.API_BASE_URL}/api/logs/${this.props.id}`)
       .then((res) => res.json())
       .then((logs) => {
         const filteredLogs = this.state.filteredLogs.map((log) => {
@@ -172,7 +173,7 @@ export default class LogDisplay extends Component {
       return null;
     };
 
-    fetch(`http://localhost:8000/${logMetric}_logs/${id}`, {
+    fetch(`${config.API_BASE_URL}/api/${logMetric}_logs/${id}`, {
       method: 'DELETE',
       headers: {
         'Content-type': 'application/json',

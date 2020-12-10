@@ -3,6 +3,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import moment from 'moment';
+import config from '../config';
 
 export default class EditLogForm extends Component {
   constructor(props) {
@@ -69,7 +70,7 @@ export default class EditLogForm extends Component {
         [logMetric]: logValue,
         date_time: dateTime,
       };
-      fetch(`http://localhost:8000/${logMetric}_logs/${this.state.id}`, {
+      fetch(`${config.API_BASE_URL}/api/${logMetric}_logs/${this.state.id}`, {
         method: 'PATCH',
         headers: {
           'Content-type': 'application/json',

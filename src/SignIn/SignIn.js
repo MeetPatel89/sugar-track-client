@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import HomePage from '../HomePage/HomePage';
 import Header from '../Header/Header';
+import config from '../config';
 
 export default class SignIn extends Component {
   constructor(props) {
@@ -40,7 +41,7 @@ export default class SignIn extends Component {
     e.preventDefault();
     const username = this.state.username;
     const password = this.state.password;
-    fetch(`http://localhost:8000/users/${username}`)
+    fetch(`${config.API_BASE_URL}/api/users/${username}`)
       .then((response) => response.json())
       .then((user) => {
         if (!user.length) {

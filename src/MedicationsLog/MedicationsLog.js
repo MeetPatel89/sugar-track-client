@@ -2,6 +2,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import moment from 'moment';
+import config from '../config';
 
 export default class MedicationsLog extends Component {
   constructor(props) {
@@ -45,7 +46,7 @@ export default class MedicationsLog extends Component {
         message: '',
       });
     } else {
-      fetch('http://localhost:8000/meds_logs')
+      fetch(`${config.API_BASE_URL}/api/meds_logs`)
         .then((res) => res.json())
         .then((medsLogs) => {
           const duplicateMedLog = medsLogs.find(
@@ -65,7 +66,7 @@ export default class MedicationsLog extends Component {
               date_time: dateTime,
             };
 
-            fetch('http://localhost:8000/meds_logs', {
+            fetch(`${config.API_BASE_URL}/api/meds_logs`, {
               method: 'POST',
               headers: {
                 'Content-Type': 'application/json',
