@@ -1,3 +1,3 @@
 export default {
-  API_BASE_URL: 'https://sugar-track-client.vercel.app/',
+  API_BASE_URL: 'https://stark-tor-92394.herokuapp.com/',
 };
