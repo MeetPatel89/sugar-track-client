@@ -30,7 +30,6 @@ export default class App extends Component {
   };
 
   render() {
-    console.log(config.API_BASE_URL)
     return (
       <>
         {this.state.Landing ? (
