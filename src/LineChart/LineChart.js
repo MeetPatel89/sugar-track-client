@@ -1,12 +1,14 @@
+/* eslint-disable react/forbid-prop-types */
 import React, { Component } from 'react';
 import moment from 'moment';
+import PropTypes from 'prop-types';
 import { Line } from 'react-chartjs-2';
 
 export default class LineChart extends Component {
   constructor(props) {
     super(props);
     this.state = {
-        data: {}
+      data: {},
     };
   }
 
@@ -101,14 +103,9 @@ export default class LineChart extends Component {
 }
 
 LineChart.defaultProps = {
-  data: {
-    labels: ['13:55', '20:40'],
-    datasets: [
-      {
-        label: 'Blood Sugar Level',
-        data: [100, 230],
-      },
-    ],
-  },
-  options: {},
+  filteredLogs: [],
+};
+
+LineChart.propTypes = {
+  filteredLogs: PropTypes.array,
 };

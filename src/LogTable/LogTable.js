@@ -1,7 +1,7 @@
 /* eslint-disable react/forbid-prop-types */
 import React, { Component } from 'react';
-import LineChart from '../LineChart/LineChart';
 import PropTypes from 'prop-types';
+import LineChart from '../LineChart/LineChart';
 import './LogTable.css';
 
 export default class LogTable extends Component {
@@ -15,11 +15,9 @@ export default class LogTable extends Component {
   componentDidMount() {}
 
   handleClick = () => {
-    this.setState((prevState) => {
-      return {
-        visualize: !prevState.visualize,
-      };
-    });
+    this.setState((prevState) => ({
+      visualize: !prevState.visualize,
+    }));
   };
 
   render() {
@@ -64,8 +62,10 @@ export default class LogTable extends Component {
 
 LogTable.defaultProps = {
   renderLogs: [],
+  filteredLogs: [],
 };
 
 LogTable.propTypes = {
   renderLogs: PropTypes.array,
+  filteredLogs: PropTypes.array,
 };
