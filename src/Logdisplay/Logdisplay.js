@@ -417,8 +417,13 @@ export default class LogDisplay extends Component {
               <button className="display-logs" type="submit">
                 Display logs
               </button>
-              {this.state.displayLogs && <LogTable renderLogs={renderLogs} filteredLogs={this.state.filteredLogs} />}
             </form>
+            {this.state.displayLogs && (
+              <LogTable
+                renderLogs={renderLogs}
+                filteredLogs={this.state.filteredLogs}
+              />
+            )}
           </section>
         )}
       </>

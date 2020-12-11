@@ -143,7 +143,23 @@ input {
 	margin: 5px;
 }
 
+.chart {
+	margin: 10px;
+	height: 600px;
+	width: 600px;
+}
+
+@media all and (max-width: 710px) {
+	.chart {
+		margin: 10px;
+		height: 300px;
+		width: 300px;
+	}
+}
+
 @media all and (max-width: 650px) {
+	
+
 	h1 #header {
 		font-size: 30px;
 	}
@@ -217,6 +233,7 @@ section.med-regimens {
 .cancel-button {
 	height: 40px;
 }
+
 	
 }
 
