@@ -5,7 +5,9 @@ import { Line } from 'react-chartjs-2';
 export default class LineChart extends Component {
   constructor(props) {
     super(props);
-    this.state = {};
+    this.state = {
+        data: {}
+    };
   }
 
   componentDidMount() {
@@ -53,14 +55,14 @@ export default class LineChart extends Component {
                 ticks: {
                   beginAtZero: true,
                   suggestedMin: 0,
-                  fontSize: 20,
+                  fontSize: 15,
                   fontColor: 'black',
                 },
                 scaleLabel: {
                   display: true,
                   labelString: 'Time(24-hr)',
                   fontColor: 'black',
-                  fontSize: 20,
+                  fontSize: 17,
                 },
               },
             ],
@@ -79,7 +81,7 @@ export default class LineChart extends Component {
                   display: true,
                   labelString: 'Blood Sugar Levels',
                   fontColor: 'black',
-                  fontSize: 15,
+                  fontSize: 17,
                 },
               },
             ],
@@ -97,3 +99,16 @@ export default class LineChart extends Component {
     );
   }
 }
+
+LineChart.defaultProps = {
+  data: {
+    labels: ['13:55', '20:40'],
+    datasets: [
+      {
+        label: 'Blood Sugar Level',
+        data: [100, 230],
+      },
+    ],
+  },
+  options: {},
+};

@@ -8,28 +8,24 @@ export default class LogTable extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      visualize: false
+      visualize: false,
     };
   }
 
-  componentDidMount() {
-
-  }
+  componentDidMount() {}
 
   handleClick = () => {
-    console.log('This works')
-   this.setState(prevState => {
-     return {
-       visualize: !prevState.visualize
-     }
-   })
-  }
+    this.setState((prevState) => {
+      return {
+        visualize: !prevState.visualize,
+      };
+    });
+  };
 
   render() {
-    const toRender = (!this.state.visualize)
-                      ?
-                      (<>
-           <div className="table-content">
+    const toRender = !this.state.visualize ? (
+      <>
+        <div className="table-content">
           <table id="log-display-table">
             <thead>
               <tr>
@@ -49,32 +45,20 @@ export default class LogTable extends Component {
         >
           Show Chart
         </button>
-        </>
-        )
-        :
-        (
-            <>
-            <button
-              type="button"
-              onClick={this.handleClick}
-              className="visualize-logs"
-            >
-              Hide Chart
-            </button>
-            <LineChart filteredLogs={this.props.filteredLogs} />
-          </>
-        )
-    return (
-      
-       <>
-        {toRender}
-       </>
-        
-     
-      
-      
-      
+      </>
+    ) : (
+      <>
+        <button
+          type="button"
+          onClick={this.handleClick}
+          className="visualize-logs"
+        >
+          Hide Chart
+        </button>
+        <LineChart filteredLogs={this.props.filteredLogs} />
+      </>
     );
+    return <>{toRender}</>;
   }
 }
 
