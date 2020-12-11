@@ -1,12 +1,25 @@
 /* eslint-disable react/forbid-prop-types */
 import React, { Component } from 'react';
+import LineChart from '../LineChart/LineChart';
 import PropTypes from 'prop-types';
 import './LogTable.css';
 
 export default class LogTable extends Component {
   constructor(props) {
     super(props);
-    this.state = {};
+    this.state = {
+      visualize: false
+    };
+  }
+
+  componentDidMount() {
+
+  }
+
+  handleClick = () => {
+    this.setState({
+      visualize: true
+    })
   }
 
   render() {
@@ -24,9 +37,20 @@ export default class LogTable extends Component {
             <tbody id="table-body">{this.props.renderLogs}</tbody>
           </table>
         </div>
-        <button type="button" className="visualize-logs">
-          Visualize
+        {!this.state.visualize && (
+          <button type="button" onClick={this.handleClick} className="visualize-logs">
+          Show Chart
         </button>
+        )}
+        
+        {this.state.visualize && (
+          <>
+          <button type="button" onClick={this.handleClick} className="visualize-logs">
+            Hide Chart
+          </button>
+          <LineChart filteredLogs={this.state.filteredLogs} />
+          </>
+        )}
       </>
     );
   }
