@@ -9,6 +9,9 @@ export default class MealsLog extends Component {
     this.state = {
       error: '',
       message: '',
+      meals: '',
+      date: '',
+      time: '',
     };
   }
 
@@ -97,7 +100,7 @@ export default class MealsLog extends Component {
               placeholder="Egg Sandwich"
               type="text"
               name="meals"
-              id="meals"
+              id="meal"
               aria-label="meal"
               aria-required="true"
               value={this.state.meals}
